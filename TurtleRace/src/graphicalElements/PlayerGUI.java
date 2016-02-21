@@ -1,5 +1,7 @@
 package graphicalElements;
 
-public class PlayerGUI {
+import javax.swing.JFrame;
+
+public class PlayerGUI extends JFrame{
 
 }
