@@ -8,14 +8,20 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
+import java.util.ArrayList;
+
 import javax.swing.JFrame;
 
 public class GameMain implements Runnable{
 
 	private static final long serialVersionUID = 1L;
-	private static int width = 160;
-	private static int height = width / 12 * 9;
-	private static int scale = 5;
+	
+	//private static int width = 160;
+	//private static int height = width / 12 * 9;
+	private static int width = 1280;
+	private static int height = 720;
+	
+	private static int scale = 1;
 	private static String title = "The Adventures of You and I: A Tale of Two Turtles";
 	private boolean running = false;
 	private int tickCount = 0;
@@ -30,19 +36,27 @@ public class GameMain implements Runnable{
 		game.start();
 	}
 	public GameMain(){
-		frame = new JFrame(title);
-		canvas = new Canvas();
-		canvas.setMinimumSize(new Dimension(width*scale, height*scale));
-		canvas.setMaximumSize(new Dimension(width*scale, height*scale));
-		canvas.setPreferredSize(new Dimension(width*scale, height*scale));
-		frame.setSize(new Dimension(width*scale, height*scale));
-		frame.setVisible(true);
-		frame.setLocationRelativeTo(null);
-		frame.setResizable(false);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setLayout(new BorderLayout());
-		frame.add(canvas, BorderLayout.CENTER);
-		//frame.pack();
+		
+		//GUI Elements----------------------------------------------------------
+			frame = new JFrame(title);
+			canvas = new Canvas();
+			canvas.setMinimumSize(new Dimension(width*scale, height*scale));
+			canvas.setMaximumSize(new Dimension(width*scale, height*scale));
+			canvas.setPreferredSize(new Dimension(width*scale, height*scale));
+			frame.setSize(new Dimension(width*scale, height*scale));
+			frame.setVisible(true);
+			frame.setLocationRelativeTo(null);
+			frame.setResizable(false);
+			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			frame.setLayout(new BorderLayout());
+			frame.add(canvas, BorderLayout.CENTER);
+			//frame.pack();
+		//-----------------------------------------------------------------------
+		
+		//Game Elements
+			ArrayList characters;
+			
+		
 	}
 	@Override
 	public void run(){
