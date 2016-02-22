@@ -32,6 +32,7 @@ public class GameMain implements Runnable{
 	private int tickCount = 0;
 	private JFrame frame;
 	private Canvas canvas;
+	private Screen screen;
 	private BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 	private int[] pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData();
 	
@@ -76,7 +77,7 @@ public class GameMain implements Runnable{
 		int ticks = 0; //number of updates
 		int frames = 0; //number of frames
 		
-		
+		init();
 		
 		while(running){
 			long now = System.nanoTime();
@@ -109,6 +110,9 @@ public class GameMain implements Runnable{
 		for(int i = 0; i < pixels.length; i++){
 			pixels[i] = i + tickCount;
 		}
+	}
+	public void init(){
+		screen = new Screen(width, height, new SpriteSheet("/C:/Users/plb53/workspace/Game/res/DefaultSpriteSheet.png"));
 	}
 	public void render(){
 		BufferStrategy bs = canvas.getBufferStrategy();
