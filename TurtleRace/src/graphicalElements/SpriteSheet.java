@@ -1,4 +1,3 @@
-package graphics;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -35,9 +34,5 @@ public class SpriteSheet{
 		for(int i = 0; i < pixels.length; i++){
 			pixels[i] = (pixels[i] & 0xff)/64; //Removes alpha channel
 		}
-		for(int i = 0; i < 8; i++){
-			System.out.println(pixels[i]);
-		}
 	}
-	
 }
