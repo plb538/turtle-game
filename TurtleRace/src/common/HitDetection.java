@@ -1,5 +1,6 @@
 package common;
-import weapons.Weapon
+import weapons.Weapon;
+
 public class HitDetection {
 
 	//To determine if something is a hit:
@@ -11,8 +12,21 @@ public class HitDetection {
 			For example, the Quarterstaff has a vertical attack height of 1 character (256 pixels)
 	*/
 	
-	public boolean validHit(Weapon attackingWeapon, int axis ){
+	public boolean validHit(Weapon attackingWeapon, common.Character attacker){
 		
+		
+		
+		for(int i = 0; i < attackingWeapon.range; i++){
+			
+		}
+		
+		return true;
+		
+	}
+	
+	private common.Character getCharacter(){
+		
+		return null;
 	}
 	
 }
