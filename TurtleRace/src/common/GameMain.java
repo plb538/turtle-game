@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 
 import weapons.BinaryRifle;
+import weapons.PunchingFist;
 
 public class GameMain implements Runnable{
 
@@ -60,9 +61,9 @@ public class GameMain implements Runnable{
 		//Game Elements
 			ArrayList characters = null;
 			Character player = new playerElements.Player(new BinaryRifle(), 100, groundLevel, 0);
-			Character enemy = new enemyElements.Monkey(0, 500, groundLevel);
+			Character enemy = new enemyElements.Monkey(new PunchingFist(), 0, 500, groundLevel);
 			characters.add(player);
-			character.add(enemy);
+			characters.add(enemy);
 			
 		
 	}
