@@ -91,7 +91,7 @@ public class GameMain implements Runnable{
 			delta += (now - lastTime)/nsPerTick;
 			lastTime = now;
 			boolean framesRendered = false;
-			
+			init();
 			while(delta >= 1){
 				ticks++;
 				tick();
