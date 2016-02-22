@@ -4,7 +4,7 @@ import weapons.Weapon;
 
 public class Monkey implements Enemy{
 	
-	int health = 100;
+	Weapon myWeapon;
 	int armor;
 	int xpos;
 	int ypos;
@@ -16,4 +16,18 @@ public class Monkey implements Enemy{
 		ypos = _ypos;
 	}
 
+	public void Jump(){
+		if(this.ypos == 720*2/3){
+			this.ypos += this.jumpHeight;
+		}
+	}
+	
+	public void Forwards(){
+		this.xpos += 25;
+	}
+	
+	public void Backwards(){
+		this.xpos -= 25;
+	}
+	
 }

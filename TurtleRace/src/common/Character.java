@@ -19,4 +19,13 @@ public interface Character {
 	static final int width = 128;
 	static final int height = 256;
 	
+	//Velocity in pixels per second
+	int velocity = 0;
+	
+	//Jump height in pixels
+	int jumpHeight = 256;
+	
+	public void Jump();
+	public void Forwards();
+	public void Backwards();
 }

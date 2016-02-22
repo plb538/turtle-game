@@ -1,5 +1,6 @@
 package common;
 
+import java.util.Scanner;
 import java.awt.BorderLayout;
 import java.awt.Canvas;
 import java.awt.Color;
@@ -9,7 +10,6 @@ import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 import java.util.ArrayList;
-
 import javax.swing.JFrame;
 
 import weapons.BinaryRifle;
@@ -59,14 +59,21 @@ public class GameMain implements Runnable{
 			//frame.pack();
 		//-----------------------------------------------------------------------
 		
-		//Game Elements
-			ArrayList characters = null;
-			Character player = new playerElements.Player(new BinaryRifle(), 100, groundLevel, 0);
-			Character enemy = new enemyElements.Monkey(new PunchingFist(), 0, 500, groundLevel);
-			characters.add(player);
-			characters.add(enemy);
+		//Game Elements-----------------------------------------------------------------------------
 			
-		
+			//Level
+			levelElements.Level level = new levelElements.Level();
+			levelElements.Challenges e = new levelElements.Enemies(3, 1280);		
+			level.addChallenge(e);
+			Character player = new playerElements.Player(new BinaryRifle(), 100, groundLevel, 0);
+			
+		//------------------------------------------------------------------------------------------
+			
+		//Input-----------
+			Scanner keyboard = new Scanner(System.in);
+			PlayerInput input = new PlayerInput(keyboard, player);
+			input.start();
+		//----------------
 	}
 	@Override
 	public void run(){
