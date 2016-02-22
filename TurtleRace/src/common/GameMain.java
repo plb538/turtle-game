@@ -119,7 +119,7 @@ public class GameMain implements Runnable{
 		}
 	}
 	public void init(){
-		screen = new Screen(width, height, new SpriteSheet("/C:/Users/plb53/workspace/Game/res/DefaultSpriteSheet.png"));
+		screen = new Screen(width, height, new SpriteSheet("https://gitlab.com/5895-2016/Paddy-Steven/blob/master/TurtleRace/src/sprites/DefaultSpriteSheet.png"));
 	}
 	public void render(){
 		BufferStrategy bs = canvas.getBufferStrategy();
