@@ -10,8 +10,6 @@ import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 import javax.swing.JFrame;
 
-import graphics.SpriteSheet;
-
 public class GameMain implements Runnable{
 
 	private static final long serialVersionUID = 1L;
@@ -25,14 +23,13 @@ public class GameMain implements Runnable{
 	private Canvas canvas;
 	private BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 	private int[] pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData();
-	//private SpriteSheet spriteSheet = new SpriteSheet("DefaultSpriteSheet.png");
 	
 	
 	public static void main(String[] args){
 		Game game = new Game();
 		game.start();
 	}
-	public Game(){
+	public GameMain(){
 		frame = new JFrame(title);
 		canvas = new Canvas();
 		canvas.setMinimumSize(new Dimension(width*scale, height*scale));
