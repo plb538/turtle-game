@@ -1,5 +1,7 @@
 package enemyElements;
 
+import weapons.Weapon;
+
 public class Monkey implements Enemy{
 	
 	int health = 100;
@@ -7,7 +9,8 @@ public class Monkey implements Enemy{
 	int xpos;
 	int ypos;
 	
-	public Monkey(int _armor, int _xpos, int _ypos){
+	public Monkey(Weapon chosenWeapon, int _xpos, int _ypos, int _armor){
+		myWeapon = chosenWeapon;
 		armor = _armor;
 		xpos = _xpos;
 		ypos = _ypos;
