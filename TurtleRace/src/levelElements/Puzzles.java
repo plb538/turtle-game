@@ -1,5 +1,5 @@
 package levelElements;
 
-public abstract class Puzzles extends Challenges{
+public class Puzzles extends Challenges{
 
 }
