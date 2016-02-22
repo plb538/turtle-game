@@ -12,6 +12,8 @@ import java.awt.image.DataBufferInt;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 
+import graphicalElements.Screen;
+import graphicalElements.SpriteSheet;
 import weapons.BinaryRifle;
 import weapons.PunchingFist;
 
