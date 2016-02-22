@@ -4,7 +4,7 @@ import weapons.Weapon;
 
 public class Monkey implements Enemy{
 	
-	int health = 100;
+	Weapon myWeapon;
 	int armor;
 	int xpos;
 	int ypos;
