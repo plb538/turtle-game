@@ -15,7 +15,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener{
 	//panel size
 	public static final int WIDTH	= 320;
 	public static final int HEIGHT = 240;
-	public static final int SCALE = 2;
+	public static final int SCALE = 3;
 	
 	//game thread
 	private Thread thread;
@@ -93,9 +93,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener{
 	}
 
 	@Override
-	public void keyTyped(KeyEvent key){
-		
-	}
+	public void keyTyped(KeyEvent key){}
 	
 	public void addNotify(){
 		super.addNotify();
