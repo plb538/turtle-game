@@ -8,10 +8,10 @@ import javax.imageio.stream.FileImageInputStream;
 
 public class SpriteSheet{
 	
-	private String path;
-	private int width;
-	private int height;
-	private int[] pixels;
+	public String path;
+	public int width;
+	public int height;
+	public int[] pixels;
 	
 	public SpriteSheet(String path){
 		BufferedImage image = null;

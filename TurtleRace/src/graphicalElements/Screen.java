@@ -1,4 +1,4 @@
-package graphics;
+package graphicalElements;
 
 public class Screen{
 	
