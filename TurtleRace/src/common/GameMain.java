@@ -16,7 +16,7 @@ public class GameMain implements Runnable{
 	private static int width = 160;
 	private static int height = width / 12 * 9;
 	private static int scale = 5;
-	private static String title = "The Adventures of Theodore and Norvell";
+	private static String title = "The Adventures of You and I: A Tale of Two Turtles";
 	private boolean running = false;
 	private int tickCount = 0;
 	private JFrame frame;
