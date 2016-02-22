@@ -58,12 +58,13 @@ public class GameMain implements Runnable{
 			//frame.pack();
 		//-----------------------------------------------------------------------
 		
-		//Game Elements
-			ArrayList characters = null;
+		//Game Elements-----------------------------------------------------------------------------
+			ArrayList<Character> characters = new ArrayList<Character>();
 			Character player = new playerElements.Player(new BinaryRifle(), 100, groundLevel, 0);
 			Character enemy = new enemyElements.Monkey(new PunchingFist(), 0, 500, groundLevel);
 			characters.add(player);
 			characters.add(enemy);
+		//------------------------------------------------------------------------------------------
 			
 		
 	}
