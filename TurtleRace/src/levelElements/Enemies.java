@@ -13,7 +13,7 @@ public class Enemies extends Challenges{
 	
 	public Enemies(int numberMonkeys, int startingDistance){
 		for(int i = 0; i < numberMonkeys; i++){
-			myEnemies.add(new Monkey(new PunchingFist(), startingDistance+1280/numberMonkeys, 1280/3, 0));
+			myEnemies.add(new Monkey(new PunchingFist(), startingDistance+1280*(i+1)/numberMonkeys, 720/3, 0));
 		}
 	}
 	
