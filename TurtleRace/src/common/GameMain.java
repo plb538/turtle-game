@@ -91,7 +91,7 @@ public class GameMain implements Runnable{
 			delta += (now - lastTime)/nsPerTick;
 			lastTime = now;
 			boolean framesRendered = false;
-			init();
+	
 			while(delta >= 1){
 				ticks++;
 				tick();
@@ -114,9 +114,7 @@ public class GameMain implements Runnable{
 	}
 	public void tick(){
 		tickCount++;
-		for(int i = 0; i < pixels.length; i++){
-			pixels[i] = i + tickCount;
-		}
+	
 	}
 	public void init(){
 		screen = new Screen(width, height, new SpriteSheet("https://gitlab.com/5895-2016/Paddy-Steven/blob/master/TurtleRace/src/sprites/DefaultSpriteSheet.png"));
