@@ -14,12 +14,16 @@ public class HitDetection {
 	
 	public boolean validHit(Weapon attackingWeapon, Character attacker){
 		
-		Character check = null;
+		Character potentialHit = null;
 		
-		for(int i = 0; i < attackingWeapon.range; i++){
+		for(int i = attacker.xpos; i < (attacker.xpos + attackingWeapon.range); i++){
 			//Check each distance for presence of character
 			
+			potentialHit = checkPresence(i);
 			
+			if(potentialHit != null){
+				
+			}
 			
 			//If there is a character,
 		}
@@ -28,7 +32,7 @@ public class HitDetection {
 		
 	}
 	
-	private Character getCharacter(){
+	private Character checkPresence(int xpos){
 		
 		return null;
 	}

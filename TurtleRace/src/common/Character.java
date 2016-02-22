@@ -1,5 +1,7 @@
 package common;
 
+import weapons.Weapon;
+
 public interface Character {
 	
 	
@@ -10,9 +12,11 @@ public interface Character {
 	int xpos = 0;
 	int ypos = 0;
 	
-	//characters 128 pixels wide by 256 pixels tall
-	int width = 128;
-	int height = 256;
+	//Weapon
+	Weapon myWeapon = null;
 	
+	//characters 128 pixels wide by 256 pixels tall
+	static final int width = 128;
+	static final int height = 256;
 	
 }

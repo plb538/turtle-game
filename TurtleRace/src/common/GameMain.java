@@ -12,15 +12,19 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
+import weapons.BinaryRifle;
+
 public class GameMain implements Runnable{
 
 	private static final long serialVersionUID = 1L;
 	
 	//private static int width = 160;
 	//private static int height = width / 12 * 9;
+	
+	//Top left corner is 0,0
 	private static int width = 1280;
 	private static int height = 720;
-	
+	private static int groundLevel = height*(2/3);
 	private static int scale = 1;
 	private static String title = "The Adventures of You and I: A Tale of Two Turtles";
 	private boolean running = false;
@@ -54,7 +58,11 @@ public class GameMain implements Runnable{
 		//-----------------------------------------------------------------------
 		
 		//Game Elements
-			ArrayList characters;
+			ArrayList characters = null;
+			Character player = new playerElements.Player(new BinaryRifle(), 100, groundLevel, 0);
+			Character enemy = new enemyElements.Monkey(0, 500, groundLevel);
+			characters.add(player);
+			character.add(enemy);
 			
 		
 	}
@@ -66,6 +74,8 @@ public class GameMain implements Runnable{
 		double delta = 0; //How many nano-seconds have gone by
 		int ticks = 0; //number of updates
 		int frames = 0; //number of frames
+		
+		
 		
 		while(running){
 			long now = System.nanoTime();
