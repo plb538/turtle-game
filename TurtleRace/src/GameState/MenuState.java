@@ -24,7 +24,7 @@ public class MenuState extends GameState{
 		
 		try{
 			bg = new Background("/Backgrounds/testBG.png", 1);
-			bg.setVector(-2, 0);
+			bg.setVector(0, 0);
 			
 			titleColor = new Color(255, 0, 0);
 			titleFont = new Font("Century Gothic", Font.PLAIN, 56);
