@@ -22,8 +22,8 @@ public class MenuState extends GameState{
 		this.gsm = gsm;
 		
 		try{
-			bg = new Background("/Backgrounds/testBG.png", 1);
-			bg.setVector(-0.2, 0);
+			bg = new Background("/Backgrounds/testBG3.png", 1);
+			bg.setVector(-0.5, 0);
 			
 			titleColor = new Color(255, 0, 0);
 			titleFont = new Font("Century Gothic", Font.PLAIN, 28);
@@ -35,10 +35,7 @@ public class MenuState extends GameState{
 	}
 
 	@Override
-	public void init(){
-		// TODO Auto-generated method stub
-		
-	}
+	public void init(){}
 
 	@Override
 	public void update(){
@@ -58,7 +55,7 @@ public class MenuState extends GameState{
 		//draw menu options
 		for(int i = 0; i < options.length; i++){
 			if(i == curOption){
-				g.setColor(Color.BLACK);
+				g.setColor(Color.WHITE);
 			}
 			else{
 				g.setColor(Color.RED);
@@ -87,10 +84,7 @@ public class MenuState extends GameState{
 	}
 
 	@Override
-	public void keyReleased(int k){
-		// TODO Auto-generated method stub
-		
-	}
+	public void keyReleased(int k){}
 	
 	private void select(){
 		switch(curOption){
