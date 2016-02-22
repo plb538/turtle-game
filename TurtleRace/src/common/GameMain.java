@@ -26,7 +26,7 @@ public class GameMain implements Runnable{
 	
 	
 	public static void main(String[] args){
-		Game game = new Game();
+		GameMain game = new GameMain();
 		game.start();
 	}
 	public GameMain(){
