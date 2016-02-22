@@ -120,6 +120,7 @@ public class GameMain implements Runnable{
 			canvas.createBufferStrategy(3);
 			return;
 		}
+		screen.render(pixels, 0, width);
 		Graphics g = bs.getDrawGraphics();
 		//g.setColor(Color.BLUE);
 		//g.fillRect(0, 0, getWidth(), getHeight());
