@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
@@ -13,9 +14,9 @@ import GameState.GameStateManager;
 public class GamePanel extends JPanel implements Runnable, KeyListener{
 	
 	//panel size
-	public static final int WIDTH	= 320;
-	public static final int HEIGHT = 240;
-	public static final int SCALE = 3;
+	public static final int WIDTH	= 1080;
+	public static final int HEIGHT = 720;
+	//public static final int SCALE = 1; //dont see need for this in videos yet
 	
 	//game thread
 	private Thread thread;
@@ -32,7 +33,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener{
 	
 	public GamePanel(){
 		super();
-		setPreferredSize(new Dimension(WIDTH*SCALE, HEIGHT*SCALE));
+		setPreferredSize(new Dimension(WIDTH, HEIGHT)); //sizes the window
 		setFocusable(true);
 		requestFocus();
 	}
@@ -52,6 +53,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener{
 			elapsed = System.nanoTime() - start;
 			wait = targetTime - elapsed / 1000000;
 			
+			if(wait < 0) wait = 5;
 			try{
 				Thread.sleep(wait);
 			}
@@ -71,7 +73,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener{
 	
 	private void drawToScreen(){
 		Graphics2D g2 = (Graphics2D)getGraphics();
-		g2.drawImage(image, 0, 0, WIDTH*SCALE, HEIGHT*SCALE, null);
+		g2.drawImage(image, 0, 0, WIDTH, HEIGHT, null);
 		g2.dispose();
 	}
 	

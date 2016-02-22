@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
+import Main.GamePanel;
 import TileMap.Background;
 
 public class MenuState extends GameState{
@@ -22,12 +23,12 @@ public class MenuState extends GameState{
 		this.gsm = gsm;
 		
 		try{
-			bg = new Background("/Backgrounds/testBG3.png", 1);
-			bg.setVector(-0.5, 0);
+			bg = new Background("/Backgrounds/testBG.png", 1);
+			bg.setVector(-2, 0);
 			
 			titleColor = new Color(255, 0, 0);
-			titleFont = new Font("Century Gothic", Font.PLAIN, 28);
-			font = new Font("Arial", Font.PLAIN, 12);
+			titleFont = new Font("Century Gothic", Font.PLAIN, 56);
+			font = new Font("Arial", Font.PLAIN, 26);
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -50,9 +51,10 @@ public class MenuState extends GameState{
 		//draw title
 		g.setColor(titleColor);
 		g.setFont(titleFont);
-		g.drawString(title, 30, 70);
+		g.drawString(title, GamePanel.WIDTH/4, 100);
 		
 		//draw menu options
+		g.setFont(font);
 		for(int i = 0; i < options.length; i++){
 			if(i == curOption){
 				g.setColor(Color.WHITE);
@@ -60,7 +62,7 @@ public class MenuState extends GameState{
 			else{
 				g.setColor(Color.RED);
 			}
-			g.drawString(options[i], 130, 140 + i*25);
+			g.drawString(options[i], 520, 280 + i*30);
 		}
 	}
 
