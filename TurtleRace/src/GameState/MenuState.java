@@ -90,7 +90,8 @@ public class MenuState extends GameState{
 	
 	private void select(){
 		switch(curOption){
-			case 0 : //start
+			case 0 : 
+				gsm.setState(GameStateManager.LEVELSTATE);
 				break;
 			case 1 : //help
 				break;
