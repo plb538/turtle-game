@@ -22,6 +22,7 @@ public class Enemies extends Challenges{
 		
 		for(int i = 0; i < myEnemies.size(); i ++){
 			if(myEnemies.get(i).health != 0){
+				myEnemies.get(i).hurt(2);
 				return false;
 			}
 		}

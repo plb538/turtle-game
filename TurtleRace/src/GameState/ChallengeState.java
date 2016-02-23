@@ -45,7 +45,7 @@ public class ChallengeState extends GameState{
 	public void update(){
 		bg.update();
 		if(currentChallenge.isFinished()){
-			gsm.setState(stateNumber+1);
+			gsm.setState(stateNumber);
 		}
 	}
 
@@ -57,7 +57,7 @@ public class ChallengeState extends GameState{
 		//draw title
 		g.setColor(titleColor);
 		g.setFont(titleFont);
-		g.drawString("Challenge State", GamePanel.WIDTH/4, 100);
+		g.drawString("Challenge State:" + stateNumber, GamePanel.WIDTH/4, 100);
 		
 		//draw menu options
 		g.setFont(font);

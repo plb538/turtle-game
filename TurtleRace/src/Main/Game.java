@@ -16,8 +16,11 @@ public class Game{
 			levelElements.Level level = new levelElements.Level();
 			levelElements.Challenges c1 = new levelElements.Enemies(3);
 			levelElements.Challenges c2 = new levelElements.Enemies(4);	
+			levelElements.Challenges c3 = new levelElements.Enemies(5);	
 			level.addChallenge(c1);
 			level.addChallenge(c2);
+			level.addChallenge(c3);
+			
 			Character player = new playerElements.Player(new BinaryRifle(), 100, 720*2/3, 0);
 			HUD myHUD = new HUD(player, player);
 		//------------------------------------------------------------------------------------------
