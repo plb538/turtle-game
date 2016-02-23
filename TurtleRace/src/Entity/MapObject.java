@@ -2,6 +2,7 @@ package Entity;
 
 import java.awt.Rectangle;
 
+import TileMap.Tile;
 import TileMap.TileMap;
 
 public abstract class MapObject{
@@ -74,6 +75,50 @@ public abstract class MapObject{
 		ytemp = y;
 		
 		calcCorners(x, ydest);
+		if(dy < 0){
+			if(topLeft || topRight){
+				dy = 0;
+				ytemp = curRow * tileSize + cheight / 2;
+			}
+			else{
+				ytemp += dy;
+			}
+		}
+		if(dy > 0){
+			if(botLeft || botRight){
+				dy = 0;
+				falling = true;
+				ytemp = (curRow + 1) * tileSize - cheight / 2;
+			}
+			else{
+				 ytemp += dy;
+			}
+		}
+		calcCorners(xdest, y);
+		if(dx < 0){
+			if(topLeft || botLeft){
+				dx = 0;
+				xtemp = curCol * tileSize + cwidth / 2;
+			}
+			else{
+				xtemp += dx;
+			}
+			if(dx > 0){
+				if(topRight || botRight){
+					dx = 0;
+					xtemp = (curCol + 1) * tileSize - cwidth / 2;
+				}
+				else{
+					xtemp += dx;
+				}
+			}
+			if(!falling){
+				calcCorners(x, ydest + 1);
+				if(!botLeft && ! botRight){
+					falling = true;
+				}
+			}
+		}
 	}
 	
 	public void calcCorners(double x, double y){
@@ -86,5 +131,47 @@ public abstract class MapObject{
 		int tr = tileMap.getType(topTile, rightTile);
 		int bl = tileMap.getType(botTile, leftTile);
 		int br = tileMap.getType(botTile, rightTile);
+		
+		topLeft = tl == Tile.BLOCKED;
+		topRight = tr == Tile.BLOCKED;
+		botLeft = bl == Tile.BLOCKED;
+		botRight = br == Tile.BLOCKED;
 	}
+	
+	public int getx(){return (int)x;}
+	
+	public int gety(){return (int)y;} 
+	
+	public int getWidth(){return width;}
+	
+	public int getHeight(){return height;}
+	
+	public int getCWidth(){return cwidth;}
+	
+	public int getCHeight(){return cheight;}
+	
+	public void setPosition(double x, double y){
+		this.x = x;
+		this.y = y;
+	}
+
+	public void setVector(double dx, double dy){
+		this.dx = dx;
+		this.dy = dy;
+	}
+	
+	public void setMapPosition(){
+		xmap = tileMap.getx();
+		ymap = tileMap.gety();
+	}
+	
+	public void setLeft(boolean b){left = b;}
+	
+	public void setRight(boolean b){right = b;}
+	
+	public void setUp(boolean b){up = b;}
+	
+	public void setDown(boolean b){down = b;}
+	
+	public void setJumping(boolean b){jumping = b;}
 }
