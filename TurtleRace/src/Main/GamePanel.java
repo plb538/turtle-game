@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 
 import GameState.GameStateManager;
 import common.Character;
+import levelElements.Level;
 import weapons.BinaryRifle;
 
 public class GamePanel extends JPanel implements Runnable, KeyListener{
@@ -32,14 +33,16 @@ public class GamePanel extends JPanel implements Runnable, KeyListener{
 	
 	//game state manager
 	private GameStateManager gsm;
+	private levelElements.Level myLevel;
 	
-	public GamePanel(){
+	public GamePanel(levelElements.Level _myLevel){
 		super();
 		setPreferredSize(new Dimension(WIDTH, HEIGHT)); //sizes the window
 		setFocusable(true);
 		requestFocus();
+		myLevel = _myLevel;
 	}
-	
+
 	@Override
 	public void run(){		
 		init();

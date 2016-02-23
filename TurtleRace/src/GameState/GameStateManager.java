@@ -12,6 +12,7 @@ public class GameStateManager{
 	public static final int MENUSTATE = 0;
 	public static final int LEVELSTATE = 1;
 	public static final int OPTIONSTATE = 2;
+	public static final int CHALLENGESTATE = 3;
 	
 	public GameStateManager(){
 		gameStates = new ArrayList<GameState>();
@@ -19,6 +20,7 @@ public class GameStateManager{
 		gameStates.add(new MenuState(this));
 		gameStates.add(new LevelState(this));
 		gameStates.add(new OptionState(this));
+		//gameStates.add(new ChallengeState(this));
 	}
 	
 	public void setState(int state){
