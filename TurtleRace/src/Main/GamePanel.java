@@ -16,7 +16,7 @@ import weapons.BinaryRifle;
 public class GamePanel extends JPanel implements Runnable, KeyListener{
 	
 	//panel size
-	public static final int WIDTH = 1080;
+	public static final int WIDTH = 1280;
 	public static final int HEIGHT = 720;
 	public static final int SCALE = 2; //dont see need for this in videos yet
 	
