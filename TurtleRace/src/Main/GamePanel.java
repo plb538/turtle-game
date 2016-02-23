@@ -4,18 +4,21 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
 
 import GameState.GameStateManager;
+import common.Character;
+import weapons.BinaryRifle;
 
 public class GamePanel extends JPanel implements Runnable, KeyListener{
 	
 	//panel size
-	public static final int WIDTH	= 320;
-	public static final int HEIGHT = 240;
-	public static final int SCALE = 2;
+	public static final int WIDTH = 1080;
+	public static final int HEIGHT = 720;
+	public static final int SCALE = 2; //dont see need for this in videos yet
 	
 	//game thread
 	private Thread thread;
@@ -27,19 +30,18 @@ public class GamePanel extends JPanel implements Runnable, KeyListener{
 	private BufferedImage image;
 	private Graphics2D g;
 	
-	
 	//game state manager
 	private GameStateManager gsm;
 	
 	public GamePanel(){
 		super();
-		setPreferredSize(new Dimension(WIDTH*SCALE, HEIGHT*SCALE));
+		setPreferredSize(new Dimension(WIDTH, HEIGHT)); //sizes the window
 		setFocusable(true);
 		requestFocus();
 	}
 	
 	@Override
-	public void run(){
+	public void run(){		
 		init();
 		long start, elapsed, wait;
 		
@@ -53,6 +55,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener{
 			elapsed = System.nanoTime() - start;
 			wait = targetTime - elapsed / 1000000;
 			
+			if(wait < 0) wait = 5;
 			try{
 				Thread.sleep(wait);
 			}
@@ -72,7 +75,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener{
 	
 	private void drawToScreen(){
 		Graphics2D g2 = (Graphics2D)getGraphics();
-		g2.drawImage(image, 0, 0, WIDTH*SCALE, HEIGHT*SCALE, null);
+		g2.drawImage(image, 0, 0, WIDTH, HEIGHT, null);
 		g2.dispose();
 	}
 	
@@ -94,9 +97,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener{
 	}
 
 	@Override
-	public void keyTyped(KeyEvent key){
-		
-	}
+	public void keyTyped(KeyEvent key){}
 	
 	public void addNotify(){
 		super.addNotify();

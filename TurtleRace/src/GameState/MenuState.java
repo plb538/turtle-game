@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
+import Main.GamePanel;
 import TileMap.Background;
 
 public class MenuState extends GameState{
@@ -23,11 +24,11 @@ public class MenuState extends GameState{
 		
 		try{
 			bg = new Background("/Backgrounds/testBG.png", 1);
-			bg.setVector(-0.2, 0);
+			bg.setVector(0, 0); //determines if background is moving
 			
 			titleColor = new Color(255, 0, 0);
-			titleFont = new Font("Century Gothic", Font.PLAIN, 28);
-			font = new Font("Arial", Font.PLAIN, 12);
+			titleFont = new Font("Century Gothic", Font.PLAIN, 56);
+			font = new Font("Arial", Font.PLAIN, 26);
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -35,10 +36,7 @@ public class MenuState extends GameState{
 	}
 
 	@Override
-	public void init(){
-		// TODO Auto-generated method stub
-		
-	}
+	public void init(){}
 
 	@Override
 	public void update(){
@@ -47,26 +45,27 @@ public class MenuState extends GameState{
 
 	@Override
 	public void draw(Graphics2D g){
-		//draw bg
+		//draw background
 		bg.draw(g);
 		
 		//draw title
 		g.setColor(titleColor);
 		g.setFont(titleFont);
-		g.drawString(title, 30, 70);
+		g.drawString(title, GamePanel.WIDTH/4, 100);
 		
 		//draw menu options
+		g.setFont(font);
 		for(int i = 0; i < options.length; i++){
 			if(i == curOption){
-				g.setColor(Color.BLACK);
+				g.setColor(Color.WHITE);
 			}
 			else{
 				g.setColor(Color.RED);
 			}
-			g.drawString(options[i], 130, 140 + i*25);
+			g.drawString(options[i], 520, 280 + i*30);
 		}
 	}
-
+	//key press options for menu screen
 	@Override
 	public void keyPressed(int k){
 		if(k == KeyEvent.VK_ENTER){
@@ -87,14 +86,12 @@ public class MenuState extends GameState{
 	}
 
 	@Override
-	public void keyReleased(int k){
-		// TODO Auto-generated method stub
-		
-	}
+	public void keyReleased(int k){}
 	
 	private void select(){
 		switch(curOption){
-			case 0 : //start
+			case 0 : 
+				gsm.setState(GameStateManager.LEVELSTATE);
 				break;
 			case 1 : //help
 				break;
