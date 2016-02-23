@@ -10,13 +10,6 @@ public class Level {
 		level.add(new StartSection());
 	}
 	
-	public ArrayList<common.Character> getCharacters(int startingPos, int range){
-		
-		
-		return null;
-		
-	}
-	
 	public void addChallenge(Challenges e){
 		level.add(e);
 	}

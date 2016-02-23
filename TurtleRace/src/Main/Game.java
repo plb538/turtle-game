@@ -11,7 +11,7 @@ public class Game{
 		
 		//Game Elements-----------------------------------------------------------------------------
 		
-			//Level
+		//Level
 			levelElements.Level level = new levelElements.Level();
 			levelElements.Challenges c = new levelElements.Enemies(3, 1280);		
 			level.addChallenge(c);
