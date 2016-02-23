@@ -8,25 +8,23 @@ import java.awt.event.KeyEvent;
 import Main.GamePanel;
 import TileMap.Background;
 
-public class ChallengeState extends GameState{
+public class EndState extends GameState{
 	
 	private Background bg;
 	
-	private String[] options = {};
+	private String[] options = {"Apply Changes", "Return"};
 	private int curOption = 0;
 	private String title = "A Tale of Two Turtles";
 	private Color titleColor;
 	private Font titleFont;
 	private Font font;
-	private levelElements.Challenges currentChallenge = null;
-	private int stateNumber = 3;
 	
-	public ChallengeState(GameStateManager gsm, levelElements.Challenges currChallenge, int _stateNumber){
+	public EndState(GameStateManager gsm){
 		this.gsm = gsm;
-		this.currentChallenge = currChallenge;
-		stateNumber = _stateNumber;
+		
 		try{
-			bg = new Background("/Backgrounds/default-background.png", 1);
+			//bg = new Background("/Backgrounds/testBG.png", 1);
+			bg = new Background("/Backgrounds/gears.png", 1);
 			bg.setVector(0, 0); //determines if background is moving
 			
 			titleColor = new Color(255, 0, 0);
@@ -44,9 +42,6 @@ public class ChallengeState extends GameState{
 	@Override
 	public void update(){
 		bg.update();
-		if(currentChallenge.isFinished()){
-			gsm.setState(stateNumber);
-		}
 	}
 
 	@Override
@@ -57,20 +52,18 @@ public class ChallengeState extends GameState{
 		//draw title
 		g.setColor(titleColor);
 		g.setFont(titleFont);
-		g.drawString("Challenge State:" + stateNumber, GamePanel.WIDTH/4, 100);
+		g.drawString("Thanks for Playing!", GamePanel.WIDTH/4, 100);
 		
-		//draw menu options
-		g.setFont(font);
 		
 	}
 	//key press options for menu screen
 	@Override
 	public void keyPressed(int k){
-		
+		System.exit(0);
 	}
 
 	@Override
 	public void keyReleased(int k){}
-	
-	
+
 }
+

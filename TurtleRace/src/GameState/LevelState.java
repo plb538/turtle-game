@@ -2,6 +2,7 @@ package GameState;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.event.KeyEvent;
 
 import Main.GamePanel;
 import TileMap.Background;
@@ -29,8 +30,7 @@ public class LevelState extends GameState{
 	}
 
 	@Override
-	public void update(){
-		gsm.setState(3);		
+	public void update(){		
 	}
 
 	@Override
@@ -44,7 +44,11 @@ public class LevelState extends GameState{
 	}
 
 	@Override
-	public void keyPressed(int k){}
+	public void keyPressed(int k){
+		if(k == KeyEvent.VK_ENTER){
+			gsm.setState(4);
+		}
+	}
 
 	@Override
 	public void keyReleased(int k){}

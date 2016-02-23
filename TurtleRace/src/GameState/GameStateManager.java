@@ -14,7 +14,8 @@ public class GameStateManager{
 	public static final int MENUSTATE = 0;
 	public static final int LEVELSTATE = 1;
 	public static final int OPTIONSTATE = 2;
-	//public static final int CHALLENGESTATE = 3;
+	public static final int CHALLENGESTATE = 4;
+	public static final int ENDSTATE = 3;
 	
 	private Level myLevel = null;
 	
@@ -24,13 +25,19 @@ public class GameStateManager{
 		gameStates.add(new MenuState(this));
 		gameStates.add(new LevelState(this));
 		gameStates.add(new OptionState(this));
-		//gameStates.add(new ChallengeState(this));
+		gameStates.add(new EndState(this));
+
 		myLevel = _myLevel;
 	}
 	
 	public void setState(int state){
-		if(state >= 3){
-			gameStates.add(new ChallengeState(this, myLevel.level.get(state-3), state+1));
+
+		if(state > 3){
+			try{
+				gameStates.add(new ChallengeState(this, myLevel.level.get(state-4), state+1));
+			}catch(Throwable e){
+				state = 3;
+			}
 		}
 		curState = state;
 		gameStates.get(curState).init();

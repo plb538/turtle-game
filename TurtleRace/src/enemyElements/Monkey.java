@@ -4,10 +4,12 @@ import weapons.Weapon;
 
 public class Monkey implements Enemy{
 	
-	Weapon myWeapon;
-	int armor;
-	int xpos;
-	int ypos;
+	Weapon myWeapon=null;
+	public int health = 100;
+	public int maxHealth = 100;
+	int armor=0;
+	int xpos=0;
+	int ypos=0;
 	
 	public Monkey(Weapon chosenWeapon, int _xpos, int _ypos, int _armor){
 		myWeapon = chosenWeapon;
@@ -30,4 +32,7 @@ public class Monkey implements Enemy{
 		this.xpos -= 25;
 	}
 	
+	public void hurt(int dmg){
+		health -= dmg;
+	}
 }
