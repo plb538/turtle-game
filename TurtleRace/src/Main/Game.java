@@ -20,7 +20,7 @@ public class Game{
 		//------------------------------------------------------------------------------------------
 
 		JFrame window = new JFrame("A Tale of Two Turtles");
-		window.setContentPane(new GamePanel());
+		window.setContentPane(new GamePanel(level));
 		window.setVisible(true);
 		window.setResizable(false);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
