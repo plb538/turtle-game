@@ -24,6 +24,6 @@ public class BossMonkey implements Enemy{
 	}
 	
 	public void Backwards(){
-		this.xpos -= 25;
+		
 	}
 }

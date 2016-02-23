@@ -6,6 +6,7 @@ public interface Character {
 	
 	
 	int health = 100;
+	int maxHealth = 100;
 	int armor = 0;
 	
 	//Distances measured in pixels

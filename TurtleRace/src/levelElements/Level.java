@@ -7,7 +7,7 @@ public class Level {
 	public ArrayList<Challenges> level = new ArrayList<Challenges>();
 	
 	public Level(){
-		level.add(new StartSection());
+		//level.add(new StartSection());
 	}
 	
 	public void addChallenge(Challenges e){

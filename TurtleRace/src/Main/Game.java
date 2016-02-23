@@ -3,6 +3,7 @@ package Main;
 import javax.swing.JFrame;
 
 import common.Character;
+import graphicalElements.HUD;
 import weapons.BinaryRifle;
 
 public class Game{
@@ -13,10 +14,12 @@ public class Game{
 		
 		//Level
 			levelElements.Level level = new levelElements.Level();
-			levelElements.Challenges c = new levelElements.Enemies(3, 1280);		
-			level.addChallenge(c);
+			levelElements.Challenges c1 = new levelElements.Enemies(3);
+			levelElements.Challenges c2 = new levelElements.Enemies(4);	
+			level.addChallenge(c1);
+			level.addChallenge(c2);
 			Character player = new playerElements.Player(new BinaryRifle(), 100, 720*2/3, 0);
-				
+			HUD myHUD = new HUD(player, player);
 		//------------------------------------------------------------------------------------------
 
 		JFrame window = new JFrame("A Tale of Two Turtles");

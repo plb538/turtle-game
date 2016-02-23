@@ -14,7 +14,7 @@ public class GameStateManager{
 	public static final int MENUSTATE = 0;
 	public static final int LEVELSTATE = 1;
 	public static final int OPTIONSTATE = 2;
-	public static final int CHALLENGESTATE = 3;
+	//public static final int CHALLENGESTATE = 3;
 	
 	private Level myLevel = null;
 	
