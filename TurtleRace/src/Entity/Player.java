@@ -3,6 +3,8 @@ package Entity;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
+
 import TileMap.TileMap;
 
 public class Player extends MapObject{
@@ -15,7 +17,7 @@ public class Player extends MapObject{
 
 	//animations
 	private ArrayList<BufferedImage[]> sprites;
-	private final int[] numFrames = {2, 8, 1, 2, 4, 2, 5};
+	private final int[] numFrames = {4, 3};
 	
 	//animation actions
 	private static final int IDLE = 0;
@@ -28,5 +30,25 @@ public class Player extends MapObject{
 		super(tm);
 		width = 30;
 		height = 30;
+		cwidth = 20;
+		cheight = 20;
+		
+		stopSpeed = 0.4;
+		fallSpeed = 0.15;
+		maxFallSpeed = 4.0;
+		jumpStart = -4.8;
+		stopJumpSpeed = 0.;
+		
+		health = maxHealth = 100;
+		
+		try{
+			BufferedImage spriteSheet = ImageIO.read(getClass().getResourceAsStream(arg0));
+			
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
 	}
+	
+	
 }
