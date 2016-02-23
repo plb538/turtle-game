@@ -29,6 +29,9 @@ public class GameStateManager{
 	}
 	
 	public void setState(int state){
+		if(state >= 3){
+			gameStates.add(new ChallengeState(this, myLevel.level.get(state-3), state+1));
+		}
 		curState = state;
 		gameStates.get(curState).init();
 	}
