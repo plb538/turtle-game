@@ -17,10 +17,10 @@ public class LevelState extends GameState{
 	
 	@Override
 	public void init(){
-		tileMap = new TileMap(30);
-		//tileMap.loadTiles("/TileSets/testTS.jpg");
-		tileMap.loadMap("/Maps/testM.jpg");
-		//tileMap.setPosition(0, 0);
+		tileMap = new TileMap(30); //value passed to constructor will depend on the tile map
+		tileMap.loadTiles("/TileSets/grasstileset.gif");
+		tileMap.loadMap("/Maps/level1-1.map");
+		tileMap.setPosition(0, 0);
 	}
 
 	@Override
@@ -29,8 +29,8 @@ public class LevelState extends GameState{
 	@Override
 	public void draw(Graphics2D g){
 		//clear screen
-		g.setColor(Color.WHITE);
-		g.drawRect(0, 0, GamePanel.WIDTH, GamePanel.HEIGHT);
+		g.clearRect(0, 0, GamePanel.WIDTH, GamePanel.HEIGHT);
+		g.setBackground(Color.WHITE);
 		
 		//draw tile map
 		tileMap.draw(g);

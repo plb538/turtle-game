@@ -8,6 +8,7 @@ public class GameStateManager{
 	private ArrayList<GameState> gameStates;
 	private int curState;
 	
+	//different game states
 	public static final int MENUSTATE = 0;
 	public static final int LEVELSTATE = 1;
 	

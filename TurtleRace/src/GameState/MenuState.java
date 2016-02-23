@@ -24,7 +24,7 @@ public class MenuState extends GameState{
 		
 		try{
 			bg = new Background("/Backgrounds/testBG.png", 1);
-			bg.setVector(0, 0);
+			bg.setVector(0, 0); //determines if background is moving
 			
 			titleColor = new Color(255, 0, 0);
 			titleFont = new Font("Century Gothic", Font.PLAIN, 56);
@@ -45,7 +45,7 @@ public class MenuState extends GameState{
 
 	@Override
 	public void draw(Graphics2D g){
-		//draw bg
+		//draw background
 		bg.draw(g);
 		
 		//draw title
@@ -65,7 +65,7 @@ public class MenuState extends GameState{
 			g.drawString(options[i], 520, 280 + i*30);
 		}
 	}
-
+	//key press options for menu screen
 	@Override
 	public void keyPressed(int k){
 		if(k == KeyEvent.VK_ENTER){

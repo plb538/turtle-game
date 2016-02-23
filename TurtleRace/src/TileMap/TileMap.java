@@ -46,9 +46,11 @@ public class TileMap{
 	public void loadTiles(String path){
 		try{
 			tileset = ImageIO.read(getClass().getResourceAsStream(path));
+			numTilesAcross = tileset.getWidth() / tileSize;
+			BufferedImage subImage;
+			
 			tiles = new Tile[2][numTilesAcross];
 			
-			BufferedImage subImage;
 			for(int col = 0; col < numTilesAcross; col++){
 				subImage = tileset.getSubimage(col*tileSize, 0, tileSize, tileSize);
 				tiles[0][col] = new Tile(subImage, Tile.NORMAL);
@@ -71,7 +73,8 @@ public class TileMap{
 			width = numCols*tileSize;
 			height = numRows*tileSize;
 			
-			String delims = "\\s+";
+			String delims = "\\s+"; //white space
+			
 			for(int row = 0; row < numRows; row++){
 				String line = br.readLine();
 				String[] tokens = line.split(delims);
@@ -121,6 +124,7 @@ public class TileMap{
 	
 	public void draw(Graphics2D g){
 		for(int row = rowOffset; row < rowOffset + numRowsToDraw; row++){
+			if(row >= numRows) break;
 			for(int col = colOffset; col < colOffset + numColsToDraw; col++){
 				if(col >= numCols) break;
 				if(map[row][col] == 0) continue;
