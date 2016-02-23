@@ -1,10 +1,8 @@
 package graphicalElements;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
-import javax.imageio.stream.FileImageInputStream;
+import java.awt.image.BufferedImage;
+import java.io.*;
+import javax.imageio.*;
 
 public class SpriteSheet{
 	
@@ -15,9 +13,10 @@ public class SpriteSheet{
 	
 	public SpriteSheet(String path){
 		BufferedImage image = null;
-		
+		System.out.println(path);
 		try{
-			image = ImageIO.read(new FileImageInputStream(new File(path)));
+			//image = ImageIO.read(new FileImageInputStream(new File(path)));
+			image = ImageIO.read(SpriteSheet.class.getResourceAsStream(path));
 		}
 		catch(IOException e){
 			e.printStackTrace();

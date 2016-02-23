@@ -15,7 +15,6 @@ import javax.swing.JFrame;
 import graphicalElements.Screen;
 import graphicalElements.SpriteSheet;
 import weapons.BinaryRifle;
-import weapons.PunchingFist;
 
 public class GameMain implements Runnable{
 
@@ -116,12 +115,12 @@ public class GameMain implements Runnable{
 	}
 	public void tick(){
 		tickCount++;
-		for(int i = 0; i < pixels.length; i++){
-			pixels[i] = i + tickCount;
-		}
+		//for(int i = 0; i < pixels.length; i++){
+		//	pixels[i] = i + tickCount;
+		//}
 	}
 	public void init(){
-		screen = new Screen(width, height, new SpriteSheet("https://gitlab.com/5895-2016/Paddy-Steven/blob/master/TurtleRace/src/sprites/DefaultSpriteSheet.png"));
+		screen = new Screen(width, height, new SpriteSheet("C:/Users/steve/git/Paddy-Steven/TurtleRace/src/sprites/DefaultSpriteSheet.png"));
 	}
 	public void render(){
 		BufferStrategy bs = canvas.getBufferStrategy();
