@@ -8,23 +8,24 @@ import java.awt.event.KeyEvent;
 import Main.GamePanel;
 import TileMap.Background;
 
-public class OptionState extends GameState{
+public class ChallengeState extends GameState{
 	
 	private Background bg;
 	
-	private String[] options = {"Apply Changes", "Return"};
+	private String[] options = {};
 	private int curOption = 0;
 	private String title = "A Tale of Two Turtles";
 	private Color titleColor;
 	private Font titleFont;
 	private Font font;
+	private levelElements.Challenges currentChallenge = null;
 	
-	public OptionState(GameStateManager gsm){
+	public ChallengeState(GameStateManager gsm, levelElements.Challenges currChallenge){
 		this.gsm = gsm;
+		this.currentChallenge = currChallenge;
 		
 		try{
-			//bg = new Background("/Backgrounds/testBG.png", 1);
-			bg = new Background("/Backgrounds/gears.png", 1);
+			bg = new Background("/Backgrounds/testBG.png", 1);
 			bg.setVector(0, 0); //determines if background is moving
 			
 			titleColor = new Color(255, 0, 0);
@@ -42,6 +43,9 @@ public class OptionState extends GameState{
 	@Override
 	public void update(){
 		bg.update();
+		if(currentChallenge.isFinished()){
+			//Move to next challenge
+		}
 	}
 
 	@Override
@@ -56,51 +60,16 @@ public class OptionState extends GameState{
 		
 		//draw menu options
 		g.setFont(font);
-		for(int i = 0; i < options.length; i++){
-			if(i == curOption){
-				g.setColor(Color.WHITE);
-			}
-			else{
-				g.setColor(Color.RED);
-			}
-			g.drawString(options[i], 520, 280 + i*30);
-		}
+		
 	}
 	//key press options for menu screen
 	@Override
 	public void keyPressed(int k){
-		if(k == KeyEvent.VK_ENTER){
-			select();
-		}
-		if(k == KeyEvent.VK_UP){
-			curOption--;
-			if(curOption == -1){
-				curOption = options.length -1;
-			}
-		}
-		if(k == KeyEvent.VK_DOWN){
-			curOption++;
-			if(curOption == options.length){
-				curOption = 0;
-			}
-		}
+		
 	}
 
 	@Override
 	public void keyReleased(int k){}
 	
 	
-	private void select(){
-		switch(curOption){
-			case 0 : 
-				//Apply changes
-				break;
-			case 1 : //Return
-				gsm.setState(GameStateManager.MENUSTATE);
-				break;
-			
-		}
-	}
-	
 }
-
