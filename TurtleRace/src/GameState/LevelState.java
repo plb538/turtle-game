@@ -9,7 +9,7 @@ import TileMap.TileMap;
 
 public class LevelState extends GameState{
 
-	private TileMap tileMap;
+	//private TileMap tileMap;
 	private Background bg;
 	
 	public LevelState(GameStateManager gsm){
@@ -19,16 +19,19 @@ public class LevelState extends GameState{
 	
 	@Override
 	public void init(){
-		tileMap = new TileMap(30); //value passed to constructor will depend on the tile map
-		tileMap.loadTiles("/TileSets/grasstileset.gif");
-		tileMap.loadMap("/Maps/level1-1.map");
-		tileMap.setPosition(0, 0);
+		//tileMap = new TileMap(30); //value passed to constructor will depend on the tile map
+		//tileMap.loadTiles("/TileSets/grasstileset.gif");
+		//tileMap.loadMap("/Maps/level1-1.map");
+		//tileMap.setPosition(0, 0);
 		
-		bg = new Background("/Backgrounds/testBG3.png", 1);
+		bg = new Background("/Backgrounds/default-background.png", 1);	
+		
 	}
 
 	@Override
-	public void update(){}
+	public void update(){
+		gsm.setState(3);		
+	}
 
 	@Override
 	public void draw(Graphics2D g){
@@ -36,7 +39,7 @@ public class LevelState extends GameState{
 		bg.draw(g);
 		
 		//draw tile map
-		tileMap.draw(g);
+		//tileMap.draw(g);
 		
 	}
 

@@ -10,9 +10,6 @@ import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
 
 import GameState.GameStateManager;
-import common.Character;
-import levelElements.Level;
-import weapons.BinaryRifle;
 
 public class GamePanel extends JPanel implements Runnable, KeyListener{
 	

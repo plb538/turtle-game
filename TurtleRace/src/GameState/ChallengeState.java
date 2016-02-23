@@ -26,7 +26,7 @@ public class ChallengeState extends GameState{
 		this.currentChallenge = currChallenge;
 		stateNumber = _stateNumber;
 		try{
-			bg = new Background("/Backgrounds/testBG.png", 1);
+			bg = new Background("/Backgrounds/default-background.png", 1);
 			bg.setVector(0, 0); //determines if background is moving
 			
 			titleColor = new Color(255, 0, 0);
@@ -57,7 +57,7 @@ public class ChallengeState extends GameState{
 		//draw title
 		g.setColor(titleColor);
 		g.setFont(titleFont);
-		g.drawString(title, GamePanel.WIDTH/4, 100);
+		g.drawString("Challenge State", GamePanel.WIDTH/4, 100);
 		
 		//draw menu options
 		g.setFont(font);
