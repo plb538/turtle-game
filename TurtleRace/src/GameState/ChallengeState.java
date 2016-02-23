@@ -66,7 +66,18 @@ public class ChallengeState extends GameState{
 	//key press options for menu screen
 	@Override
 	public void keyPressed(int k){
-		
+		if(k == KeyEvent.VK_W){
+			gsm.player1.Jump();
+		}
+		if(k == KeyEvent.VK_D){
+			gsm.player1.Forwards();
+		}
+		if(k == KeyEvent.VK_A){
+			gsm.player1.Backwards();
+		}
+		if(k == KeyEvent.VK_SPACE){
+			gsm.player1.Attack();
+		}
 	}
 
 	@Override

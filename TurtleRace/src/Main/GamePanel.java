@@ -10,6 +10,7 @@ import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
 
 import GameState.GameStateManager;
+import common.Character;
 
 public class GamePanel extends JPanel implements Runnable, KeyListener{
 	
@@ -31,13 +32,15 @@ public class GamePanel extends JPanel implements Runnable, KeyListener{
 	//game state manager
 	private GameStateManager gsm;
 	private levelElements.Level myLevel;
+	private Character player1;
 	
-	public GamePanel(levelElements.Level _myLevel){
+	public GamePanel(levelElements.Level _myLevel, Character _player1){
 		super();
 		setPreferredSize(new Dimension(WIDTH, HEIGHT)); //sizes the window
 		setFocusable(true);
 		requestFocus();
 		myLevel = _myLevel;
+		player1 = _player1;
 	}
 
 	@Override
@@ -83,7 +86,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener{
 		image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 		g = (Graphics2D)image.getGraphics();
 		running = true;
-		gsm = new GameStateManager(myLevel);
+		gsm = new GameStateManager(myLevel, player1);
 	}
 	
 	@Override

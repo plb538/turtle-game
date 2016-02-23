@@ -29,4 +29,5 @@ public interface Character {
 	public void Jump();
 	public void Forwards();
 	public void Backwards();
+	public void Attack();
 }
