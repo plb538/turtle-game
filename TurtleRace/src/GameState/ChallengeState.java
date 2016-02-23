@@ -19,11 +19,12 @@ public class ChallengeState extends GameState{
 	private Font titleFont;
 	private Font font;
 	private levelElements.Challenges currentChallenge = null;
+	private int stateNumber = 3;
 	
-	public ChallengeState(GameStateManager gsm, levelElements.Challenges currChallenge){
+	public ChallengeState(GameStateManager gsm, levelElements.Challenges currChallenge, int _stateNumber){
 		this.gsm = gsm;
 		this.currentChallenge = currChallenge;
-		
+		stateNumber = _stateNumber;
 		try{
 			bg = new Background("/Backgrounds/testBG.png", 1);
 			bg.setVector(0, 0); //determines if background is moving
@@ -44,7 +45,7 @@ public class ChallengeState extends GameState{
 	public void update(){
 		bg.update();
 		if(currentChallenge.isFinished()){
-			//Move to next challenge
+			gsm.setState(stateNumber+1);
 		}
 	}
 

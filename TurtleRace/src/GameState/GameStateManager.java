@@ -3,6 +3,8 @@ package GameState;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 
+import levelElements.Level;
+
 public class GameStateManager{
 	
 	private ArrayList<GameState> gameStates;
@@ -14,16 +16,22 @@ public class GameStateManager{
 	public static final int OPTIONSTATE = 2;
 	public static final int CHALLENGESTATE = 3;
 	
-	public GameStateManager(){
+	private Level myLevel = null;
+	
+	public GameStateManager(Level _myLevel){
 		gameStates = new ArrayList<GameState>();
 		curState = MENUSTATE;
 		gameStates.add(new MenuState(this));
 		gameStates.add(new LevelState(this));
 		gameStates.add(new OptionState(this));
 		//gameStates.add(new ChallengeState(this));
+		myLevel = _myLevel;
 	}
 	
 	public void setState(int state){
+		if(state >= 3){
+			gameStates.add(new ChallengeState(this, myLevel.level.get(state-3), state+1));
+		}
 		curState = state;
 		gameStates.get(curState).init();
 	}

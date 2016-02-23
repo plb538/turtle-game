@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Level {
 
-	ArrayList<Challenges> level = new ArrayList<Challenges>();
+	public ArrayList<Challenges> level = new ArrayList<Challenges>();
 	
 	public Level(){
 		level.add(new StartSection());
