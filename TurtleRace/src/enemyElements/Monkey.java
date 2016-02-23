@@ -35,4 +35,8 @@ public class Monkey implements Enemy{
 	public void hurt(int dmg){
 		health -= dmg;
 	}
+	
+	public void Attack(){
+		
+	}
 }

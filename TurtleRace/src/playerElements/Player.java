@@ -2,6 +2,7 @@ package playerElements;
 
 import weapons.Weapon;
 import common.Character;
+import graphicalElements.PlayerGUI;
 
 public class Player implements Character{
 
@@ -11,12 +12,13 @@ public class Player implements Character{
 	int ypos = 0;
 	int velocity = 0;
 	
+	public PlayerGUI myGUI = new PlayerGUI(this);
+	
 	public Player(Weapon chosenWeapon, int _xpos, int _ypos, int _armor){
 		myWeapon = chosenWeapon;
 		xpos = _xpos;
 		ypos = _ypos;
-		armor = _armor;
-		
+		armor = _armor;		
 	}
 	
 	public void Jump(){
@@ -31,6 +33,12 @@ public class Player implements Character{
 	
 	public void Backwards(){
 		this.xpos -= 25;
+	}
+
+	@Override
+	public void Attack(){
+		// TODO Auto-generated method stub
+		
 	}
 	
 }
