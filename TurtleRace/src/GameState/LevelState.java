@@ -4,11 +4,13 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 
 import Main.GamePanel;
+import TileMap.Background;
 import TileMap.TileMap;
 
 public class LevelState extends GameState{
 
 	private TileMap tileMap;
+	private Background bg;
 	
 	public LevelState(GameStateManager gsm){
 		this.gsm = gsm;
@@ -21,6 +23,8 @@ public class LevelState extends GameState{
 		tileMap.loadTiles("/TileSets/grasstileset.gif");
 		tileMap.loadMap("/Maps/level1-1.map");
 		tileMap.setPosition(0, 0);
+		
+		bg = new Background("/Backgrounds/testBG3.png", 1);
 	}
 
 	@Override
@@ -28,9 +32,8 @@ public class LevelState extends GameState{
 
 	@Override
 	public void draw(Graphics2D g){
-		//clear screen
-		g.clearRect(0, 0, GamePanel.WIDTH, GamePanel.HEIGHT);
-		g.setBackground(Color.WHITE);
+		//draw background
+		bg.draw(g);
 		
 		//draw tile map
 		tileMap.draw(g);
