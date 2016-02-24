@@ -38,8 +38,8 @@ public class TileMap{
 	
 	public TileMap(int tileSize){
 		this.tileSize = tileSize;
-		numRowsToDraw = (GamePanel.HEIGHT / tileSize + 2)* GamePanel.SCALE;
-		numColsToDraw = (GamePanel.WIDTH / tileSize + 2)* GamePanel.SCALE;
+		numRowsToDraw = GamePanel.HEIGHT / tileSize + 2;
+		numColsToDraw = GamePanel.WIDTH / tileSize + 2;
 		tween = 0.7;
 	}
 	
@@ -73,9 +73,9 @@ public class TileMap{
 			width = numCols*tileSize;
 			height = numRows*tileSize;
 			
-			xmin = (GamePanel.WIDTH - width)* GamePanel.SCALE;
+			xmin = GamePanel.WIDTH - width;
 			xmax = 0;
-			ymin = (GamePanel.HEIGHT - height) * GamePanel.SCALE;
+			ymin = GamePanel.HEIGHT - height;
 			ymax = 0;
 			
 			String delims = "\\s+"; //white space
