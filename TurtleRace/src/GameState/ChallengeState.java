@@ -5,10 +5,12 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 
 import Main.GamePanel;
 import TileMap.Background;
 import graphicalElements.*;
+import levelElements.*;
 
 public class ChallengeState extends GameState{
 	
@@ -20,11 +22,12 @@ public class ChallengeState extends GameState{
 	private Color titleColor;
 	private Font titleFont;
 	private Font font;
-	private levelElements.Challenges currentChallenge = null;
+	private Challenges currentChallenge = null;
 	private int stateNumber = 3;
 	private DrawnCharacter charImage = null;
+	private ArrayList<DrawnCharacter> enemyImages = new ArrayList<DrawnCharacter>();
 	
-	public ChallengeState(GameStateManager gsm, levelElements.Challenges currChallenge, int _stateNumber){
+	public ChallengeState(GameStateManager gsm, Challenges currChallenge, int _stateNumber){
 		this.gsm = gsm;
 		this.currentChallenge = currChallenge;
 		stateNumber = _stateNumber;
@@ -40,9 +43,30 @@ public class ChallengeState extends GameState{
 			e.printStackTrace();
 		}
 		charImage = new DrawnCharacter("/sprites/temp-turtle.PNG", gsm.player1);
-				
+		if(currentChallenge instanceof Enemies){
+			enemyChallenge();
+		}
 	}
-
+	
+	public void enemyChallenge(){
+		
+			if(currentChallenge instanceof Enemies){
+			
+			Enemies test = (Enemies) currentChallenge;
+			
+			for(int i = 0; i < test.myEnemies.size(); i++){
+				enemyImages.add(new DrawnCharacter("/sprites/temp-monkey.PNG", test.myEnemies.get(i)));
+			}
+			
+		}
+	}
+	
+	public void drawMonkeys(Graphics2D g){
+		for(int i = 0; i < enemyImages.size(); i++){
+			DrawnCharacter current = enemyImages.get(i);
+			g.drawImage(current.myImage, null,current.getX(), current.getY());
+		}
+	}
 	@Override
 	public void init(){
 		
@@ -52,9 +76,14 @@ public class ChallengeState extends GameState{
 	@Override
 	public void update(){
 		bg.update();
+		//System.out.println(gsm.player1.getY());
 		if(currentChallenge.isFinished()){
 			gsm.setState(stateNumber);
 		}
+		if(gsm.player1.getY() < 100){
+			gsm.player1.Fall();
+		}
+		
 	}
 
 	@Override
@@ -63,6 +92,9 @@ public class ChallengeState extends GameState{
 		bg.draw(g);		
 		g.drawImage(charImage.myImage, null, gsm.player1.getX(), gsm.player1.getY());
 		
+		if(currentChallenge instanceof Enemies) {
+			drawMonkeys(g);
+		}
 		
 		
 	}
