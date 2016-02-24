@@ -42,6 +42,7 @@ public class LevelState extends GameState{
 		//allows map to move
 		tileMap.setPosition(GamePanel.WIDTH / 2 - player.getx(), GamePanel.WIDTH / 2 - player.gety());
 		
+		
 	}
 
 	@Override

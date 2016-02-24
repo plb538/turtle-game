@@ -4,22 +4,23 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 
 import javax.swing.JPanel;
+import javax.swing.JProgressBar;
 
 import Entity.Player;
 
 public class DrawnProgress extends GraphicalElement{
 	private JPanel progBar;
+	private JProgressBar jbar;
 	private Player p1;
 	
 	public DrawnProgress(){
-		progBar = new JPanel();
-		progBar.setLayout(new FlowLayout());
-		progBar.setLocation(0, 0);
-		progBar.setVisible(true);
-		progBar.setPreferredSize(new Dimension(100, 30));
+		jbar = new JProgressBar(0, 100);
+		jbar.setValue(0);
+		jbar.setStringPainted(true);
+		jbar.setVisible(true);
 	}
 	
 	public void update(){
-		progBar.repaint();
+		
 	}
 }
