@@ -39,4 +39,17 @@ public class Monkey implements Enemy{
 	public void Attack(){
 		
 	}
+	
+	public int getX(){
+		return xpos;
+	}
+	public int getY(){
+		return ypos;
+	}
+
+	@Override
+	public void Fall(){
+		ypos += 1;
+		
+	}
 }

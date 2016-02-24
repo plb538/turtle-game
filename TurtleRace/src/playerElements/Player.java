@@ -48,6 +48,6 @@ public class Player implements Character{
 	}
 	
 	public void Fall(){
-		
+		ypos += 1;
 	}
 }
