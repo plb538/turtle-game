@@ -22,7 +22,7 @@ public class Game{
 			level.addChallenge(c3);
 			
 			Character player = new playerElements.Player(new BinaryRifle(), 100, 720*2/3, 0);
-			HUD myHUD = new HUD(player, player);
+			//HUD myHUD = new HUD(player, player);
 		//------------------------------------------------------------------------------------------
 
 		JFrame window = new JFrame("A Tale of Two Turtles");
