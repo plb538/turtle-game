@@ -23,7 +23,6 @@ public abstract class DrawnCharacter extends JPanel {
 	private Character myChar;
  
 	public void update(){
-
 		xpos = myChar.xpos;
 		ypos = myChar.ypos;
 		

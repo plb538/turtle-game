@@ -20,6 +20,7 @@ public class ChallengeState extends GameState{
 	private Font font;
 	private levelElements.Challenges currentChallenge = null;
 	private int stateNumber = 3;
+	private DrawnCharacter charImage = null;
 	
 	public ChallengeState(GameStateManager gsm, levelElements.Challenges currChallenge, int _stateNumber){
 		this.gsm = gsm;
@@ -36,10 +37,15 @@ public class ChallengeState extends GameState{
 		catch(Exception e){
 			e.printStackTrace();
 		}
+		charImage = new(DrawnCharacter("/sprites/temp-turtle.PNG"), gsm.player1);
+		
 	}
 
 	@Override
-	public void init(){}
+	public void init(){
+		
+		
+	}
 
 	@Override
 	public void update(){
