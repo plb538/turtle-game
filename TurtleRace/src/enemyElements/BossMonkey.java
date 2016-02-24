@@ -26,4 +26,7 @@ public class BossMonkey implements Enemy{
 	public void Backwards(){
 		
 	}
+	public void Attack(){
+		
+	}
 }

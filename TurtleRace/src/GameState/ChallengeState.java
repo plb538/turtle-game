@@ -1,12 +1,14 @@
 package GameState;
 
 import java.awt.Color;
+
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
 import Main.GamePanel;
 import TileMap.Background;
+import graphicalElements.*;
 
 public class ChallengeState extends GameState{
 	
@@ -37,8 +39,8 @@ public class ChallengeState extends GameState{
 		catch(Exception e){
 			e.printStackTrace();
 		}
-		charImage = new(DrawnCharacter("/sprites/temp-turtle.PNG"), gsm.player1);
-		
+		charImage = new DrawnCharacter("/sprites/temp-turtle.PNG", gsm.player1);
+				
 	}
 
 	@Override
@@ -68,7 +70,8 @@ public class ChallengeState extends GameState{
 		//draw menu options
 		g.setFont(font);
 		
-		g.drawImage(charImage, null, charImage.xpos, charImage.ypos);
+		g.drawImage(charImage.myImage, null, charImage.xpos, charImage.ypos);
+		
 		
 		
 	}
