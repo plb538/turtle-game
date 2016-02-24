@@ -24,10 +24,13 @@ public interface Character {
 	int velocity = 0;
 	
 	//Jump height in pixels
-	int jumpHeight = 256;
+	int jumpHeight = 50;
 	
 	public void Jump();
+	public void Fall();
 	public void Forwards();
 	public void Backwards();
 	public void Attack();
+	public int getX();
+	public int getY();
 }

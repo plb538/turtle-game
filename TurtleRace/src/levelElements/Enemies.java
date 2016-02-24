@@ -9,7 +9,7 @@ public class Enemies extends Challenges{
 
 	int startDistance;
 	
-	ArrayList<enemyElements.Monkey> myEnemies = new ArrayList<enemyElements.Monkey>();
+	public ArrayList<enemyElements.Monkey> myEnemies = new ArrayList<enemyElements.Monkey>();
 	
 	public Enemies(int numberMonkeys){
 		for(int i = 0; i < numberMonkeys; i++){

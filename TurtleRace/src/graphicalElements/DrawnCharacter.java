@@ -18,15 +18,7 @@ public class DrawnCharacter extends JPanel {
 			System.out.println(e.getMessage());
 		}
 	}
- 
-	public int xpos;
-	public int ypos;
+
 	public BufferedImage myImage;
 	private Character myChar;
- 
-	public void update(){
-		xpos = myChar.xpos;
-		ypos = myChar.ypos;
-		
-	}
 }
