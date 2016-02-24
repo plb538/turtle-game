@@ -32,8 +32,7 @@ public class LevelState extends GameState{
 		player = new Player(tileMap);
 		player.setPosition(100, 100);
 		
-		
-		
+		dp = new DrawnProgress();
 	}
 
 	@Override
@@ -52,7 +51,7 @@ public class LevelState extends GameState{
 		
 		//draw player
 		player.draw(g);
-		dp = new DrawnProgress();
+		
 	}
 
 	@Override
