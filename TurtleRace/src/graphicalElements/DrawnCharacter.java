@@ -8,25 +8,25 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public abstract class DrawnCharacter extends JPanel {
  
- public DrawnCharacter(String path, Object o){
-  referenceObject = o;
-  try{
-   myImage = ImageIO.read(getClass().getResourceAsStream(path));
-  }catch(Throwable e){
-   System.out.println(e.getMessage());
-  }
- }
+	public DrawnCharacter(String path, Object o){
+		referenceObject = o;
+		try{
+			myImage = ImageIO.read(getClass().getResourceAsStream(path));
+		}catch(Throwable e){
+			System.out.println(e.getMessage());
+		}
+	}
  
- public int xpos;
- public int ypos;
- public Image myImage;
- private Object referenceObject;
+	public int xpos;
+	public int ypos;
+	public Image myImage;
+	private Object referenceObject;
  
- public void update(){
-  if(referenceObject instanceof common.Character){
-   common.Character myChar = (common.Character)(referenceObject);
-   xpos = myChar.xpos;
-   ypos = myChar.ypos;
-  }
- }
+	public void update(){
+		if(referenceObject instanceof common.Character){
+			common.Character myChar = (common.Character)(referenceObject);
+			xpos = myChar.xpos;
+			ypos = myChar.ypos;
+		}
+	}
 }
