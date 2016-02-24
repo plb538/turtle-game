@@ -36,11 +36,11 @@ public class Player extends MapObject{
 	
 	//animations
 	private ArrayList<BufferedImage[]> sprites;
-	private final int[] numFrames = {1};
+	private final int[] numFrames = {1, 3};
 	
 	//animation actions
 	private static final int IDLE = 0;
-	//private static final int WALKING = 1;
+	private static final int WALKING = 1;
 	//private static final int JUMPING = 2;
 	//private static final int FALLING = 3;
 	//private static final int GLIDING = 4;
@@ -51,10 +51,10 @@ public class Player extends MapObject{
 		super(tm);
 		
 		//sprite width and height
-		width = 30;
-		height = 30;
-		cwidth = 20;
-		cheight = 15;
+		width = 32;
+		height = 32;
+		cwidth = 25;
+		cheight = 25;
 		
 		moveSpeed = 0.3;
 		maxSpeed = 1.6;
@@ -76,22 +76,22 @@ public class Player extends MapObject{
 		
 		//load sprites
 		try{
-			BufferedImage spriteSheet = ImageIO.read(getClass().getResourceAsStream("/sprites/DerpTurtle1.gif"));
+			BufferedImage spriteSheet = ImageIO.read(getClass().getResourceAsStream("/sprites/DerpTurtle3.gif"));
 			sprites = new ArrayList<BufferedImage[]>();
 	
 			//Padyy remember to change this back
 			//---------------------------------------------------------------------------
 			
-			for(int i = 0; i < 1; i++){
+			for(int i = 0; i < 2; i++){
 				BufferedImage[] bi = new BufferedImage[numFrames[i]];
 				
 				for(int j = 0; j < numFrames[i]; j++){
-					if(i != 6){
-						bi[j] = spriteSheet.getSubimage(j*width, i*height, width, height);
-					}
-					else{
-						bi[j] = spriteSheet.getSubimage(j*width*2, i*height, width, height); //these sprites are 60x30
-					}
+//					if(i != 6){
+						bi[j] = spriteSheet.getSubimage(j*width, i*height, width, height); //breaks down the sprite sheet
+//					}
+//					else{
+//						bi[j] = spriteSheet.getSubimage(j*width*2, i*height, width, height); //these sprites are 60x30
+//					}
 				}
 				sprites.add(bi);
 			}
@@ -175,7 +175,7 @@ public class Player extends MapObject{
 //				curAction = FIREBALL;
 //				animation.setFrames(sprites.get(FIREBALL));
 //				animation.setDelay(100);
-//				width = 30;
+//				width = 32;
 //			}
 //		}
 //		else if(dy > 0){
@@ -184,14 +184,14 @@ public class Player extends MapObject{
 //					curAction = GLIDING;
 //					animation.setFrames(sprites.get(GLIDING));
 //					animation.setDelay(100);
-//					width = 30;
+//					width = 32;
 //				}
 //			}
 //			else if(curAction != FALLING){
 //				curAction = FALLING;
 //				animation.setFrames(sprites.get(FALLING));
 //				animation.setDelay(100);
-//				width = 30;
+//				width = 32;
 //			}
 //		}
 //		else if(dy < 0){
@@ -199,33 +199,33 @@ public class Player extends MapObject{
 //				curAction = JUMPING;
 //				animation.setFrames(sprites.get(JUMPING));
 //				animation.setDelay(-1);
-//				width = 30;
+//				width = 32;
 //			}
 //		}
-//		else if(left || right){
-//			if(curAction != WALKING){
-//				curAction = WALKING;
-//				animation.setFrames(sprites.get(WALKING));
-//				animation.setDelay(40);
-//				width = 30;
-//			}
-//		}
-//		else{
+		if(left || right){
+			if(curAction != WALKING){
+				curAction = WALKING;
+				animation.setFrames(sprites.get(WALKING));
+				animation.setDelay(100);
+				width = 32;
+			}
+		}
+		else{
 			if(curAction != IDLE){
 				curAction = IDLE;
 				animation.setFrames(sprites.get(IDLE));
-				animation.setDelay(400);
-				width = 30;
+				animation.setDelay(-1);
+				width = 32;
 			}
 		}
-//		animation.update();
+		animation.update();
 		
 		//set direction
 //		if(curAction != SCRATCHING && curAction != FIREBALL){
-//			if(right) facingRight = true;
-//			if(left) facingRight = false;
+			if(right) facingRight = true;
+			if(left) facingRight = false;
 //		}
-//	}
+	}
 	
 	public void draw(Graphics2D g){
 		setMapPosition();

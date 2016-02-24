@@ -32,7 +32,7 @@ public class Animation{
 	public void update(){
 		if(delay == -1) return;
 		
-		long elapsed = (System.nanoTime() - startTime / 1000000);
+		long elapsed = (Math.abs(System.nanoTime() - startTime) / 1000000);
 		if(elapsed > delay){
 			curFrame++;
 			startTime = System.nanoTime();
