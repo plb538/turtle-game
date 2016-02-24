@@ -88,7 +88,7 @@ public abstract class MapObject{
 		if(dy > 0){
 			if(botLeft || botRight){
 				dy = 0;
-				falling = true;
+				falling = false;
 				ytemp = (curRow + 1) * tileSize - cheight / 2;
 			}
 			else{

@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
 import Entity.Player;
+import Main.GamePanel;
 import TileMap.Background;
 import TileMap.TileMap;
 import graphicalElements.DrawnProgress;
@@ -38,6 +39,8 @@ public class LevelState extends GameState{
 	@Override
 	public void update(){	
 		player.update();
+		//allows map to move
+		tileMap.setPosition(GamePanel.WIDTH / 2 - player.getx(), GamePanel.WIDTH / 2 - player.gety());
 		
 	}
 
