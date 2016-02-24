@@ -49,10 +49,12 @@ public class Player extends MapObject{
 	
 	public Player(TileMap tm){
 		super(tm);
+		
+		//sprite width and height
 		width = 30;
 		height = 30;
 		cwidth = 20;
-		cheight = 20;
+		cheight = 15;
 		
 		moveSpeed = 0.3;
 		maxSpeed = 1.6;
