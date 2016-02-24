@@ -15,8 +15,8 @@ import common.Character;
 public class GamePanel extends JPanel implements Runnable, KeyListener{
 	
 	//panel size
-	public static final int WIDTH = 1280;
-	public static final int HEIGHT = 720;
+	public static final int WIDTH = 640;
+	public static final int HEIGHT = 360;
 	public static final int SCALE = 2; //dont see need for this in videos yet
 	
 	//game thread
@@ -36,7 +36,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener{
 	
 	public GamePanel(levelElements.Level _myLevel, Character _player1){
 		super();
-		setPreferredSize(new Dimension(WIDTH, HEIGHT)); //sizes the window
+		setPreferredSize(new Dimension(WIDTH*SCALE, HEIGHT*SCALE)); //sizes the window
 		setFocusable(true);
 		requestFocus();
 		myLevel = _myLevel;
@@ -78,7 +78,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener{
 	
 	private void drawToScreen(){
 		Graphics2D g2 = (Graphics2D)getGraphics();
-		g2.drawImage(image, 0, 0, WIDTH, HEIGHT, null);
+		g2.drawImage(image, 0, 0, WIDTH*SCALE, HEIGHT*SCALE, null);
 		g2.dispose();
 	}
 	

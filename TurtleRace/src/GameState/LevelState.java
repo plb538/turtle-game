@@ -43,7 +43,7 @@ public class LevelState extends GameState{
 		bg.draw(g);
 		
 		//draw tile map
-		//tileMap.draw(g);
+		tileMap.draw(g);
 		//draw player
 		player.draw(g);
 		

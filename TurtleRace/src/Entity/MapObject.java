@@ -39,7 +39,7 @@ public abstract class MapObject{
 	//movement
 	protected boolean left, right, up, down;
 	protected boolean jumping;
-	protected boolean falling;
+	protected boolean falling = true;
 	
 	//movement attributes
 	protected double moveSpeed;
