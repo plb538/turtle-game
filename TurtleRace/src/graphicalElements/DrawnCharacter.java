@@ -5,7 +5,6 @@ import java.awt.Image;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-@SuppressWarnings("serial")
 public abstract class DrawnCharacter extends JPanel {
  
 	public DrawnCharacter(String path, Object o){
