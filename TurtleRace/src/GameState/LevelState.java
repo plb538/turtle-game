@@ -6,12 +6,14 @@ import java.awt.event.KeyEvent;
 import Entity.Player;
 import TileMap.Background;
 import TileMap.TileMap;
+import graphicalElements.DrawnProgress;
 
 public class LevelState extends GameState{
 
 	private TileMap tileMap;
 	private Background bg;
 	private Player player;
+	private DrawnProgress dp;
 	
 	public LevelState(GameStateManager gsm){
 		this.gsm = gsm;
@@ -26,15 +28,18 @@ public class LevelState extends GameState{
 		tileMap.setPosition(0, 0);
 		
 		bg = new Background("/Backgrounds/default-background.png", 1);	
+		
 		player = new Player(tileMap);
 		player.setPosition(100, 100);
+		
+		
 		
 	}
 
 	@Override
 	public void update(){	
 		player.update();
-	
+		
 	}
 
 	@Override
@@ -44,9 +49,10 @@ public class LevelState extends GameState{
 		
 		//draw tile map
 		tileMap.draw(g);
+		
 		//draw player
 		player.draw(g);
-		
+		dp = new DrawnProgress();
 	}
 
 	@Override

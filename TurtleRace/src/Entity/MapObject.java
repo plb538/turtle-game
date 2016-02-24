@@ -104,29 +104,35 @@ public abstract class MapObject{
 			else{
 				xtemp += dx;
 			}
-			if(dx > 0){
-				if(topRight || botRight){
-					dx = 0;
-					xtemp = (curCol + 1) * tileSize - cwidth / 2;
-				}
-				else{
-					xtemp += dx;
-				}
+		}
+		if(dx > 0){
+			if(topRight || botRight){
+				dx = 0;
+				xtemp = (curCol + 1) * tileSize - cwidth / 2;
 			}
-			if(!falling){
-				calcCorners(x, ydest + 1);
-				if(!botLeft && ! botRight){
-					falling = true;
-				}
+			else{
+				xtemp += dx;
+			}
+		}
+		if(!falling){
+			calcCorners(x, ydest + 1);
+			if(!botLeft && ! botRight){
+				falling = true;
 			}
 		}
 	}
+	
 	
 	public void calcCorners(double x, double y){
 		int leftTile = (int)(x - cwidth / 2) / tileSize;
 		int rightTile = (int)(x + cwidth / 2 - 1) / tileSize;
 		int topTile = (int)(y - cheight / 2) / tileSize;
 		int botTile = (int)(y + cheight / 2 - 1) / tileSize;
+		
+		if(topTile < 0 || botTile >= tileMap.getNumRows() || leftTile < 0 || rightTile >= tileMap.getNumCols()){
+			topLeft = topRight = botLeft = botRight = false;
+			return;
+		}
 		
 		int tl = tileMap.getType(topTile, leftTile);
 		int tr = tileMap.getType(topTile, rightTile);
