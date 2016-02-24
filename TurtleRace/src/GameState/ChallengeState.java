@@ -60,17 +60,8 @@ public class ChallengeState extends GameState{
 	@Override
 	public void draw(Graphics2D g){
 		//draw background
-		bg.draw(g);
-		
-		//draw title
-		g.setColor(titleColor);
-		g.setFont(titleFont);
-		g.drawString("Challenge State:" + stateNumber, GamePanel.WIDTH/4, 100);
-		
-		//draw menu options
-		g.setFont(font);
-		
-		g.drawImage(charImage.myImage, null, charImage.xpos, charImage.ypos);
+		bg.draw(g);		
+		g.drawImage(charImage.myImage, null, gsm.player1.getX(), gsm.player1.getY());
 		
 		
 		

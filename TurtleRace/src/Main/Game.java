@@ -21,7 +21,7 @@ public class Game{
 			level.addChallenge(c2);
 			level.addChallenge(c3);
 			
-			Character player = new playerElements.Player(new BinaryRifle(), 100, 720*2/3, 0);
+			Character player = new playerElements.Player(new BinaryRifle(), 100, 100, 0);
 			//HUD myHUD = new HUD(player, player);
 		//------------------------------------------------------------------------------------------
 
