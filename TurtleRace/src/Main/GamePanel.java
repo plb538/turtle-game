@@ -1,17 +1,16 @@
 package Main;
 
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
 
 import GameState.GameStateManager;
 import common.Character;
-import graphicalElements.DrawnProgress;
 
 public class GamePanel extends JPanel implements Runnable, KeyListener{
 	
@@ -34,8 +33,6 @@ public class GamePanel extends JPanel implements Runnable, KeyListener{
 	private GameStateManager gsm;
 	private levelElements.Level myLevel;
 	private Character player1;
-	
-	private DrawnProgress dp;
 	
 	public GamePanel(levelElements.Level _myLevel, Character _player1){
 		super();
@@ -72,9 +69,6 @@ public class GamePanel extends JPanel implements Runnable, KeyListener{
 	}
 	
 	private void update(){
-		if(gsm.getState() == gsm.LEVELSTATE){
-			add(dp);
-		}
 		gsm.update();
 	}
 	
@@ -93,8 +87,6 @@ public class GamePanel extends JPanel implements Runnable, KeyListener{
 		g = (Graphics2D)image.getGraphics();
 		running = true;
 		gsm = new GameStateManager(myLevel, player1);
-		
-		dp = new DrawnProgress();
 	}
 	
 	@Override
