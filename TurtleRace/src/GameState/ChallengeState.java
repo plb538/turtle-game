@@ -68,6 +68,9 @@ public class ChallengeState extends GameState{
 		//draw menu options
 		g.setFont(font);
 		
+		g.drawImage(charImage, null, charImage.xpos, charImage.ypos);
+		
+		
 	}
 	//key press options for menu screen
 	@Override
