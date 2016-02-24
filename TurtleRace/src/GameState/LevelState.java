@@ -14,7 +14,6 @@ public class LevelState extends GameState{
 	private TileMap tileMap;
 	private Background bg;
 	private Player player;
-	private DrawnProgress dp;
 	
 	public LevelState(GameStateManager gsm){
 		this.gsm = gsm;
@@ -33,7 +32,6 @@ public class LevelState extends GameState{
 		player = new Player(tileMap);
 		player.setPosition(100, 100);
 		
-		dp = new DrawnProgress();
 	}
 
 	@Override
@@ -41,8 +39,6 @@ public class LevelState extends GameState{
 		player.update();
 		//allows map to move
 		tileMap.setPosition(GamePanel.WIDTH / 2 - player.getx(), GamePanel.WIDTH / 2 - player.gety());
-		
-		
 	}
 
 	@Override

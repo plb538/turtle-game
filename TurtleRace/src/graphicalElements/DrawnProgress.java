@@ -15,7 +15,6 @@ public class DrawnProgress extends GraphicalElement{
 	
 	public DrawnProgress(){
 		jbar = new JProgressBar(0, 100);
-		jbar.setValue(0);
 		jbar.setStringPainted(true);
 		jbar.setVisible(true);
 	}
