@@ -89,8 +89,9 @@ public class ChallengeState extends GameState{
 	@Override
 	public void draw(Graphics2D g){
 		//draw background
-		bg.draw(g);		
-		g.drawImage(charImage.myImage, null, gsm.player1.getX(), gsm.player1.getY());
+		bg.draw(g);	
+		
+		//g.drawImage(charImage.myImage, null, gsm.player1.getX(), gsm.player1.getY());
 		
 		if(currentChallenge instanceof Enemies) {
 			drawMonkeys(g);
