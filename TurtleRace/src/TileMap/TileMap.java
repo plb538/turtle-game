@@ -72,7 +72,7 @@ public class TileMap{
 			map = new int[numRows][numCols];
 			width = numCols*tileSize;
 			height = numRows*tileSize;
-			
+			//System.out.println(width + " " + height);
 			xmin = GamePanel.WIDTH - width;
 			xmax = 0;
 			ymin = GamePanel.HEIGHT - height;
