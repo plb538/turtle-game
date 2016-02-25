@@ -1,27 +1,37 @@
 package graphicalElements;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
-import javax.swing.JProgressBar;
+
+import Entity.Player;
+import TileMap.TileMap;
 
 public class DrawnProgress extends GraphicalElement{
-	private JPanel progBar;
-	private JProgressBar jpb;
+	private int xpos;
+	private int ypos;
+	private int width;
+	private int height;
 	
-	public DrawnProgress(){
-		progBar = new JPanel(new BorderLayout());
-		progBar.setVisible(true);
-		progBar.setSize(new Dimension(100, 40));
-		
-		jpb = new JProgressBar();
-		jpb.setMinimum(0);
-		jpb.setMaximum(100);
-		jpb.setVisible(true);
+	private BufferedImage hpBar;
+	private JPanel panel;
+	
+	public DrawnProgress(Player player){
+		xpos = 10; 
+		ypos = 10;
+		width = 300; 
+		height = 40;	
 	}
 	
-	public void update(){
-		
+	public void draw(Graphics2D g, Player player, TileMap tm){
+		double playerProg = Math.abs((double)player.getx()/(double)tm.getWidth()) * 100;
+		int intPlayerProg = (int)playerProg;
+		g.setColor(Color.WHITE);
+		g.fillRect(xpos, ypos, width, height);
+		g.setColor(Color.BLACK);
+		g.fillRect(xpos, ypos, intPlayerProg, height);
+		g.drawRect(xpos, ypos, width, height);
 	}
 }

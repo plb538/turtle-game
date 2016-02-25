@@ -9,6 +9,7 @@ import Main.GamePanel;
 import TileMap.Background;
 import TileMap.TileMap;
 import graphicalElements.DrawnHealth;
+import graphicalElements.DrawnProgress;
 
 public class LevelState extends GameState{
 
@@ -16,7 +17,8 @@ public class LevelState extends GameState{
 	private Background bg;
 	private Player player;
 	
-	private DrawnHealth dh;
+	private DrawnHealth healthBar;
+	private DrawnProgress progress;
 	
 	public LevelState(GameStateManager gsm){
 		this.gsm = gsm;
@@ -45,7 +47,8 @@ public class LevelState extends GameState{
 		player = new Player(tileMap);
 		player.setPosition(100, 500);
 		
-		dh = new DrawnHealth(player);
+		healthBar = new DrawnHealth(player);
+		progress = new DrawnProgress(player);
 	}
 
 	@Override
@@ -66,7 +69,11 @@ public class LevelState extends GameState{
 		//draw player
 		player.draw(g);
 		
-		dh.draw(g, player);
+		//draw health
+		healthBar.draw(g, player);
+		
+		//draw progress
+		progress.draw(g, player, tileMap);
 		
 	}
 
