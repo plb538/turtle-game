@@ -87,7 +87,7 @@ public class LevelState extends GameState{
 		if(k == KeyEvent.VK_LEFT) player.setLeft(true);
 		if(k == KeyEvent.VK_RIGHT) player.setRight(true);
 		//if(k == KeyEvent.VK_UP) player.setUp(true);
-		if(k == KeyEvent.VK_DOWN) player.setDown(true);
+		if(k == KeyEvent.VK_DOWN){player.setDown(true); player.takeDamage();} //Remember to remove this for obvious reasons
 		if(k == KeyEvent.VK_UP) player.setJumping(true);
 		if(k == KeyEvent.VK_Q) player.setGliding(true);
 		if(k == KeyEvent.VK_E) player.setScratching();

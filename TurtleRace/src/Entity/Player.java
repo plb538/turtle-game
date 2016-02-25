@@ -247,6 +247,8 @@ public class Player extends MapObject{
 	
 	public int getHealth(){return health;}
 	
+	public void takeDamage(){health -= 20;}
+	
 	public int getMaxHealth(){return maxHealth;}
 	
 	public int getFire(){return fire;}
