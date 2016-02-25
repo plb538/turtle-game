@@ -15,7 +15,7 @@ import common.Character;
 public class GamePanel extends JPanel implements Runnable, KeyListener{
 	
 	//panel size
-	public static final int SCALE = 3; //dont see need for this in videos yet
+	public static final int SCALE = 2; //dont see need for this in videos yet
 	public static final int RENDERWIDTH = 640;
 	public static final int RENDERHEIGHT = 320;
 	

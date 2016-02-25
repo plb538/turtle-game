@@ -50,7 +50,7 @@ public class LevelState extends GameState{
 		player.setPosition(100, 500);
 		
 		healthBar = new DrawnHealth(player);
-		progress = new DrawnProgress(player);
+		progress = new DrawnProgress(player, tileMap);
 	}
 
 	@Override
