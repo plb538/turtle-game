@@ -27,8 +27,8 @@ public class MenuState extends GameState{
 			bg.setVector(0, 0); //determines if background is moving
 			
 			titleColor = new Color(255, 0, 0);
-			titleFont = new Font("Century Gothic", Font.PLAIN, 28);
-			font = new Font("Arial", Font.PLAIN, 16);
+			titleFont = new Font("Century Gothic", Font.PLAIN, 56);
+			font = new Font("Arial", Font.PLAIN, 36);
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -51,7 +51,7 @@ public class MenuState extends GameState{
 		//draw title
 		g.setColor(titleColor);
 		g.setFont(titleFont);
-		g.drawString(title, 200, 100);
+		g.drawString(title, 400, 200);
 		
 		//draw menu options
 		g.setFont(font);
@@ -62,7 +62,7 @@ public class MenuState extends GameState{
 			else{
 				g.setColor(Color.RED);
 			}
-			g.drawString(options[i], 320, 180 + i*15);
+			g.drawString(options[i], 600, 320 + i*30);
 		}
 	}
 	//key press options for menu screen
