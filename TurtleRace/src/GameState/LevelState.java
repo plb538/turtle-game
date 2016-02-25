@@ -25,7 +25,7 @@ public class LevelState extends GameState{
 	public void init(){
 		tileMap = new TileMap(30); //value passed to constructor will depend on the tile map
 		ArrayList<Integer> list = new ArrayList<Integer>();
-		list.add(0);
+		list.add(3);
 		list.add(1);
 		list.add(2);
 		tileMap.loadTiles("/TileSets/Terrain", list);
