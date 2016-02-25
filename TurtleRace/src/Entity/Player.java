@@ -51,10 +51,10 @@ public class Player extends MapObject{
 		super(tm);
 		
 		//sprite width and height
-		width = 32;
-		height = 32;
-		cwidth = 25;
-		cheight = 25;
+		width = 64;
+		height = 64;
+		cwidth = 72;
+		cheight = 120;
 		
 		moveSpeed = 0.3;
 		maxSpeed = 1.6;
@@ -76,7 +76,7 @@ public class Player extends MapObject{
 		
 		//load sprites
 		try{
-			BufferedImage spriteSheet = ImageIO.read(getClass().getResourceAsStream("/sprites/DerpTurtle3.gif"));
+			BufferedImage spriteSheet = ImageIO.read(getClass().getResourceAsStream("/sprites/LargerTurtle.png"));
 			sprites = new ArrayList<BufferedImage[]>();
 	
 			//Padyy remember to change this back
@@ -207,7 +207,7 @@ public class Player extends MapObject{
 				curAction = WALKING;
 				animation.setFrames(sprites.get(WALKING));
 				animation.setDelay(100);
-				width = 32;
+				width = 64;
 			}
 		}
 		else{
@@ -215,7 +215,7 @@ public class Player extends MapObject{
 				curAction = IDLE;
 				animation.setFrames(sprites.get(IDLE));
 				animation.setDelay(-1);
-				width = 32;
+				width = 64;
 			}
 		}
 		animation.update();
@@ -241,7 +241,7 @@ public class Player extends MapObject{
 			g.drawImage(animation.getImage(), (int)(x + xmap - width / 2), (int)(y + ymap - height / 2), null);
 		}
 		else{
-			g.drawImage(animation.getImage(), (int)(x + xmap - width / 2 + width), (int)(y + ymap - height / 2), -width, height, null);
+			g.drawImage(animation.getImage(), (int)(x + xmap - width / 2 + width), (int)(y + ymap - height / 2), null);
 		}
 	}
 	
