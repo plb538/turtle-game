@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
@@ -28,7 +29,7 @@ public class TileMap{
 	private int width, height;
 	
 	//tile set
-	private BufferedImage tileset;
+	private ArrayList<BufferedImage> tileset = new ArrayList<BufferedImage>();
 	private int numTilesAcross;
 	private Tile[][] tiles;
 	
@@ -43,12 +44,21 @@ public class TileMap{
 		tween = 0.7;
 	}
 	
-	public void loadTiles(String path){
+	public void loadTiles(String directory, ArrayList<Integer> listTiles){
 		try{
-			tileset = ImageIO.read(getClass().getResourceAsStream(path));
-			numTilesAcross = tileset.getWidth() / tileSize;
+			String path;
+			for(int i = 0; i < listTiles.size() ; i++){
+				try{
+					path = directory + "/" + listTiles.get(i) +".PNG";
+					System.out.println(path);
+					tileset.add(ImageIO.read(getClass().getResourceAsStream(path)));
+				}catch(Throwable e){
+					System.out.println(e);
+				}
+			}
+			/*
+			numTilesAcross = tileset.get(0).getWidth() / tileSize;
 			BufferedImage subImage;
-			
 			tiles = new Tile[2][numTilesAcross];
 			
 			for(int col = 0; col < numTilesAcross; col++){
@@ -57,6 +67,7 @@ public class TileMap{
 				subImage = tileset.getSubimage(col*tileSize, tileSize, tileSize, tileSize);
 				tiles[1][col] = new Tile(subImage, Tile.BLOCKED);
 			}
+			*/
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -132,6 +143,23 @@ public class TileMap{
 	}
 	
 	public void draw(Graphics2D g){
+		
+		
+		for(int row = rowOffset; row < rowOffset + numRowsToDraw; row++){
+			if(row >= numRows) break;
+			for(int col = colOffset; col < colOffset + numColsToDraw; col++){
+				if(col >= numCols) break;
+				if(map[row][col] == 0) continue;
+				int rc = map[row][col];
+				int r = rc / numTilesAcross;
+				int c = rc % numTilesAcross;
+				
+				g.drawImage(tileset.get(map[row][col]), (int)x + col*tileSize, (int)y + row*tileSize, null);
+			}
+		}
+		
+		
+		/*
 		for(int row = rowOffset; row < rowOffset + numRowsToDraw; row++){
 			if(row >= numRows) break;
 			for(int col = colOffset; col < colOffset + numColsToDraw; col++){
@@ -144,5 +172,6 @@ public class TileMap{
 				g.drawImage(tiles[r][c].getImage(), (int)x + col*tileSize, (int)y + row*tileSize, null);
 			}
 		}
+		*/
 	}
 }

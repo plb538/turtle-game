@@ -2,6 +2,7 @@ package GameState;
 
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 
 import Entity.Player;
 import Main.GamePanel;
@@ -23,8 +24,12 @@ public class LevelState extends GameState{
 	@Override
 	public void init(){
 		tileMap = new TileMap(30); //value passed to constructor will depend on the tile map
-		tileMap.loadTiles("/TileSets/grasstileset.gif");
-		tileMap.loadMap("/Maps/level1-1.map");
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		list.add(0);
+		list.add(1);
+		list.add(2);
+		tileMap.loadTiles("/TileSets/Terrain", list);
+		tileMap.loadMap("/Maps/testmap.map");
 		tileMap.setPosition(0, 0);
 		
 		bg = new Background("/Backgrounds/default-background.png", 1);	
