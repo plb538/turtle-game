@@ -178,8 +178,8 @@ public class TileMap{
 				int r = rc / numTilesAcross;
 				int c = rc % numTilesAcross;
 				
-				//g.drawImage(tiles[r][c].getImage(), (int)x + col*tileSize, (int)y + row*tileSize, null);
 				g.drawImage(tiles[r][c].getImage(), (int)x + col*tileSize, (int)y + row*tileSize, tileSize, tileSize, null);
+
 			}
 			
 		}

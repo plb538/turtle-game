@@ -28,7 +28,7 @@ public class LevelState extends GameState{
 	@Override
 	public void init(){
 		//tileMap = new TileMap(64); //value passed to constructor will depend on the tile map
-		tileMap = new TileMap(GamePanel.HEIGHT / 10);
+		tileMap = new TileMap(64);
 		
 		//ArrayList<Integer> list = new ArrayList<Integer>();
 		ArrayList<String> list = new ArrayList<String>();
@@ -46,8 +46,8 @@ public class LevelState extends GameState{
 		
 		bg = new Background("/Backgrounds/default-background.png", 1);	
 		
-		player = new Player(tileMap, GamePanel.HEIGHT/10);
-		player.setPosition(100, 500);
+		player = new Player(tileMap);
+		player.setPosition(tileMap.getTileSize(), tileMap.getTileSize());
 		
 		healthBar = new DrawnHealth(player);
 		progress = new DrawnProgress(player, tileMap);
