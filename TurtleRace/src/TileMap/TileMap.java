@@ -69,7 +69,12 @@ public class TileMap{
 			BufferedImage subImage;
 			
 			for(int col = 0; col < numTilesAcross; col++){
-				tiles[0][col] = new Tile(tileset[col], Tile.BLOCKED);
+				if(col == 0){
+					tiles[0][0] = new Tile(tileset[col], Tile.NORMAL); 
+				}
+				else{
+					tiles[0][col] = new Tile(tileset[col], Tile.BLOCKED);
+				}	
 			}
 			
 			/*
