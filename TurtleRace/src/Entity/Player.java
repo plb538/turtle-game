@@ -53,8 +53,8 @@ public class Player extends MapObject{
 		//sprite width and height
 		width = 64;
 		height = 64;
-		cwidth = 72;
-		cheight = 120;
+		cwidth = 36;
+		cheight = 60;
 		
 		moveSpeed = 0.3;
 		maxSpeed = 1.6;
