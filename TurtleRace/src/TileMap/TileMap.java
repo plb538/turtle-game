@@ -46,13 +46,13 @@ public class TileMap{
 		tween = 0.7;
 	}
 	
-	public void loadTiles(String directory, ArrayList<Integer> listTiles){
+	public void loadTiles(String directory, ArrayList<String> listTiles){
 		try{
 			tileset = new BufferedImage[listTiles.size()];
 			String path;
 			for(int i = 0; i < listTiles.size() ; i++){
 				try{
-					path = directory + "/" + listTiles.get(i) +".PNG";
+					path = directory + "/" + listTiles.get(i) +".png";
 					System.out.println(path);
 					//tileset.add(ImageIO.read(getClass().getResourceAsStream(path)));
 					tileset[i] = ImageIO.read(getClass().getResourceAsStream(path));
@@ -62,11 +62,11 @@ public class TileMap{
 			}
 			
 			totalNumTiles = tileset.length;
-			System.out.println(totalNumTiles);
-			numTilesAcross = totalNumTiles;
 			
+			System.out.println(totalNumTiles);
+			
+			numTilesAcross = totalNumTiles;
 			tiles = new Tile[1][numTilesAcross];
-			BufferedImage subImage;
 			
 			for(int col = 0; col < numTilesAcross; col++){
 				if(col == 0){
@@ -105,7 +105,9 @@ public class TileMap{
 			map = new int[numRows][numCols];
 			width = numCols*tileSize;
 			height = numRows*tileSize;
+			
 			//System.out.println(width + " " + height);
+			
 			xmin = GamePanel.WIDTH - width;
 			xmax = 0;
 			ymin = GamePanel.HEIGHT - height;
@@ -165,11 +167,9 @@ public class TileMap{
 	}
 	
 	public void draw(Graphics2D g){
-		
-		
-		for(int row = rowOffset; row < rowOffset + numRowsToDraw; row++){
+		for(int row = 0; row < numRowsToDraw; row++){
 			if(row >= numRows) break;
-			for(int col = colOffset; col < colOffset + numColsToDraw; col++){
+			for(int col = 0; col < numColsToDraw; col++){
 				if(col >= numCols) break;
 				if(map[row][col] == 0) continue;
 				int rc = map[row][col];

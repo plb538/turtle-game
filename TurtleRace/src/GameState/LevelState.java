@@ -23,13 +23,19 @@ public class LevelState extends GameState{
 	
 	@Override
 	public void init(){
-		tileMap = new TileMap(30); //value passed to constructor will depend on the tile map
-		ArrayList<Integer> list = new ArrayList<Integer>();
-		list.add(3);
-		list.add(1);
-		list.add(2);
+		tileMap = new TileMap(64); //value passed to constructor will depend on the tile map
+		//ArrayList<Integer> list = new ArrayList<Integer>();
+		ArrayList<String> list = new ArrayList<String>();
+		//list.add(3);
+		//list.add(1);
+		//list.add(2);
+		
+		list.add("CrapSky");
+		list.add("CrapBlock");
+		list.add("CrapDirtBlock");
+		
 		tileMap.loadTiles("/TileSets/Terrain", list);
-		tileMap.loadMap("/Maps/testmap.map");
+		tileMap.loadMap("/Maps/testMap2.map");
 		tileMap.setPosition(0, 0);
 		
 		bg = new Background("/Backgrounds/default-background.png", 1);	
