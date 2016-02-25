@@ -13,7 +13,7 @@ public class SpriteSheet{
 	
 	public SpriteSheet(String path){
 		BufferedImage image = null;
-		System.out.println(path);
+		//System.out.println(path);
 		try{
 			//image = ImageIO.read(new FileImageInputStream(new File(path)));
 			image = ImageIO.read(SpriteSheet.class.getResourceAsStream(path));

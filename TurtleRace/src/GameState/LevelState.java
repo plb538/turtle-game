@@ -25,7 +25,9 @@ public class LevelState extends GameState{
 	
 	@Override
 	public void init(){
-		tileMap = new TileMap(64); //value passed to constructor will depend on the tile map
+		//tileMap = new TileMap(64); //value passed to constructor will depend on the tile map
+		tileMap = new TileMap(GamePanel.HEIGHT / 10);
+		
 		//ArrayList<Integer> list = new ArrayList<Integer>();
 		ArrayList<String> list = new ArrayList<String>();
 		//list.add(3);
