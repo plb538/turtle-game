@@ -47,21 +47,19 @@ public class Player extends MapObject{
 	//private static final int FIREBALL = 5;
 	//private static final int SCRATCHING = 6;
 	
-	public Player(TileMap tm){
+	public Player(TileMap tm, int mapTileSize){
 		super(tm);
-		
 		//sprite width and height
-		width = 64;
-		height = 64;
-		cwidth = 36;
-		cheight = 60;
-		
-		moveSpeed = 0.3;
-		maxSpeed = 1.6;
-		stopSpeed = 0.4;
-		fallSpeed = 0.15;
+		width = 64 ;
+		height = 64 ;
+		cwidth = 36 ;
+		cheight = 60 ;
+		moveSpeed = 0.3 ;
+		maxSpeed = 1.6 ;
+		stopSpeed = 0.4 ;
+		fallSpeed = 0.15 ;
 		maxFallSpeed = 4.0;
-		jumpStart = -4.8;
+		jumpStart = -4.8 * mapTileSize/64;
 		stopJumpSpeed = 0.3;
 		
 		facingRight = true;

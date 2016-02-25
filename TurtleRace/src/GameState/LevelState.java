@@ -46,7 +46,7 @@ public class LevelState extends GameState{
 		
 		bg = new Background("/Backgrounds/default-background.png", 1);	
 		
-		player = new Player(tileMap);
+		player = new Player(tileMap, GamePanel.HEIGHT/10);
 		player.setPosition(100, 500);
 		
 		healthBar = new DrawnHealth(player);
