@@ -7,6 +7,8 @@ import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
 
 import Entity.Player;
+import Main.GamePanel;
+import TileMap.TileMap;
 
 public class DrawnHealth extends GraphicalElement{
 
@@ -22,7 +24,7 @@ public class DrawnHealth extends GraphicalElement{
 	
 	public DrawnHealth(Player player){
 		health = player.getHealth();
-		xpos = 1060; 
+		xpos = GamePanel.WIDTH - 210; 
 		ypos = 10;
 		width = 200; 
 		height = 40;	

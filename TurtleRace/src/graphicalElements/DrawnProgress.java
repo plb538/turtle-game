@@ -18,7 +18,7 @@ public class DrawnProgress extends GraphicalElement{
 	private BufferedImage hpBar;
 	private JPanel panel;
 	
-	public DrawnProgress(Player player){
+	public DrawnProgress(Player player, TileMap tm){
 		xpos = 10; 
 		ypos = 10;
 		width = 300; 
