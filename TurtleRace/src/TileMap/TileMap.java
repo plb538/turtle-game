@@ -29,9 +29,11 @@ public class TileMap{
 	private int width, height;
 	
 	//tile set
-	private ArrayList<BufferedImage> tileset = new ArrayList<BufferedImage>();
+	//private ArrayList<BufferedImage> tileset = new ArrayList<BufferedImage>();
+	private BufferedImage[] tileset;
 	private int numTilesAcross;
 	private Tile[][] tiles;
+	private int totalNumTiles;
 	
 	//drawing
 	private int rowOffset, colOffset;
@@ -46,18 +48,33 @@ public class TileMap{
 	
 	public void loadTiles(String directory, ArrayList<Integer> listTiles){
 		try{
+			tileset = new BufferedImage[listTiles.size()];
 			String path;
 			for(int i = 0; i < listTiles.size() ; i++){
 				try{
 					path = directory + "/" + listTiles.get(i) +".PNG";
 					System.out.println(path);
-					tileset.add(ImageIO.read(getClass().getResourceAsStream(path)));
+					//tileset.add(ImageIO.read(getClass().getResourceAsStream(path)));
+					tileset[i] = ImageIO.read(getClass().getResourceAsStream(path));
 				}catch(Throwable e){
 					System.out.println(e);
 				}
 			}
+			
+			totalNumTiles = tileset.length;
+			System.out.println(totalNumTiles);
+			numTilesAcross = totalNumTiles;
+			
+			tiles = new Tile[1][numTilesAcross];
+			BufferedImage subImage;
+			
+			for(int col = 0; col < numTilesAcross; col++){
+				tiles[0][col] = new Tile(tileset[col], Tile.BLOCKED);
+			}
+			
 			/*
 			numTilesAcross = tileset.get(0).getWidth() / tileSize;
+			System.out.println(numTilesAcross);
 			BufferedImage subImage;
 			tiles = new Tile[2][numTilesAcross];
 			
@@ -154,7 +171,7 @@ public class TileMap{
 				int r = rc / numTilesAcross;
 				int c = rc % numTilesAcross;
 				
-				g.drawImage(tileset.get(map[row][col]), (int)x + col*tileSize, (int)y + row*tileSize, null);
+				g.drawImage(tiles[r][c].getImage(), (int)x + col*tileSize, (int)y + row*tileSize, null);
 			}
 		}
 		
