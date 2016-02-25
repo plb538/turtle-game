@@ -8,13 +8,15 @@ import Entity.Player;
 import Main.GamePanel;
 import TileMap.Background;
 import TileMap.TileMap;
-import graphicalElements.DrawnProgress;
+import graphicalElements.DrawnHealth;
 
 public class LevelState extends GameState{
 
 	private TileMap tileMap;
 	private Background bg;
 	private Player player;
+	
+	private DrawnHealth dh;
 	
 	public LevelState(GameStateManager gsm){
 		this.gsm = gsm;
@@ -43,6 +45,7 @@ public class LevelState extends GameState{
 		player = new Player(tileMap);
 		player.setPosition(100, 500);
 		
+		dh = new DrawnHealth(player);
 	}
 
 	@Override
@@ -62,6 +65,8 @@ public class LevelState extends GameState{
 		
 		//draw player
 		player.draw(g);
+		
+		dh.draw(g, player);
 		
 	}
 
@@ -84,9 +89,9 @@ public class LevelState extends GameState{
 	public void keyReleased(int k){
 		if(k == KeyEvent.VK_LEFT) player.setLeft(false);
 		if(k == KeyEvent.VK_RIGHT) player.setRight(false);
-		if(k == KeyEvent.VK_UP) player.setUp(false);
+		//if(k == KeyEvent.VK_UP) player.setUp(false);
 		if(k == KeyEvent.VK_DOWN) player.setDown(false);
-		if(k == KeyEvent.VK_W) player.setJumping(false);
+		if(k == KeyEvent.VK_UP) player.setJumping(false);
 		if(k == KeyEvent.VK_Q) player.setGliding(false);
 	}
 	
