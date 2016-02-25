@@ -15,9 +15,10 @@ import common.Character;
 public class GamePanel extends JPanel implements Runnable, KeyListener{
 	
 	//panel size
+	public static final int SCALE = 2; //dont see need for this in videos yet
 	public static final int RENDERWIDTH = 640;
 	public static final int RENDERHEIGHT = 320;
-	public static final int SCALE = 2; //dont see need for this in videos yet
+	
 	public static final int WIDTH = RENDERWIDTH * SCALE;
 	public static final int HEIGHT = RENDERHEIGHT * SCALE;
 	
@@ -81,7 +82,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener{
 	
 	private void drawToScreen(){
 		Graphics2D g2 = (Graphics2D)getGraphics();
-		g2.drawImage(image, 0, 0, WIDTH, HEIGHT, null);
+		g2.drawImage(image, 0, 0, RENDERWIDTH, RENDERHEIGHT, null);
 		g2.dispose();
 	}
 	
