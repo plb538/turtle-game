@@ -10,13 +10,11 @@ import Entity.Player;
 import TileMap.TileMap;
 
 public class DrawnProgress extends GraphicalElement{
+	
 	private int xpos;
 	private int ypos;
 	private int width;
 	private int height;
-	
-	private BufferedImage hpBar;
-	private JPanel panel;
 	
 	public DrawnProgress(Player player, TileMap tm){
 		xpos = 10; 
@@ -26,12 +24,13 @@ public class DrawnProgress extends GraphicalElement{
 	}
 	
 	public void draw(Graphics2D g, Player player, TileMap tm){
-		double playerProg = Math.abs((double)player.getx()/(double)tm.getWidth()) * 100;
+		double playerProg = (double)player.getx()/(double)tm.getWidth() * 100;
+		System.out.println(player.getx());
 		int intPlayerProg = (int)playerProg;
 		g.setColor(Color.WHITE);
 		g.fillRect(xpos, ypos, width, height);
 		g.setColor(Color.BLACK);
-		g.fillRect(xpos, ypos, intPlayerProg, height);
+		g.fillRect(xpos, ypos, intPlayerProg*3, height);
 		g.drawRect(xpos, ypos, width, height);
 	}
 }

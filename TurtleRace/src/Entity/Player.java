@@ -205,7 +205,7 @@ public class Player extends MapObject{
 				curAction = WALKING;
 				animation.setFrames(sprites.get(WALKING));
 				animation.setDelay(100);
-				width = 64;
+				//width = 64;
 			}
 		}
 		else{
@@ -213,7 +213,7 @@ public class Player extends MapObject{
 				curAction = IDLE;
 				animation.setFrames(sprites.get(IDLE));
 				animation.setDelay(-1);
-				width = 64;
+				//width = 64;
 			}
 		}
 		animation.update();
@@ -244,6 +244,8 @@ public class Player extends MapObject{
 	}
 	
 	public int getHealth(){return health;}
+	
+	public void takeDamage(){health -= 20;}
 	
 	public int getMaxHealth(){return maxHealth;}
 	
