@@ -10,13 +10,11 @@ import Entity.Player;
 import TileMap.TileMap;
 
 public class DrawnProgress extends GraphicalElement{
+	
 	private int xpos;
 	private int ypos;
 	private int width;
 	private int height;
-	
-	private BufferedImage hpBar;
-	private JPanel panel;
 	
 	public DrawnProgress(Player player, TileMap tm){
 		xpos = 10; 

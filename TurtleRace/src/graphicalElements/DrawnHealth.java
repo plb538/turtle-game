@@ -13,14 +13,10 @@ import TileMap.TileMap;
 public class DrawnHealth extends GraphicalElement{
 
 	private int health;
-	
 	private int xpos;
 	private int ypos;
 	private int width;
 	private int height;
-	
-	private BufferedImage hpBar;
-	private JPanel panel;
 	
 	public DrawnHealth(Player player){
 		health = player.getHealth();
