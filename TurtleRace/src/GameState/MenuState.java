@@ -23,7 +23,7 @@ public class MenuState extends GameState{
 		this.gsm = gsm;
 		
 		try{
-			bg = new Background("/Backgrounds/testBG.png", 1);
+			bg = new Background("/Backgrounds/turtlebackground.PNG", 1);
 			bg.setVector(0, 0); //determines if background is moving
 			
 			titleColor = new Color(255, 0, 0);
