@@ -44,7 +44,7 @@ public class JumpPuzzle1 extends GameState{
 		list.add("CrapDirtBlock");
 		
 		tileMap.loadTiles("/TileSets/Terrain", list);
-		tileMap.loadMap("/Maps/levelTwoMap.map");
+		tileMap.loadMap("/Maps/JumpPuzzle1.map");
 		tileMap.setPosition(0, 0);
 		
 		bg = new Background("/Backgrounds/default-background.png", 1);	
