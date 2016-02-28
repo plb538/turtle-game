@@ -12,7 +12,9 @@ public class OptionState extends GameState{
 	
 	private Background bg;
 	
-	private String[] options = {"Apply Changes", "Return"};
+	private String[] options = {"Apply Changes", "Return", 
+			"Jump to State4","Jump to State5","Jump to State6"};
+	
 	private int curOption = 0;
 	private String title = "A Tale of Two Turtles";
 	private Color titleColor;
@@ -98,6 +100,9 @@ public class OptionState extends GameState{
 			case 1 : //Return
 				gsm.setState(GameStateManager.MENUSTATE);
 				break;
+			case 2 : gsm.setState(4);
+			case 3 : gsm.setState(5);
+			case 4 : gsm.setState(6);
 			
 		}
 	}
