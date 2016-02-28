@@ -4,7 +4,9 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
+import Entity.MonkeyEnemy;
 import Entity.Player;
+import Entity.Portal;
 import Main.GamePanel;
 import TileMap.Background;
 import TileMap.TileMap;
@@ -13,10 +15,16 @@ import graphicalElements.DrawnProgress;
 
 public class LevelState extends GameState{
 
+	//map stuff
 	private TileMap tileMap;
 	private Background bg;
-	private Player player;
 	
+	//Entity stuff
+	private Player player;
+	//private MonkeyEnemy monkey;
+	private Portal portal;
+	
+	//graphical element stuff
 	private DrawnHealth healthBar;
 	private DrawnProgress progress;
 	
@@ -27,14 +35,9 @@ public class LevelState extends GameState{
 	
 	@Override
 	public void init(){
-		//tileMap = new TileMap(64); //value passed to constructor will depend on the tile map
 		tileMap = new TileMap(64);
 		
-		//ArrayList<Integer> list = new ArrayList<Integer>();
 		ArrayList<String> list = new ArrayList<String>();
-		//list.add(3);
-		//list.add(1);
-		//list.add(2);
 		
 		list.add("CrapSky");
 		list.add("CrapBlock");
@@ -49,6 +52,12 @@ public class LevelState extends GameState{
 		player = new Player(tileMap);
 		player.setPosition(tileMap.getTileSize(), tileMap.getTileSize());
 		
+		//monkey = new MonkeyEnemy(tileMap);
+		//monkey.setPosition(600, 450);
+		
+		portal = new Portal(tileMap);
+		portal.setPosition(600, 450);
+		
 		healthBar = new DrawnHealth(player);
 		progress = new DrawnProgress(player, tileMap);
 	}
@@ -56,8 +65,15 @@ public class LevelState extends GameState{
 	@Override
 	public void update(){	
 		player.update();
+		//monkey.update();
+		portal.update();
+		
 		//allows map to move
 		tileMap.setPosition(GamePanel.WIDTH / 2 - player.getx(), GamePanel.WIDTH / 2 - player.gety());
+
+		if(player.getx() == portal.getx() && player.gety() == portal.gety() + 15){
+			gsm.setState(gsm.CHALLENGESTATE);
+		}
 	}
 
 	@Override
@@ -70,6 +86,12 @@ public class LevelState extends GameState{
 		
 		//draw player
 		player.draw(g);
+		
+		//draw enemy
+		//monkey.draw(g);
+		
+		//draw portal
+		portal.draw(g, tileMap);
 		
 		//draw health
 		healthBar.draw(g, player);
@@ -90,8 +112,6 @@ public class LevelState extends GameState{
 		if(k == KeyEvent.VK_DOWN){player.setDown(true); player.takeDamage();} //Remember to remove this for obvious reasons
 		if(k == KeyEvent.VK_UP) player.setJumping(true);
 		if(k == KeyEvent.VK_Q) player.setGliding(true);
-		if(k == KeyEvent.VK_E) player.setScratching();
-		if(k == KeyEvent.VK_R) player.setFiring();
 	}
 
 	@Override

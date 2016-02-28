@@ -25,7 +25,6 @@ public class DrawnProgress extends GraphicalElement{
 	
 	public void draw(Graphics2D g, Player player, TileMap tm){
 		double playerProg = (double)player.getx()/(double)tm.getWidth() * 100;
-		System.out.println(player.getx());
 		int intPlayerProg = (int)playerProg;
 		g.setColor(Color.WHITE);
 		g.fillRect(xpos, ypos, width, height);
