@@ -13,23 +13,10 @@ public class Player extends MapObject{
 	//player stuff
 	private int health;
 	private int maxHealth;
-	private int fire;
-	private int maxFire;
 	private boolean dead = false;
 	private boolean flinching;
 	private long flinchTimer;
 	private boolean facingRight;
-	
-	//fireball
-	private boolean firing;
-	private int fireCost;
-	private int fireBallDamage;
-	//private ArrayLsit<FireBall> fireballs;
-	
-	//scratch
-	private boolean scratching;
-	private int scratchDamage;
-	private int scratchRange;
 	
 	//gliding
 	private boolean gliding;
@@ -44,20 +31,20 @@ public class Player extends MapObject{
 	//private static final int JUMPING = 2;
 	//private static final int FALLING = 3;
 	//private static final int GLIDING = 4;
-	//private static final int FIREBALL = 5;
-	//private static final int SCRATCHING = 6;
 	
 	public Player(TileMap tm){
 		super(tm);
 		//sprite width and height
-		width = 64 ;
-		height = 64 ;
-		cwidth = 36 ;
-		cheight = 60 ;
-		moveSpeed = 0.3 ;
-		maxSpeed = 1.6 ;
-		stopSpeed = 0.4 ;
-		fallSpeed = 0.15 ;
+		width = 64;
+		height = 64;
+		cwidth = 36;
+		cheight = 60;
+		
+		//physics modifiers
+		moveSpeed = 0.3;
+		maxSpeed = 1.6;
+		stopSpeed = 0.4;
+		fallSpeed = 0.15;
 		maxFallSpeed = 4.0;
 		jumpStart = -4.8;
 		stopJumpSpeed = 0.3;
@@ -65,31 +52,17 @@ public class Player extends MapObject{
 		facingRight = true;
 		
 		health = maxHealth = 100;
-		fire = maxFire = 2500;
-		fireCost = 200;
-		fireBallDamage = 5;
-		//fireBalls = new ArrayList<FireBalls>();
-		scratchDamage = 8;
-		scratchRange = 40;
 		
 		//load sprites
 		try{
 			BufferedImage spriteSheet = ImageIO.read(getClass().getResourceAsStream("/sprites/LargerTurtle.png"));
 			sprites = new ArrayList<BufferedImage[]>();
 	
-			//Padyy remember to change this back
-			//---------------------------------------------------------------------------
-			
-			for(int i = 0; i < 2; i++){
+			for(int i = 0; i < numFrames.length; i++){
 				BufferedImage[] bi = new BufferedImage[numFrames[i]];
 				
 				for(int j = 0; j < numFrames[i]; j++){
-//					if(i != 6){
-						bi[j] = spriteSheet.getSubimage(j*width, i*height, width, height); //breaks down the sprite sheet
-//					}
-//					else{
-//						bi[j] = spriteSheet.getSubimage(j*width*2, i*height, width, height); //these sprites are 60x30
-//					}
+					bi[j] = spriteSheet.getSubimage(j*width, i*height, width, height); //breaks down the sprite sheet			
 				}
 				sprites.add(bi);
 			}
@@ -97,9 +70,6 @@ public class Player extends MapObject{
 		catch(Exception e){
 			e.printStackTrace();
 		}
-		
-		//------------------------------------------------------------------------------------------------------------
-		
 		animation = new Animation();
 		curAction = IDLE;
 		animation.setFrames(sprites.get(IDLE));
@@ -134,10 +104,6 @@ public class Player extends MapObject{
 				}
 			}
 		}
-		//cant move while attacking unless in air
-//		if((curAction == SCRATCHING || curAction == FIREBALL) && !(jumping || falling)){
-//			dx = 0;
-//		}
 		if(jumping && !falling){
 			dy = jumpStart;
 			falling = true;
@@ -218,11 +184,8 @@ public class Player extends MapObject{
 		}
 		animation.update();
 		
-		//set direction
-//		if(curAction != SCRATCHING && curAction != FIREBALL){
-			if(right) facingRight = true;
-			if(left) facingRight = false;
-//		}
+		if(right) facingRight = true;
+		if(left) facingRight = false;
 	}
 	
 	public void draw(Graphics2D g){
@@ -248,14 +211,6 @@ public class Player extends MapObject{
 	public void takeDamage(){health -= 20;}
 	
 	public int getMaxHealth(){return maxHealth;}
-	
-	public int getFire(){return fire;}
-	
-	public int getMaxFire(){return maxFire;}
-	
-	public void setFiring(){firing = true;}
-	
-	public void setScratching(){scratching = true;}
 	
 	public void setGliding(boolean b){gliding = b;}
 }
