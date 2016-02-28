@@ -41,8 +41,8 @@ public class TileMap{
 	
 	public TileMap(int tileSize){
 		this.tileSize = tileSize;
-		numRowsToDraw = GamePanel.HEIGHT / tileSize + 5;
-		numColsToDraw = GamePanel.WIDTH / tileSize + 5;
+		numRowsToDraw = GamePanel.HEIGHT / tileSize + 15;
+		numColsToDraw = GamePanel.WIDTH / tileSize + 15;
 		tween = 0.7;
 		//System.out.println(tileSize + " " + numRowsToDraw +" " + numColsToDraw);
 	}
