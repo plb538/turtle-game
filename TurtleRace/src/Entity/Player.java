@@ -42,7 +42,7 @@ public class Player extends MapObject{
 		
 		//physics modifiers
 		moveSpeed = 0.3;
-		maxSpeed = 1.6;
+		maxSpeed = 2.0;
 		stopSpeed = 0.4;
 		fallSpeed = 0.15;
 		maxFallSpeed = 4.0;
