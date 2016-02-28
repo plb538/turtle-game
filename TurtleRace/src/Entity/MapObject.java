@@ -50,6 +50,10 @@ public abstract class MapObject{
 	protected double jumpStart;
 	protected double stopJumpSpeed;
 	
+	public MapObject(){
+		
+	}
+	
 	public MapObject(TileMap tm){
 		tileMap = tm;
 		tileSize = tm.getTileSize();
@@ -188,4 +192,7 @@ public abstract class MapObject{
 				y + ymap + height < 0 ||
 				y + ymap -height > GamePanel.HEIGHT;
 	}
+	public void setObjectOnTileMap(TileMap tm){
+		tileMap = tm;
+		tileSize = tm.getTileSize();}
 }

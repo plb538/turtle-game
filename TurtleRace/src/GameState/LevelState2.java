@@ -50,8 +50,8 @@ public class LevelState2 extends GameState{
 		
 		bg = new Background("/Backgrounds/default-background.png", 1);	
 		
-		//player = new Player(tileMap);
-		Game.p1.setPosition(100, tileMap.getHeight() - 300);
+		Game.p1.setObjectOnTileMap(tileMap);
+		Game.p1.setPosition(100, tileMap.getHeight() - 100);
 		
 		//monkey = new MonkeyEnemy(tileMap);
 		//monkey.setPosition(600, 450);
