@@ -55,7 +55,7 @@ public class JumpPuzzle1 extends GameState{
 		//monkey.setPosition(600, 450);
 		
 		portal = new Portal(tileMap);
-		portal.setPosition(tileMap.getWidth() - 3*tileMap.getTileSize(), 100);
+		portal.setPosition(tileMap.getWidth() - 1.5*tileMap.getTileSize(), 100);
 		
 		healthBar = new DrawnHealth(Game.p1);
 		progress = new DrawnProgress(Game.p1, tileMap);
