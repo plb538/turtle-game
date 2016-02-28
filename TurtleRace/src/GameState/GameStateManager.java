@@ -17,6 +17,7 @@ public class GameStateManager{
 	public static final int OPTIONSTATE = 2;
 	public static final int ENDSTATE = 3;
 	public static final int LEVELSTATE2 = 4;
+	public static final int JUMPPUZZLE1 = 5;
 	//	public static final int CHALLENGESTATE = 4;
 	
 	private Level myLevel = null;
