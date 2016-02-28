@@ -73,7 +73,7 @@ public class LevelState extends GameState{
 		tileMap.setPosition(GamePanel.WIDTH / 2 - Game.p1.getx(), GamePanel.HEIGHT / 2 - Game.p1.gety());
 
 		if(Game.p1.getx() == portal.getx() && Game.p1.gety() == portal.gety() + 15){
-			gsm.setState(gsm.LEVELSTATE2);
+			gsm.setState(gsm.JUMPPUZZLE1);
 		}
 		if(Game.p1.notOnScreen()){
 			Game.p1.setPosition(100, tileMap.getHeight() - 100);
