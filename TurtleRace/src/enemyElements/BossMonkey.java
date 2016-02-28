@@ -29,4 +29,13 @@ public class BossMonkey implements Enemy{
 	public void Attack(){
 		
 	}
+	public void Fall(){
+		
+	}
+	public int getX(){
+		return xpos;
+	}
+	public int getY(){
+		return ypos;
+	}
 }
