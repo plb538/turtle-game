@@ -13,7 +13,7 @@ import TileMap.TileMap;
 import graphicalElements.DrawnHealth;
 import graphicalElements.DrawnProgress;
 
-public class LevelState extends GameState{
+public class LevelState2 extends GameState{
 
 	//map stuff
 	private TileMap tileMap;
@@ -28,7 +28,7 @@ public class LevelState extends GameState{
 	private DrawnHealth healthBar;
 	private DrawnProgress progress;
 	
-	public LevelState(GameStateManager gsm){
+	public LevelState2(GameStateManager gsm){
 		this.gsm = gsm;
 		init();
 	}
@@ -44,7 +44,7 @@ public class LevelState extends GameState{
 		list.add("CrapDirtBlock");
 		
 		tileMap.loadTiles("/TileSets/Terrain", list);
-		tileMap.loadMap("/Maps/testMap2.map");
+		tileMap.loadMap("/Maps/levelTwoMap.map");
 		tileMap.setPosition(0, 0);
 		
 		bg = new Background("/Backgrounds/default-background.png", 1);	
@@ -56,7 +56,7 @@ public class LevelState extends GameState{
 		//monkey.setPosition(600, 450);
 		
 		portal = new Portal(tileMap);
-		portal.setPosition(600, 450);
+		portal.setPosition(tileMap.getWidth() - 96, 100);
 		
 		healthBar = new DrawnHealth(player);
 		progress = new DrawnProgress(player, tileMap);
@@ -72,7 +72,7 @@ public class LevelState extends GameState{
 		tileMap.setPosition(GamePanel.WIDTH / 2 - player.getx(), GamePanel.HEIGHT / 2 - player.gety());
 
 		if(player.getx() == portal.getx() && player.gety() == portal.gety() + 15){
-			gsm.setState(gsm.LEVELSTATE2);
+			gsm.setState(gsm.ENDSTATE);
 		}
 		if(player.notOnScreen()){
 			player.setPosition(100, tileMap.getHeight() - 100);

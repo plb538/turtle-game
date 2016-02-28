@@ -25,7 +25,7 @@ public class Portal extends MapObject{
 		cwidth = 82;
 		cheight = 90;
 		
-		fallSpeed = 1;
+		fallSpeed = 10;
 		
 		try{
 			BufferedImage spriteSheet = ImageIO.read(getClass().getResourceAsStream("/Other/LargerPortal.png"));
