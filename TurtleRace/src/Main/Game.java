@@ -2,11 +2,13 @@ package Main;
 
 import javax.swing.JFrame;
 
+import Entity.Player;
 import common.Character;
-import graphicalElements.HUD;
 import weapons.BinaryRifle;
 
 public class Game{
+	
+	public static Player p1;
 	
 	public static void main(String[] args){
 		
@@ -32,6 +34,8 @@ public class Game{
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setLocationRelativeTo(null);
 		window.pack(); window.setLocationRelativeTo(null);
+		
+		
 	}
 	
 }
