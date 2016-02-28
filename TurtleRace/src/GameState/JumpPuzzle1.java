@@ -4,9 +4,9 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
-import Entity.MonkeyEnemy;
 import Entity.Player;
 import Entity.Portal;
+import Main.Game;
 import Main.GamePanel;
 import TileMap.Background;
 import TileMap.TileMap;
@@ -20,7 +20,6 @@ public class JumpPuzzle1 extends GameState{
 	private Background bg;
 	
 	//Entity stuff
-	private Player player;
 	//private MonkeyEnemy monkey;
 	private Portal portal;
 	
@@ -49,8 +48,8 @@ public class JumpPuzzle1 extends GameState{
 		
 		bg = new Background("/Backgrounds/default-background.png", 1);	
 		
-		player = new Player(tileMap);
-		player.setPosition(100, tileMap.getHeight() - 100);
+		Game.p1.setObjectOnTileMap(tileMap);
+		Game.p1.setPosition(100, tileMap.getHeight() - 200);
 		
 		//monkey = new MonkeyEnemy(tileMap);
 		//monkey.setPosition(600, 450);
@@ -58,25 +57,25 @@ public class JumpPuzzle1 extends GameState{
 		portal = new Portal(tileMap);
 		portal.setPosition(tileMap.getWidth() - 3*tileMap.getTileSize(), 100);
 		
-		healthBar = new DrawnHealth(player);
-		progress = new DrawnProgress(player, tileMap);
+		healthBar = new DrawnHealth(Game.p1);
+		progress = new DrawnProgress(Game.p1, tileMap);
 	}
 
 	@Override
 	public void update(){	
-		player.update();
+		Game.p1.update();
 		//monkey.update();
 		portal.update();
 		
 		//allows map to move
-		tileMap.setPosition(GamePanel.WIDTH / 2 - player.getx(), GamePanel.HEIGHT / 2 - player.gety());
+		tileMap.setPosition(GamePanel.WIDTH / 2 - Game.p1.getx(), GamePanel.HEIGHT / 2 - Game.p1.gety());
 
-		if(player.getx() == portal.getx() && player.gety() == portal.gety() + 15){
+		if(Game.p1.getx() == portal.getx() && Game.p1.gety() == portal.gety() + 15){
 			gsm.setState(gsm.ENDSTATE);
 		}
-		if(player.notOnScreen()){
-			player.setPosition(100, tileMap.getHeight() - 100);
-			player.takeDamage();
+		if(Game.p1.notOnScreen()){
+			Game.p1.setPosition(100, tileMap.getHeight() - 100);
+			Game.p1.takeDamage();
 		}
 	}
 
@@ -89,7 +88,7 @@ public class JumpPuzzle1 extends GameState{
 		tileMap.draw(g);
 		
 		//draw player
-		player.draw(g);
+		Game.p1.draw(g);
 		
 		//draw enemy
 		//monkey.draw(g);
@@ -98,10 +97,10 @@ public class JumpPuzzle1 extends GameState{
 		portal.draw(g, tileMap);
 		
 		//draw health
-		healthBar.draw(g, player);
+		healthBar.draw(g, Game.p1);
 		
 		//draw progress
-		progress.draw(g, player, tileMap);
+		progress.draw(g, Game.p1, tileMap);
 		
 	}
 
@@ -110,22 +109,22 @@ public class JumpPuzzle1 extends GameState{
 		if(k == KeyEvent.VK_ENTER){
 			gsm.setState(4);
 		}
-		if(k == KeyEvent.VK_LEFT) player.setLeft(true);
-		if(k == KeyEvent.VK_RIGHT) player.setRight(true);
+		if(k == KeyEvent.VK_LEFT) Game.p1.setLeft(true);
+		if(k == KeyEvent.VK_RIGHT) Game.p1.setRight(true);
 		//if(k == KeyEvent.VK_UP) player.setUp(true);
-		if(k == KeyEvent.VK_DOWN){player.setDown(true); player.takeDamage();} //Remember to remove this for obvious reasons
-		if(k == KeyEvent.VK_UP) player.setJumping(true);
-		if(k == KeyEvent.VK_Q) player.setGliding(true);
+		if(k == KeyEvent.VK_DOWN){Game.p1.setDown(true); Game.p1.takeDamage();} //Remember to remove this for obvious reasons
+		if(k == KeyEvent.VK_UP) Game.p1.setJumping(true);
+		if(k == KeyEvent.VK_Q) Game.p1.setGliding(true);
 	}
 
 	@Override
 	public void keyReleased(int k){
-		if(k == KeyEvent.VK_LEFT) player.setLeft(false);
-		if(k == KeyEvent.VK_RIGHT) player.setRight(false);
+		if(k == KeyEvent.VK_LEFT) Game.p1.setLeft(false);
+		if(k == KeyEvent.VK_RIGHT) Game.p1.setRight(false);
 		//if(k == KeyEvent.VK_UP) player.setUp(false);
-		if(k == KeyEvent.VK_DOWN) player.setDown(false);
-		if(k == KeyEvent.VK_UP) player.setJumping(false);
-		if(k == KeyEvent.VK_Q) player.setGliding(false);
+		if(k == KeyEvent.VK_DOWN) Game.p1.setDown(false);
+		if(k == KeyEvent.VK_UP) Game.p1.setJumping(false);
+		if(k == KeyEvent.VK_Q) Game.p1.setGliding(false);
 	}
 	
 }
