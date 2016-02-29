@@ -125,14 +125,9 @@ public class Player extends MapObject{
 		checkTileMapCollision();
 		setPosition(xtemp, ytemp);
 		
-		if(getHealth() < 0){
-			dead = true;
-		}
-		if(checkDead()){
-			setPosition(tileMap.getTileSize() + 25,tileMap.getHeight() - 200);
-			dead = false;
-			health = 100;
-		}
+		checkResetConditions();
+		
+		
 		
 		//set animation
 //		if(scratching){
@@ -224,4 +219,19 @@ public class Player extends MapObject{
 	public int getMaxHealth(){return maxHealth;}
 	
 	public void setGliding(boolean b){gliding = b;}
+	
+	public void checkResetConditions(){
+		if(getHealth() < 0){
+			dead = true;
+		}
+		
+		int resetx = tileMap.getTileSize()+25;
+		int resety = tileMap.getHeight() - 200;
+		
+		if(checkDead()){
+			setPosition(resetx,resety);
+			dead = false;
+			health = 100;
+		}
+	}
 }
