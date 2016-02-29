@@ -101,8 +101,11 @@ public class OptionState extends GameState{
 				gsm.setState(GameStateManager.MENUSTATE);
 				break;
 			case 2 : gsm.setState(4);
+				break;
 			case 3 : gsm.setState(5);
+				break;
 			case 4 : gsm.setState(6);
+			break;
 			
 		}
 	}
