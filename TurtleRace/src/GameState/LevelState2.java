@@ -77,7 +77,7 @@ public class LevelState2 extends GameState{
 		}
 		if(Game.p1.notOnScreen()){
 			Game.p1.setPosition(100, tileMap.getHeight() - 100);
-			Game.p1.takeDamage();
+			Game.p1.takeDamage(20);
 		}
 	}
 
@@ -114,7 +114,7 @@ public class LevelState2 extends GameState{
 		if(k == KeyEvent.VK_LEFT) Game.p1.setLeft(true);
 		if(k == KeyEvent.VK_RIGHT) Game.p1.setRight(true);
 		//if(k == KeyEvent.VK_UP) player.setUp(true);
-		if(k == KeyEvent.VK_DOWN){Game.p1.setDown(true); Game.p1.takeDamage();} //Remember to remove this for obvious reasons
+		if(k == KeyEvent.VK_DOWN){Game.p1.setDown(true); Game.p1.takeDamage(20);} //Remember to remove this for obvious reasons
 		if(k == KeyEvent.VK_UP) Game.p1.setJumping(true);
 		if(k == KeyEvent.VK_Q) Game.p1.setGliding(true);
 	}

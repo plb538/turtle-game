@@ -125,6 +125,15 @@ public class Player extends MapObject{
 		checkTileMapCollision();
 		setPosition(xtemp, ytemp);
 		
+		if(getHealth() < 0){
+			dead = true;
+		}
+		if(checkDead()){
+			setPosition(tileMap.getTileSize() + 25,tileMap.getHeight() - 300);
+			dead = false;
+			health = 100;
+		}
+		
 		//set animation
 //		if(scratching){
 //			if(curAction != SCRATCHING){
@@ -208,7 +217,9 @@ public class Player extends MapObject{
 	
 	public int getHealth(){return health;}
 	
-	public void takeDamage(){health -= 20;}
+	public void takeDamage(int amount){health -= amount;}
+	
+	public boolean checkDead(){return dead;}
 	
 	public int getMaxHealth(){return maxHealth;}
 	
