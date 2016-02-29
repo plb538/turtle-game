@@ -129,7 +129,7 @@ public class Player extends MapObject{
 			dead = true;
 		}
 		if(checkDead()){
-			setPosition(tileMap.getTileSize() + 25,tileMap.getHeight() - 300);
+			setPosition(tileMap.getTileSize() + 25,tileMap.getHeight() - 200);
 			dead = false;
 			health = 100;
 		}
