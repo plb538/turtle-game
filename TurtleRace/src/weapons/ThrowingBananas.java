@@ -6,7 +6,7 @@ public class ThrowingBananas implements Weapon{
 	static final int damage = 15;
 	
 	//Range to hit another character
-	static final int range = 8 * common.Character.width;
+	static final int range = 8 * 64;
 	
 	//Seconds between attacks
 	static final int attackspeed = 3;

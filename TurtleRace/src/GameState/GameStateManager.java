@@ -1,10 +1,8 @@
 package GameState;
 
 import java.awt.Graphics2D;
-import java.util.ArrayList;
 
-import common.Character;
-import levelElements.Level;
+import java.util.ArrayList;
 
 public class GameStateManager{
 	
@@ -19,11 +17,9 @@ public class GameStateManager{
 	public static final int LEVELSTATE2 = 4;
 	public static final int JUMPPUZZLE1 = 5;
 	//	public static final int CHALLENGESTATE = 4;
+
 	
-	private Level myLevel = null;
-	public Character player1 = null;
-	
-	public GameStateManager(Level _myLevel, Character _player1){
+	public GameStateManager(){
 		gameStates = new ArrayList<GameState>();
 		curState = MENUSTATE;
 		gameStates.add(new MenuState(this));
@@ -32,9 +28,6 @@ public class GameStateManager{
 		gameStates.add(new EndState(this));
 		gameStates.add(new LevelState2(this));
 		gameStates.add(new JumpPuzzle1(this));
-
-		myLevel = _myLevel;
-		player1 = _player1;
 	}
 	
 	public void setState(int state){
