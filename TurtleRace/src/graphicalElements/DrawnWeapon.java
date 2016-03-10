@@ -1,5 +1,5 @@
 package graphicalElements;
 
-public class DrawnWeapon extends GraphicalElement{
+public class DrawnWeapon{
 
 }

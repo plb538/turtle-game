@@ -10,7 +10,7 @@ import Entity.Player;
 import Main.GamePanel;
 import TileMap.TileMap;
 
-public class DrawnHealth extends GraphicalElement{
+public class DrawnHealth{
 
 	private int health;
 	private int xpos;

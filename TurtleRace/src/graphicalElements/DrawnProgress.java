@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 import Entity.Player;
 import TileMap.TileMap;
 
-public class DrawnProgress extends GraphicalElement{
+public class DrawnProgress{
 	
 	private int xpos;
 	private int ypos;
