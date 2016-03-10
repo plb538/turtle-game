@@ -57,7 +57,7 @@ public class LevelState extends GameState{
 		//monkey.setPosition(600, 450);
 		
 		portal = new Portal(tileMap);
-		portal.setPosition(600, 450);
+		portal.setPosition(tileMap.getWidth()-96*2, 450);
 		
 		healthBar = new DrawnHealth(Game.p1);
 		progress = new DrawnProgress(Game.p1, tileMap);
