@@ -25,11 +25,10 @@ public class MonkeyEnemy extends MapObject{
 	private static final int IDLE = 0;
 	private static final int WALKING = 1;
 	
-	private Player player;
-	
 	public MonkeyEnemy(TileMap tm){
 		super(tm);
 		
+		//monkey's size and collision size
 		width = 64;
 		height = 64;
 		cwidth = 36;
