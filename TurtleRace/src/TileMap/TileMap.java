@@ -19,10 +19,10 @@ public class TileMap{
 	//bounds
 	private int xmin, ymin, xmax, ymax;
 	
-	//helps smoothen sprite movements
+	//helps smoothen movements
 	private double tween;
 	
-	//map
+	//map dimentions
 	private int[][] map;
 	private int tileSize;
 	private int numRows, numCols;
@@ -34,10 +34,9 @@ public class TileMap{
 	private int numTilesAcross;
 	private Tile[][] tiles;
 	private int totalNumTiles;
-	
-	//drawing
-	private int rowOffset, colOffset;
 	private int numRowsToDraw, numColsToDraw;
+
+	//private int rowOffset, colOffset;
 	
 	public TileMap(int tileSize){
 		this.tileSize = tileSize;
@@ -46,8 +45,9 @@ public class TileMap{
 		tween = 0.7;
 		//System.out.println(tileSize + " " + numRowsToDraw +" " + numColsToDraw);
 	}
-	
+	//loads in the tile's sprite sheet 
 	public void loadTiles(String directory, ArrayList<String> listTiles){
+	    //loads an array of tiles
 		try{
 			tileset = new BufferedImage[listTiles.size()];
 			String path;
@@ -67,6 +67,8 @@ public class TileMap{
 			
 			tiles = new Tile[1][numTilesAcross];
 			
+			//sets tiles as either normal or blocked
+			//must be modified if we add more tiles
 			for(int col = 0; col < numTilesAcross; col++){
 				if(col == 0){
 					tiles[0][0] = new Tile(tileset[col], Tile.NORMAL); 
@@ -99,6 +101,7 @@ public class TileMap{
 		try{
 			InputStream in = getClass().getResourceAsStream(path);
 			BufferedReader br = new BufferedReader(new InputStreamReader(in));
+			//parses rows and cols from .map file to create map
 			numCols = Integer.parseInt(br.readLine());
 			numRows = Integer.parseInt(br.readLine());
 			map = new int[numRows][numCols];
@@ -113,9 +116,11 @@ public class TileMap{
 			String delims = "\\s+"; //white space
 			
 			for(int row = 0; row < numRows; row++){
+			    //removes white space from .map file
 				String line = br.readLine();
 				String[] tokens = line.split(delims);
 				for(int col = 0; col < numCols; col++){
+				    //creates map from the .map file
 					map[row][col] = Integer.parseInt(tokens[col]);
 				}
 			}
@@ -139,21 +144,22 @@ public class TileMap{
 	
 	public int getNumCols(){return numCols;}
 	
+	//uses the map to locate a tile to check for collision
 	public int getType(int row, int col){
 		int rc = map[row][col];
 		int r = rc / numTilesAcross;
 		int c = rc % numTilesAcross;
 		return tiles[r][c].getType();
 	}
-	
+	//map movement
 	public void setPosition(double x, double y){
 		this.x += (x - this.x) * tween;
 		this.y += (y - this.y) * tween;
 		
 		fixBounds();
 		
-		colOffset = (int)-this.x / tileSize;
-		rowOffset = (int)-this.y / tileSize;
+		//colOffset = (int)-this.x / tileSize;
+		//rowOffset = (int)-this.y / tileSize;
 	}
 	
 	private void fixBounds(){
@@ -172,7 +178,7 @@ public class TileMap{
 				int rc = map[row][col];
 				int r = rc / numTilesAcross;
 				int c = rc % numTilesAcross;
-				
+				//goes through the map and looks up each tiles image and draws it to the screen
 				g.drawImage(tiles[r][c].getImage(), (int)x + col*tileSize, (int)y + row*tileSize, tileSize, tileSize, null);
 			}	
 		}
