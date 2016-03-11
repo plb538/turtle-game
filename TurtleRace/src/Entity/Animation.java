@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 
 public class Animation{
 	
+	//array of sprite images
 	private BufferedImage[] frames;
 	private int curFrame;
 	
@@ -15,7 +16,7 @@ public class Animation{
 	public Animation(){
 		playedOnce = false;
 	}
-	
+	//changes frames for different animation
 	public void setFrames(BufferedImage[] frames){
 		this.frames = frames;
 		curFrame = 0;
@@ -29,6 +30,7 @@ public class Animation{
 	
 	public void setDelay(long d){delay = d;}
 	
+	//plays the animation 
 	public void update(){
 		if(delay == -1) return;
 		
