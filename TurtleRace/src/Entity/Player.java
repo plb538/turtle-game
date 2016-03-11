@@ -17,6 +17,7 @@ public class Player extends MapObject{
 	private boolean flinching;
 	private long flinchTimer;
 	private boolean facingRight;
+	//public int state;
 	
 	//gliding
 	private boolean gliding;
