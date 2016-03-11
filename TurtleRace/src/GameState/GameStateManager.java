@@ -21,6 +21,7 @@ public class GameStateManager{
 	
 	public GameStateManager(){
 		gameStates = new ArrayList<GameState>();
+		//starts game at menu
 		curState = MENUSTATE;
 		gameStates.add(new MenuState(this));
 		gameStates.add(new LevelState(this));
@@ -45,14 +46,15 @@ public class GameStateManager{
 	
 	public int getState(){return curState;}
 	
+	//calls the current gamestates update method
 	public void update(){
 		gameStates.get(curState).update();
 	}
-	
+	//calls the current gamestates draw method
 	public void draw(Graphics2D g){
 		gameStates.get(curState).draw(g);
 	}
-	
+	//calls the current gamestates keyPressed method
 	public void keyPressed(int k){
 		gameStates.get(curState).keyPressed(k);
 	}
