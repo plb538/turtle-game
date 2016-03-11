@@ -17,7 +17,6 @@ public class Player extends MapObject{
 	private boolean flinching;
 	private long flinchTimer;
 	private boolean facingRight;
-	//public int state;
 	
 	//gliding
 	private boolean gliding;
@@ -58,12 +57,13 @@ public class Player extends MapObject{
 		try{
 			BufferedImage spriteSheet = ImageIO.read(getClass().getResourceAsStream("/sprites/LargerTurtle.png"));
 			sprites = new ArrayList<BufferedImage[]>();
-	
+	        
+	        //break up sprite sheet
 			for(int i = 0; i < numFrames.length; i++){
 				BufferedImage[] bi = new BufferedImage[numFrames[i]];
 				
 				for(int j = 0; j < numFrames[i]; j++){
-					bi[j] = spriteSheet.getSubimage(j*width, i*height, width, height); //breaks down the sprite sheet			
+					bi[j] = spriteSheet.getSubimage(j*width, i*height, width, height);			
 				}
 				sprites.add(bi);
 			}
@@ -71,6 +71,7 @@ public class Player extends MapObject{
 		catch(Exception e){
 			e.printStackTrace();
 		}
+		//set default animation
 		animation = new Animation();
 		curAction = IDLE;
 		animation.setFrames(sprites.get(IDLE));
@@ -128,49 +129,7 @@ public class Player extends MapObject{
 		
 		checkResetConditions();
 		
-		
-		
 		//set animation
-//		if(scratching){
-//			if(curAction != SCRATCHING){
-//				curAction = SCRATCHING;
-//				animation.setFrames(sprites.get(SCRATCHING));
-//				animation.setDelay(50);
-//				width = 60;
-//			}
-//		}
-//		else if(firing){
-//			if(curAction != FIREBALL){
-//				curAction = FIREBALL;
-//				animation.setFrames(sprites.get(FIREBALL));
-//				animation.setDelay(100);
-//				width = 32;
-//			}
-//		}
-//		else if(dy > 0){
-//			if(gliding){
-//				if(curAction != GLIDING){
-//					curAction = GLIDING;
-//					animation.setFrames(sprites.get(GLIDING));
-//					animation.setDelay(100);
-//					width = 32;
-//				}
-//			}
-//			else if(curAction != FALLING){
-//				curAction = FALLING;
-//				animation.setFrames(sprites.get(FALLING));
-//				animation.setDelay(100);
-//				width = 32;
-//			}
-//		}
-//		else if(dy < 0){
-//			if(curAction != JUMPING){
-//				curAction = JUMPING;
-//				animation.setFrames(sprites.get(JUMPING));
-//				animation.setDelay(-1);
-//				width = 32;
-//			}
-//		}
 		if(left || right){
 			if(curAction != WALKING){
 				curAction = WALKING;
@@ -204,9 +163,11 @@ public class Player extends MapObject{
 			}
 		}
 		if(facingRight){
+		    //draws player facing the right
 			g.drawImage(animation.getImage(), (int)(x + xmap - width / 2), (int)(y + ymap - height / 2), width, height, null);
 		}
 		else{
+		    //draws player facing the left
 			g.drawImage(animation.getImage(), (int)(x + xmap - width / 2 + width), (int)(y + ymap - height / 2), -width, height, null);
 		}
 	}
