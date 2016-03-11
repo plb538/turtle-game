@@ -10,7 +10,7 @@ import TileMap.TileMap;
 
 public class MonkeyEnemy extends MapObject{
 	
-	//player stuff
+	//character information
 	private int health;
 	private int maxHealth;
 	private boolean dead = false;
@@ -44,6 +44,7 @@ public class MonkeyEnemy extends MapObject{
 		
 		health = maxHealth = 100;
 		
+		//load sprite
 		try{
 			BufferedImage spriteSheet = ImageIO.read(getClass().getResourceAsStream("/sprites/LargerTurtle.png"));
 			sprites = new ArrayList<BufferedImage[]>();
@@ -59,6 +60,7 @@ public class MonkeyEnemy extends MapObject{
 		catch(Exception e){
 			e.printStackTrace();
 		}
+		//default animation
 		animation = new Animation();
 		curAction = IDLE;
 		animation.setFrames(sprites.get(IDLE));
@@ -108,12 +110,13 @@ public class MonkeyEnemy extends MapObject{
 	}
 	
 	public void update(){
-		getNextPosition();
-		checkTileMapCollision();
+		getNextPosition(); 
+		checkTileMapCollision();//check for collision
 		setPosition(xtemp, ytemp);
 	}
 	
 	public void draw(Graphics2D g){
+	    //positions object on map
 		setMapPosition();
 		g.drawImage(animation.getImage(), (int)(x + xmap - width / 2), (int)(y + ymap - height / 2), width, height, null);
 	}
