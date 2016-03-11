@@ -15,6 +15,7 @@ public class Background{
 	private double moveScale;
 	
 	public Background(String path, double ms){
+	    //load background image
 		try{
 			image = ImageIO.read(getClass().getResourceAsStream(path));
 			moveScale = ms;
@@ -28,17 +29,17 @@ public class Background{
 		this.x = (x * moveScale) % GamePanel.WIDTH;
 		this.y = (y * moveScale) % GamePanel.HEIGHT;
 	}
-	
+	//set background movement speed
 	public void setVector(double dx, double dy){
 		this.dx = dx;
 		this.dy = dy;
 	}
-	
+	//moves background
 	public void update(){
 		x += dx;
 		y += dy;
 	}
-	
+	//draws background
 	public void draw(Graphics2D g){
 		g.drawImage(image, (int)x, (int)y, GamePanel.WIDTH, GamePanel.HEIGHT, null);
 		if(x < 0){
