@@ -8,12 +8,12 @@ import TileMap.TileMap;
 
 public abstract class MapObject{
 	
-	//tile stuff
+	//tile information
 	protected TileMap tileMap;
 	protected int tileSize;
 	protected double xmap, ymap;
 	
-	//position and vector
+	//position and vector information
 	protected double x, y, dx, dy;
 	
 	//dimensions
@@ -55,18 +55,9 @@ public abstract class MapObject{
 	}
 	
 	public MapObject(TileMap tm){
+	    //init tile size
 		tileMap = tm;
 		tileSize = tm.getTileSize();
-	}
-	
-	public boolean intersects(MapObject o){
-		Rectangle r1 = getRect();
-		Rectangle r2 = o.getRect();
-		return r1.intersects(r2);
-	}
-	
-	private Rectangle getRect(){
-		return new Rectangle((int)x - cwidth, (int)y - cheight, cwidth, cheight);
 	}
 	
 	public void checkTileMapCollision(){
@@ -128,6 +119,7 @@ public abstract class MapObject{
 	
 	
 	public void calcCorners(double x, double y){
+	    //collision box
 		int leftTile = (int)(x - cwidth / 2) / tileSize;
 		int rightTile = (int)(x + cwidth / 2 - 1) / tileSize;
 		int topTile = (int)(y - cheight / 2) / tileSize;
@@ -142,6 +134,7 @@ public abstract class MapObject{
 		int tr = tileMap.getType(topTile, rightTile);
 		int bl = tileMap.getType(botTile, leftTile);
 		int br = tileMap.getType(botTile, rightTile);
+		
 		
 		topLeft = tl == Tile.BLOCKED;
 		topRight = tr == Tile.BLOCKED;
@@ -165,7 +158,7 @@ public abstract class MapObject{
 		this.x = x;
 		this.y = y;
 	}
-
+    //movement speed
 	public void setVector(double dx, double dy){
 		this.dx = dx;
 		this.dy = dy;
@@ -192,6 +185,7 @@ public abstract class MapObject{
 				y + ymap + height < 0 ||
 				y + ymap -height > GamePanel.HEIGHT;
 	}
+	//sets the player's tilemap to the new tilemap. Used when changing levels
 	public void setObjectOnTileMap(TileMap tm){
 		tileMap = tm;
 		tileSize = tm.getTileSize();}
