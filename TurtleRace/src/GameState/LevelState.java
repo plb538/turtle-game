@@ -16,16 +16,16 @@ import graphicalElements.DrawnProgress;
 
 public class LevelState extends GameState{
 
-	//map stuff
+	//map info
 	private TileMap tileMap;
 	private Background bg;
 	
-	//Entity stuff
+	//Entity objects
 	private Player player;
 	//private MonkeyEnemy monkey;
 	private Portal portal;
 	
-	//graphical element stuff
+	//graphical element objects
 	private DrawnHealth healthBar;
 	private DrawnProgress progress;
 	
@@ -40,25 +40,32 @@ public class LevelState extends GameState{
 		
 		ArrayList<String> list = new ArrayList<String>();
 		
+		//adds tiles from resource folder
 		list.add("CrapSky");
 		list.add("CrapBlock");
 		list.add("CrapDirtBlock");
-		
 		tileMap.loadTiles("/TileSets/Terrain", list);
+		
+		//load map from resource folder
 		tileMap.loadMap("/Maps/testMap2.map");
+		
 		tileMap.setPosition(0, 0);
 		
+		//load background from resource folder
 		bg = new Background("/Backgrounds/default-background.png", 1);	
 		
+		//creates player and sets player's tilemap to LevelState's tilemap
 		Game.p1 = new Player(tileMap);
 		Game.p1.setPosition(100, tileMap.getHeight() - 100);
 		
 		//monkey = new MonkeyEnemy(tileMap);
 		//monkey.setPosition(600, 450);
 		
+        //creates portal 
 		portal = new Portal(tileMap);
 		portal.setPosition(tileMap.getWidth()-96*2, 450);
 		
+		//creates player one's health bar and progress bar
 		healthBar = new DrawnHealth(Game.p1);
 		progress = new DrawnProgress(Game.p1, tileMap);
 	}
@@ -71,10 +78,12 @@ public class LevelState extends GameState{
 		
 		//allows map to move
 		tileMap.setPosition(GamePanel.WIDTH / 2 - Game.p1.getx(), GamePanel.HEIGHT / 2 - Game.p1.gety());
-
+        
+        //player reaches portal will cause GameState to change to the next level
 		if(Game.p1.getx() == portal.getx() && Game.p1.gety() == portal.gety() + 15){
 			gsm.setState(gsm.LEVELSTATE2);
 		}
+		//if player falls of map
 		if(Game.p1.notOnScreen()){
 			Game.p1.setPosition(100, tileMap.getHeight() - 100);
 			Game.p1.takeDamage(20);
