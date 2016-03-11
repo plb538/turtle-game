@@ -4,6 +4,12 @@ import javax.swing.JFrame;
 
 import Entity.Player;
 
+/*
+ * Main for the game
+ * Sets up the JFrame window and creates the GamePanel
+ * 
+ */
+
 public class Game{
 	
 	public static Player p1;

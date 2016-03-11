@@ -35,7 +35,10 @@ public class GamePanel extends JPanel implements Runnable, KeyListener{
 	//game state manager
 	private GameStateManager gsm;
 
-	
+	/*
+	 * Constructor
+	 * Sets a couple starting parameters but otherwise nothing special
+	 */
 	public GamePanel(){
 		super();
 		setPreferredSize(new Dimension(WIDTH, HEIGHT)); //sizes the window
@@ -43,6 +46,11 @@ public class GamePanel extends JPanel implements Runnable, KeyListener{
 		requestFocus();
 	}
 
+	/*
+	 * Main game thread that runs repeatedly
+	 * Calls Update, Draw, and DrawToScreen succesively
+	 * 
+	 */
 	@Override
 	public void run(){		
 		init();
@@ -68,21 +76,30 @@ public class GamePanel extends JPanel implements Runnable, KeyListener{
 		}
 	}
 	
+	/*
+	 * Invokes the Game State Manager's Update method
+	 */
 	private void update(){
 		gsm.update();
 	}
-	
+	/*
+	 * Invokes the Game State Manager's Draw method
+	 */
 	private void draw(){
 		gsm.draw(g);
 	}
-	
+	/*
+	 * Draws the actual game to the screen
+	 */
 	private void drawToScreen(){
 		Graphics2D g2 = (Graphics2D)getGraphics();
 		g2.drawImage(image, 0, 0, WIDTH, HEIGHT, null);
 
 		g2.dispose();
 	}
-	
+	/*
+	 * Some additional initial parameters
+	 */
 	private void init(){
 		image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 		g = (Graphics2D)image.getGraphics();
@@ -90,11 +107,18 @@ public class GamePanel extends JPanel implements Runnable, KeyListener{
 		gsm = new GameStateManager();
 	}
 	
+	/*
+	 * Grabs key presses and passes them to the Game State Manager
+	 * 
+	 */
 	@Override
 	public void keyPressed(KeyEvent key){
 		gsm.keyPressed(key.getKeyCode());
 	}
-
+	/*
+	 * Grabs key releases and passes them to the Game State Manager
+	 * 
+	 */
 	@Override
 	public void keyReleased(KeyEvent key){
 		gsm.keyReleased(key.getKeyCode());
@@ -102,7 +126,10 @@ public class GamePanel extends JPanel implements Runnable, KeyListener{
 
 	@Override
 	public void keyTyped(KeyEvent key){}
-	
+	/*
+	 * 
+	 * Adds listener to the game thread
+	 */
 	public void addNotify(){
 		super.addNotify();
 		if(thread == null){
