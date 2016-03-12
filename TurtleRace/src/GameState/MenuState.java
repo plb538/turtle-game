@@ -10,6 +10,7 @@ import TileMap.Background;
 
 public class MenuState extends GameState{
 	
+	//this state's background
 	private Background bg;
 	
 	private String[] options = {"Start", "Options", "Quit"};
@@ -21,7 +22,7 @@ public class MenuState extends GameState{
 	
 	public MenuState(GameStateManager gsm){
 		this.gsm = gsm;
-		
+		//load background and set background movement speed
 		try{
 			bg = new Background("/Backgrounds/turtlebackground.PNG", 1);
 			bg.setVector(0, 0); //determines if background is moving
@@ -40,6 +41,7 @@ public class MenuState extends GameState{
 
 	@Override
 	public void update(){
+	    //moves background
 		bg.update();
 	}
 
@@ -51,6 +53,7 @@ public class MenuState extends GameState{
 		//draw title
 		g.setColor(titleColor);
 		g.setFont(titleFont);
+		
 		g.drawString(title, 400, 200);
 		
 		//draw menu options
@@ -93,7 +96,7 @@ public class MenuState extends GameState{
 			case 0 : 
 				gsm.setState(GameStateManager.LEVELSTATE);
 				break;
-			case 1 : //help
+			case 1 : 
 				gsm.setState(GameStateManager.OPTIONSTATE);
 				break;
 			case 2 : 
