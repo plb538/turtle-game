@@ -13,6 +13,7 @@ import TileMap.TileMap;
 import graphicalElements.DrawnHealth;
 import graphicalElements.DrawnProgress;
 
+//basically the same as LevelState but with different map
 public class JumpPuzzle1 extends GameState{
 
 	//map stuff
