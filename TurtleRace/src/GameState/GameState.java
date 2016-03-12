@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 
 public abstract class GameState{
 	
+	//shared gsm by the game states
 	protected GameStateManager gsm;
 	
 	public abstract void init();
