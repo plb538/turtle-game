@@ -47,6 +47,8 @@ public class SetupState extends GameState{
 	@Override
 	public void init(){
 		
+		gsm.modeMultiplayer = true;
+		
 		int hostInput = JOptionPane.YES_NO_OPTION;
 		
 		int hostResult = JOptionPane.showConfirmDialog(null, "Are you the host?", "", hostInput);

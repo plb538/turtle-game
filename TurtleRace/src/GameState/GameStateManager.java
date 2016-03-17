@@ -12,6 +12,7 @@ public class GameStateManager{
 	public boolean isHost;
 	public ServerSocket hostSocket;
 	public Socket clientSocket;
+	public boolean modeMultiplayer = false;
 	
 	//different game states
 	public static final int MENUSTATE = 0;
