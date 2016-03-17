@@ -9,6 +9,8 @@ public class GameStateManager{
 	private ArrayList<GameState> gameStates;
 	private int curState;
 	
+	public boolean isHost;
+	
 	//different game states
 	public static final int MENUSTATE = 0;
 	public static final int LEVELSTATE = 1;
@@ -16,6 +18,7 @@ public class GameStateManager{
 	public static final int ENDSTATE = 3;
 	public static final int LEVELSTATE2 = 4;
 	public static final int JUMPPUZZLE1 = 5;
+	public static final int SETUPSTATE = 6;
 	//	public static final int CHALLENGESTATE = 4;
 
 	
@@ -29,6 +32,7 @@ public class GameStateManager{
 		gameStates.add(new EndState(this));
 		gameStates.add(new LevelState2(this));
 		gameStates.add(new JumpPuzzle1(this));
+		gameStates.add(new SetupState(this));
 	}
 	
 	public void setState(int state){

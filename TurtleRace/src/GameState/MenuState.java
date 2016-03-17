@@ -13,7 +13,7 @@ public class MenuState extends GameState{
 	//this state's background
 	private Background bg;
 	
-	private String[] options = {"Start", "Options", "Quit"};
+	private String[] options = {"Start Single Player", "Options", "Start Multiplayer", "Quit"};
 	private int curOption = 0;
 	private String title = "A Tale of Two Turtles";
 	private Color titleColor;
@@ -100,6 +100,9 @@ public class MenuState extends GameState{
 				gsm.setState(GameStateManager.OPTIONSTATE);
 				break;
 			case 2 : 
+				gsm.setState(GameStateManager.SETUPSTATE);	
+				break;
+			case 3 : 
 				System.exit(0);
 				break;
 		}
