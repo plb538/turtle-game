@@ -7,6 +7,7 @@ public class InformationPacket{
 	private int xpos;
 	private int ypos;
 	private int health;
+	private long timestamp;
 	
 	/*
 	 * Constructor
@@ -18,6 +19,7 @@ public class InformationPacket{
 		xpos = player.getx();
 		ypos = player.gety();
 		health = player.getHealth();
+		timestamp= System.nanoTime();
 		
 	}
 	
@@ -30,6 +32,7 @@ public class InformationPacket{
 		xpos = player.getx();
 		ypos = player.gety();
 		health = player.getHealth();
+		timestamp= System.nanoTime();
 	}
 	
 	/*
@@ -58,6 +61,10 @@ public class InformationPacket{
 	 */
 	public int getstate(){
 		return state;
+	}
+	
+	public long getTime(){
+		return timestamp;
 	}
 	
 	
