@@ -18,8 +18,6 @@ public class SetupState extends GameState{
 	
 	private Background bg;
 	
-	private ServerSocket socketServer;
-	private Socket socketClient;
 	private int port = 43971;
 	
 	private String[] options = {"Apply Changes", "Return"};
@@ -57,14 +55,14 @@ public class SetupState extends GameState{
 			gsm.isHost = true;
 			//startServerSocket
 			try{
-				socketServer = new ServerSocket(port);
+				gsm.hostSocket = new ServerSocket(port);
 			} catch(IOException e){
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
 			try{
-				socketClient = socketServer.accept();
+				gsm.clientSocket = gsm.hostSocket.accept();
 				System.out.println("Connected");
 			} catch(IOException e){
 				// TODO Auto-generated catch block
@@ -72,7 +70,7 @@ public class SetupState extends GameState{
 			}
 			
 			 try{
-				PrintWriter out = new PrintWriter(socketClient.getOutputStream(), true);
+				PrintWriter out = new PrintWriter(gsm.clientSocket.getOutputStream(), true);
 			} catch(IOException e){
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -82,7 +80,7 @@ public class SetupState extends GameState{
 			gsm.isHost = false;
 			String ipAddr = JOptionPane.showInputDialog(this, "Enter host IP (x.x.x.x)");
 			try{
-				socketClient = new Socket(ipAddr,port);
+				gsm.clientSocket = new Socket(ipAddr,port);
 			} catch(IOException e){
 				// TODO Auto-generated catch block
 				e.printStackTrace();

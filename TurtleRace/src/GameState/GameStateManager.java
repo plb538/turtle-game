@@ -1,7 +1,7 @@
 package GameState;
 
 import java.awt.Graphics2D;
-
+import java.net.*;
 import java.util.ArrayList;
 
 public class GameStateManager{
@@ -10,6 +10,8 @@ public class GameStateManager{
 	private int curState;
 	
 	public boolean isHost;
+	public ServerSocket hostSocket;
+	public Socket clientSocket;
 	
 	//different game states
 	public static final int MENUSTATE = 0;
