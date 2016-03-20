@@ -37,7 +37,7 @@ public class LevelState extends GameState{
 	private DrawnProgress progress2;
 	
 	
-	private int multiplayerTickrate = 5;
+	private int multiplayerTickrate = 8;
 	private int multiplayerCounter = 0;
 	
 	public LevelState(GameStateManager gsm){
