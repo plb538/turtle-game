@@ -2,6 +2,7 @@ package GameState;
 
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import Entity.MonkeyEnemy;
@@ -13,6 +14,7 @@ import TileMap.Background;
 import TileMap.TileMap;
 import graphicalElements.DrawnHealth;
 import graphicalElements.DrawnProgress;
+import networking.InformationPacket;
 
 public class LevelState extends GameState{
 
@@ -25,9 +27,14 @@ public class LevelState extends GameState{
 	//private MonkeyEnemy monkey;
 	private Portal portal;
 	
+	private Player player2;
+	
 	//graphical element objects
 	private DrawnHealth healthBar;
 	private DrawnProgress progress;
+	
+	private DrawnHealth healthBar2;
+	private DrawnProgress progress2;
 	
 	public LevelState(GameStateManager gsm){
 		this.gsm = gsm;
@@ -68,6 +75,16 @@ public class LevelState extends GameState{
 		//creates player one's health bar and progress bar
 		healthBar = new DrawnHealth(Game.p1);
 		progress = new DrawnProgress(Game.p1, tileMap);
+		
+		if(gsm.modeMultiplayer){
+			
+			Game.p2 = new Player(tileMap);
+			Game.p2.setPosition(100, tileMap.getHeight()-100);
+			
+			healthBar2 = new DrawnHealth(Game.p2);
+			progress2 = new DrawnProgress(Game.p2, tileMap);
+			
+		}
 	}
 
 	@Override
@@ -88,6 +105,33 @@ public class LevelState extends GameState{
 			Game.p1.setPosition(100, tileMap.getHeight() - 100);
 			Game.p1.takeDamage(20);
 		}
+		
+		if(gsm.modeMultiplayer){
+			InformationPacket myPacket = new InformationPacket(Game.p1, gsm.getState());
+			
+			try{
+				gsm.outToServer.writeObject(myPacket);
+			} catch(IOException e){
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			InformationPacket otherPacket = new InformationPacket(Game.p2, gsm.getState());
+			try{
+				otherPacket = (InformationPacket)gsm.inFromServer.readObject();
+				
+			} catch(ClassNotFoundException e){
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch(IOException e){
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			Game.p2.updateP2(otherPacket);
+			
+			
+		}
+		
 	}
 
 	@Override
@@ -112,6 +156,13 @@ public class LevelState extends GameState{
 		
 		//draw progress
 		progress.draw(g, Game.p1, tileMap);
+		
+		if(gsm.modeMultiplayer){
+			
+			Game.p2.draw(g);
+			healthBar2.draw(g, Game.p2);
+			progress2.draw(g, Game.p2, tileMap);
+		}
 		
 	}
 

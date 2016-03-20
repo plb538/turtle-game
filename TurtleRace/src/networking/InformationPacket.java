@@ -1,6 +1,6 @@
 package networking;
 import Entity.Player;
-public class InformationPacket{
+public class InformationPacket implements java.io.Serializable{
 
 	
 	private int state;

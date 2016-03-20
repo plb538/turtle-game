@@ -5,6 +5,8 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 
 import javax.swing.JOptionPane;
@@ -89,6 +91,14 @@ public class SetupState extends GameState{
 			}
 		}
 		
+		try{
+			gsm.outToServer = new ObjectOutputStream(gsm.clientSocket.getOutputStream());
+			gsm.inFromServer = new ObjectInputStream(gsm.clientSocket.getInputStream());
+		}catch(Throwable e){
+			e.printStackTrace();
+		};
+		
+		gsm.setState(1);
 	}
 
 	@Override

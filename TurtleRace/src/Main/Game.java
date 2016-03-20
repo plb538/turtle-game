@@ -13,6 +13,7 @@ import Entity.Player;
 public class Game{
 	
 	public static Player p1;
+	public static Player p2;
 	
 	public static void main(String[] args){
 		

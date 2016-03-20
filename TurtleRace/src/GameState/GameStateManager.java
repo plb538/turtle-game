@@ -1,6 +1,8 @@
 package GameState;
 
 import java.awt.Graphics2D;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.*;
 import java.util.ArrayList;
 
@@ -13,7 +15,9 @@ public class GameStateManager{
 	public ServerSocket hostSocket;
 	public Socket clientSocket;
 	public boolean modeMultiplayer = false;
-	
+	public ObjectOutputStream outToServer;
+	public ObjectInputStream inFromServer;
+
 	//different game states
 	public static final int MENUSTATE = 0;
 	public static final int LEVELSTATE = 1;
