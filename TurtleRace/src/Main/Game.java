@@ -13,9 +13,11 @@ import Entity.Player;
 public class Game{
 	
 	public static Player p1;
+	public static Player p2;
 	
 	public static void main(String[] args){
-		
+		//p1 = new Player(null);
+		//p2 = new Player(null);
 		JFrame window = new JFrame("A Tale of Two Turtles");
 		window.setContentPane(new GamePanel());
 		window.setVisible(true);

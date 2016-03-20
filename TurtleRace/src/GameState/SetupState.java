@@ -89,6 +89,8 @@ public class SetupState extends GameState{
 			}
 		}
 		
+		gsm.setState(gsm.LEVELSTATE);
+		
 	}
 
 	@Override

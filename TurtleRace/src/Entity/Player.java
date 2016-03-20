@@ -34,6 +34,7 @@ public class Player extends MapObject{
 	
 	public Player(TileMap tm){
 		super(tm);
+		
 		//sprite width and height
 		width = 64;
 		height = 64;
