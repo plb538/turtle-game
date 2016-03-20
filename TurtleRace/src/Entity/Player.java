@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 
 import TileMap.TileMap;
+import networking.InformationPacket;
 
 public class Player extends MapObject{
 
@@ -196,5 +197,10 @@ public class Player extends MapObject{
 			dead = false;
 			health = 100;
 		}
+	}
+	
+	public void updateP2(InformationPacket packet){
+		this.setPosition(packet.getx(), packet.gety());
+		this.health = packet.gethealth();
 	}
 }
