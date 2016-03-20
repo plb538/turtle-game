@@ -18,6 +18,7 @@ public class Player extends MapObject{
 	private boolean flinching;
 	private long flinchTimer;
 	private boolean facingRight;
+	public int state;
 	
 	//gliding
 	private boolean gliding;
@@ -202,5 +203,6 @@ public class Player extends MapObject{
 	public void updateP2(InformationPacket packet){
 		this.setPosition(packet.getx(), packet.gety());
 		this.health = packet.gethealth();
+		this.state = packet.getstate();
 	}
 }

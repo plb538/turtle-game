@@ -2,6 +2,7 @@ package GameState;
 
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import Entity.MonkeyEnemy;
@@ -13,6 +14,7 @@ import TileMap.Background;
 import TileMap.TileMap;
 import graphicalElements.DrawnHealth;
 import graphicalElements.DrawnProgress;
+import networking.InformationPacket;
 
 public class LevelState2 extends GameState{
 
@@ -53,6 +55,9 @@ public class LevelState2 extends GameState{
 		Game.p1.setObjectOnTileMap(tileMap);
 		Game.p1.setPosition(100, tileMap.getHeight() - 100);
 		
+		Game.p2.setObjectOnTileMap(tileMap);
+		Game.p2.setPosition(100, tileMap.getHeight() - 100);
+		
 		//monkey = new MonkeyEnemy(tileMap);
 		//monkey.setPosition(600, 450);
 		
@@ -79,6 +84,37 @@ public class LevelState2 extends GameState{
 			Game.p1.setPosition(100, tileMap.getHeight() - 100);
 			Game.p1.takeDamage(20);
 		}
+		
+		if(gsm.modeMultiplayer){
+			
+			InformationPacket myPacket = new InformationPacket(Game.p1, gsm.getState());
+			
+			try{
+				gsm.outToServer.writeObject(myPacket);
+			} catch(IOException e1){
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			InformationPacket test = null;
+			try{
+			test = (InformationPacket)gsm.inFromServer.readObject();
+			//System.out.println(test.getx() + " " + test.gety());
+			
+			} catch(ClassNotFoundException e){
+			// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch(IOException e){
+			// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			try{
+				Game.p2.updateP2(test);
+			}catch(Throwable e2){
+					e2.printStackTrace();
+			}
+			
+		}
 	}
 
 	@Override
@@ -103,6 +139,15 @@ public class LevelState2 extends GameState{
 		
 		//draw progress
 		progress.draw(g, Game.p1, tileMap);
+		
+		if(gsm.modeMultiplayer){
+			
+			if(Game.p2.state == gsm.getState()){
+				Game.p2.draw(g);
+			}
+			//healthBar2.draw(g, Game.p2);
+			//progress2.draw(g, Game.p2, tileMap);
+		}
 		
 	}
 

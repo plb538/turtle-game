@@ -76,15 +76,15 @@ public class LevelState extends GameState{
 		healthBar = new DrawnHealth(Game.p1);
 		progress = new DrawnProgress(Game.p1, tileMap);
 		
-		//if(gsm.modeMultiplayer){
+
+		//Create player 2 objects
+		Game.p2 = new Player(tileMap);
+		Game.p2.setPosition(100, tileMap.getHeight()-100);
 			
-			Game.p2 = new Player(tileMap);
-			Game.p2.setPosition(100, tileMap.getHeight()-100);
+		healthBar2 = new DrawnHealth(Game.p2);
+		progress2 = new DrawnProgress(Game.p2, tileMap);
 			
-			healthBar2 = new DrawnHealth(Game.p2);
-			progress2 = new DrawnProgress(Game.p2, tileMap);
-			
-		//}
+
 	}
 
 	@Override
@@ -164,7 +164,9 @@ public class LevelState extends GameState{
 		
 		if(gsm.modeMultiplayer){
 			
-			Game.p2.draw(g);
+			if(Game.p2.state == gsm.getState()){
+				Game.p2.draw(g);
+			}
 			//healthBar2.draw(g, Game.p2);
 			//progress2.draw(g, Game.p2, tileMap);
 		}
