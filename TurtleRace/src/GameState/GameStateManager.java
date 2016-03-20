@@ -59,7 +59,12 @@ public class GameStateManager{
 	
 	//calls the current gamestates update method
 	public void update(){
-		gameStates.get(curState).update();
+		try{
+			gameStates.get(curState).update();
+		} catch(Throwable e){
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	//calls the current gamestates draw method
 	public void draw(Graphics2D g){

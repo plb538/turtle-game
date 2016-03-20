@@ -86,7 +86,7 @@ public class LevelState extends GameState{
 			
 
 	}
-
+	
 	@Override
 	public void update(){	
 		Game.p1.update();
