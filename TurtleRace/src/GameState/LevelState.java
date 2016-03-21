@@ -36,10 +36,6 @@ public class LevelState extends GameState{
 	private DrawnHealth healthBar2;
 	private DrawnProgress progress2;
 	
-	
-	private int multiplayerTickrate = 8;
-	private int multiplayerCounter = 0;
-	
 	public LevelState(GameStateManager gsm){
 		this.gsm = gsm;
 		init();
@@ -109,11 +105,9 @@ public class LevelState extends GameState{
 			Game.p1.setPosition(100, tileMap.getHeight() - 100);
 			Game.p1.takeDamage(20);
 		}
-		multiplayerCounter++;
-		
-	if(multiplayerCounter == multiplayerTickrate){
+
 		if(gsm.modeMultiplayer){
-			multiplayerCounter = 0;
+
 			InformationPacket myPacket = new InformationPacket(Game.p1, gsm.getState());
 			
 			try{
@@ -142,9 +136,6 @@ public class LevelState extends GameState{
 			}
 			
 			}
-		}
-	
-		
 	}
 
 	@Override
