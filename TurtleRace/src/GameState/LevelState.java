@@ -134,8 +134,9 @@ public class LevelState extends GameState{
 			}catch(Throwable e2){
 					e2.printStackTrace();
 			}
+		}
 			
-			}
+		
 	}
 
 	@Override
