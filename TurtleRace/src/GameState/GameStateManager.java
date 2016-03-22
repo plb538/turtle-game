@@ -26,8 +26,7 @@ public class GameStateManager{
 	public static final int LEVELSTATE2 = 4;
 	public static final int JUMPPUZZLE1 = 5;
 	public static final int SETUPSTATE = 6;
-	//	public static final int CHALLENGESTATE = 4;
-
+	
 	
 	public GameStateManager(){
 		gameStates = new ArrayList<GameState>();
@@ -43,14 +42,6 @@ public class GameStateManager{
 	}
 	
 	public void setState(int state){
-
-//		if(state > 3){
-//			try{
-//				gameStates.add(new ChallengeState(this, myLevel.level.get(state-4), state+1));
-//			}catch(Throwable e){
-//				state = 3;
-//			}
-//		}
 		curState = state;
 		gameStates.get(curState).init();
 	}
