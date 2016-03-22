@@ -7,6 +7,7 @@ public class InformationPacket implements java.io.Serializable{
 	private int xpos;
 	private int ypos;
 	private int health;
+	private int action;
 	private long timestamp;
 	
 	/*
@@ -19,6 +20,7 @@ public class InformationPacket implements java.io.Serializable{
 		xpos = player.getx();
 		ypos = player.gety();
 		health = player.getHealth();
+		action = player.getAction();
 		timestamp= System.nanoTime();
 		
 	}
@@ -32,7 +34,8 @@ public class InformationPacket implements java.io.Serializable{
 		xpos = player.getx();
 		ypos = player.gety();
 		health = player.getHealth();
-		timestamp= System.nanoTime();
+		action = player.getAction();
+		timestamp = System.nanoTime();
 	}
 	
 	/*
@@ -67,5 +70,8 @@ public class InformationPacket implements java.io.Serializable{
 		return timestamp;
 	}
 	
+	public int getaction(){
+		return action;
+	}
 	
 }

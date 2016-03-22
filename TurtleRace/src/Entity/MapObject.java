@@ -189,4 +189,8 @@ public abstract class MapObject{
 	public void setObjectOnTileMap(TileMap tm){
 		tileMap = tm;
 		tileSize = tm.getTileSize();}
+	
+	public int getAction(){
+		return curAction;
+	}
 }

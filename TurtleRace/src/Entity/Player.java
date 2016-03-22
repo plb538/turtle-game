@@ -204,5 +204,9 @@ public class Player extends MapObject{
 		this.setPosition(packet.getx(), packet.gety());
 		this.health = packet.gethealth();
 		this.state = packet.getstate();
+		//System.out.print(packet.getaction());
+		curAction = packet.getaction();
+		animation.setFrames(sprites.get(packet.getaction()));
+		animation.setDelay(100);
 	}
 }
