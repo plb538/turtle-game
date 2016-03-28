@@ -178,7 +178,7 @@ public class Player extends MapObject{
 			if(curAction != ATTACKING){
 				curAction = ATTACKING;
 				animation.setFrames(sprites.get(ATTACKING));
-				animation.setDelay(200);
+				animation.setDelay(100);
 				width = 76;
 			}
 		}
