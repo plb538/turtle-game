@@ -184,6 +184,7 @@ public class LevelState extends GameState{
 		if(k == KeyEvent.VK_DOWN){Game.p1.setDown(true); Game.p1.takeDamage(20);} //Remember to remove this for obvious reasons
 		if(k == KeyEvent.VK_UP) Game.p1.setJumping(true);
 		if(k == KeyEvent.VK_Q) Game.p1.setGliding(true);
+		if(k == KeyEvent.VK_W) Game.p1.setAttacking(true);
 	}
 
 	@Override
@@ -194,6 +195,7 @@ public class LevelState extends GameState{
 		if(k == KeyEvent.VK_DOWN) Game.p1.setDown(false);
 		if(k == KeyEvent.VK_UP) Game.p1.setJumping(false);
 		if(k == KeyEvent.VK_Q) Game.p1.setGliding(false);
+		//if(k == KeyEvent.VK_W) Game.p1.setAttacking(false);
 	}
 	
 }

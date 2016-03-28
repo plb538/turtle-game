@@ -32,6 +32,7 @@ public class Animation{
 	
 	//plays the animation 
 	public void update(){
+		playedOnce = false;
 		if(delay == -1) return;
 		
 		long elapsed = (Math.abs(System.nanoTime() - startTime) / 1000000);

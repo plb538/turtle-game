@@ -1,10 +1,13 @@
 package Entity;
 
 import java.awt.Graphics2D;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
+import javax.swing.Timer;
 
 import TileMap.TileMap;
 import networking.InformationPacket;
@@ -20,19 +23,22 @@ public class Player extends MapObject{
 	private boolean facingRight;
 	public int state;
 	
+	//attacking stuff
+	public boolean attacking;
+	public Timer timer;
+	
 	//gliding
 	private boolean gliding;
 	
 	//animations
 	private ArrayList<BufferedImage[]> sprites;
-	private final int[] numFrames = {1, 3};
+	private final int[] numFrames = {1, 3, 2, 4};
 	
 	//animation actions
 	private static final int IDLE = 0;
 	private static final int WALKING = 1;
-	//private static final int JUMPING = 2;
-	//private static final int FALLING = 3;
-	//private static final int GLIDING = 4;
+	private static final int GLIDING = 2;
+	private static final int ATTACKING = 3;
 	
 	public Player(TileMap tm){
 		super(tm);
@@ -58,7 +64,7 @@ public class Player extends MapObject{
 		
 		//load sprites
 		try{
-			BufferedImage spriteSheet = ImageIO.read(getClass().getResourceAsStream("/sprites/LargerTurtle.png"));
+			BufferedImage spriteSheet = ImageIO.read(getClass().getResourceAsStream("/sprites/NewTurtleSpriteSheet.png"));
 			sprites = new ArrayList<BufferedImage[]>();
 	        
 	        //break up sprite sheet
@@ -66,7 +72,10 @@ public class Player extends MapObject{
 				BufferedImage[] bi = new BufferedImage[numFrames[i]];
 				
 				for(int j = 0; j < numFrames[i]; j++){
-					bi[j] = spriteSheet.getSubimage(j*width, i*height, width, height);			
+					bi[j] = spriteSheet.getSubimage(j*width, i*height, width, height);	
+					if(i == 3){
+						bi[j] = spriteSheet.getSubimage(j*(width+12), i*height, width+12, height);	
+					}
 				}
 				sprites.add(bi);
 			}
@@ -133,12 +142,44 @@ public class Player extends MapObject{
 		checkResetConditions();
 		
 		//set animation
-		if(left || right){
+		if((left || right) && !gliding && !attacking){
 			if(curAction != WALKING){
 				curAction = WALKING;
 				animation.setFrames(sprites.get(WALKING));
 				animation.setDelay(100);
-				//width = 64;
+				width = 64;
+			}
+		}
+		else if((left || right) && gliding){
+			if(curAction != GLIDING){
+				curAction = GLIDING;
+				animation.setFrames(sprites.get(GLIDING));
+				animation.setDelay(100);
+				width = 64;
+			}
+		}
+		else if(gliding){
+			if(curAction != GLIDING){
+				curAction = GLIDING;
+				animation.setFrames(sprites.get(GLIDING));
+				animation.setDelay(100);
+				width = 64;
+			}
+		}
+		else if((left || right) && attacking){
+			if(curAction != ATTACKING){
+				curAction = ATTACKING;
+				animation.setFrames(sprites.get(ATTACKING));
+				animation.setDelay(100);
+				width = 76;
+			}
+		}
+		else if(attacking){
+			if(curAction != ATTACKING){
+				curAction = ATTACKING;
+				animation.setFrames(sprites.get(ATTACKING));
+				animation.setDelay(100);
+				width = 76;
 			}
 		}
 		else{
@@ -146,10 +187,15 @@ public class Player extends MapObject{
 				curAction = IDLE;
 				animation.setFrames(sprites.get(IDLE));
 				animation.setDelay(-1);
-				//width = 64;
+				width = 64;
 			}
 		}
 		animation.update();
+		
+		//stops attack animation
+		if(animation.getFrame() == 3){
+			attacking = false;
+		}
 		
 		if(right) facingRight = true;
 		if(left) facingRight = false;
@@ -167,7 +213,12 @@ public class Player extends MapObject{
 		}
 		if(facingRight){
 		    //draws player facing the right
-			g.drawImage(animation.getImage(), (int)(x + xmap - width / 2), (int)(y + ymap - height / 2), width, height, null);
+			if(attacking){
+				g.drawImage(animation.getImage(), (int)(x + xmap - width / 2), (int)(y + ymap - height / 2), width, height, null);
+			}
+			else{
+				g.drawImage(animation.getImage(), (int)(x + xmap - width / 2), (int)(y + ymap - height / 2), width, height, null);
+			}
 		}
 		else{
 		    //draws player facing the left
@@ -184,6 +235,8 @@ public class Player extends MapObject{
 	public int getMaxHealth(){return maxHealth;}
 	
 	public void setGliding(boolean b){gliding = b;}
+	
+	public void setAttacking(boolean b){attacking = b;}
 	
 	public void checkResetConditions(){
 		if(getHealth() < 0){
