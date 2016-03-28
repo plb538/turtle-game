@@ -64,7 +64,7 @@ public class Player extends MapObject{
 		
 		//load sprites
 		try{
-			BufferedImage spriteSheet = ImageIO.read(getClass().getResourceAsStream("/sprites/NewTurtleSpriteSheet.png"));
+			BufferedImage spriteSheet = ImageIO.read(getClass().getResourceAsStream("/sprites/FixedTurtleSprite.png"));
 			sprites = new ArrayList<BufferedImage[]>();
 	        
 	        //break up sprite sheet
@@ -178,7 +178,7 @@ public class Player extends MapObject{
 			if(curAction != ATTACKING){
 				curAction = ATTACKING;
 				animation.setFrames(sprites.get(ATTACKING));
-				animation.setDelay(100);
+				animation.setDelay(200);
 				width = 76;
 			}
 		}
@@ -186,7 +186,7 @@ public class Player extends MapObject{
 			if(curAction != IDLE){
 				curAction = IDLE;
 				animation.setFrames(sprites.get(IDLE));
-				animation.setDelay(-1);
+				animation.setDelay(100);
 				width = 64;
 			}
 		}
@@ -213,12 +213,7 @@ public class Player extends MapObject{
 		}
 		if(facingRight){
 		    //draws player facing the right
-			if(attacking){
-				g.drawImage(animation.getImage(), (int)(x + xmap - width / 2), (int)(y + ymap - height / 2), width, height, null);
-			}
-			else{
-				g.drawImage(animation.getImage(), (int)(x + xmap - width / 2), (int)(y + ymap - height / 2), width, height, null);
-			}
+			g.drawImage(animation.getImage(), (int)(x + xmap - width / 2), (int)(y + ymap - height / 2), width, height, null);
 		}
 		else{
 		    //draws player facing the left
