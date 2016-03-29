@@ -1,13 +1,10 @@
 package Entity;
 
 import java.awt.Graphics2D;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
-import javax.swing.Timer;
 
 import TileMap.TileMap;
 import networking.InformationPacket;
@@ -18,14 +15,12 @@ public class Player extends MapObject{
 	private int health;
 	private int maxHealth;
 	private boolean dead = false;
-	private boolean flinching;
-	private long flinchTimer;
 	private boolean facingRight;
 	public int state;
 	
 	//attacking stuff
-	public boolean attacking;
-	public Timer timer;
+	private boolean attacking;
+	private Weapon weapon;
 	
 	//gliding
 	private boolean gliding;
@@ -43,6 +38,7 @@ public class Player extends MapObject{
 	public Player(TileMap tm){
 		super(tm);
 		
+		weapon = new Weapon(this);
 		//sprite width and height
 		width = 64;
 		height = 64;
@@ -64,7 +60,7 @@ public class Player extends MapObject{
 		
 		//load sprites
 		try{
-			BufferedImage spriteSheet = ImageIO.read(getClass().getResourceAsStream("/sprites/FixedTurtleSprite.png"));
+			BufferedImage spriteSheet = ImageIO.read(getClass().getResourceAsStream("/sprites/turtleSpriteSheet.png"));
 			sprites = new ArrayList<BufferedImage[]>();
 	        
 	        //break up sprite sheet
@@ -73,9 +69,6 @@ public class Player extends MapObject{
 				
 				for(int j = 0; j < numFrames[i]; j++){
 					bi[j] = spriteSheet.getSubimage(j*width, i*height, width, height);	
-					if(i == 3){
-						bi[j] = spriteSheet.getSubimage(j*(width+12), i*height, width+12, height);	
-					}
 				}
 				sprites.add(bi);
 			}
@@ -147,7 +140,6 @@ public class Player extends MapObject{
 				curAction = WALKING;
 				animation.setFrames(sprites.get(WALKING));
 				animation.setDelay(100);
-				width = 64;
 			}
 		}
 		else if((left || right) && gliding){
@@ -155,7 +147,6 @@ public class Player extends MapObject{
 				curAction = GLIDING;
 				animation.setFrames(sprites.get(GLIDING));
 				animation.setDelay(100);
-				width = 64;
 			}
 		}
 		else if(gliding){
@@ -163,7 +154,6 @@ public class Player extends MapObject{
 				curAction = GLIDING;
 				animation.setFrames(sprites.get(GLIDING));
 				animation.setDelay(100);
-				width = 64;
 			}
 		}
 		else if((left || right) && attacking){
@@ -171,7 +161,8 @@ public class Player extends MapObject{
 				curAction = ATTACKING;
 				animation.setFrames(sprites.get(ATTACKING));
 				animation.setDelay(100);
-				width = 76;
+				
+				weapon.attack();
 			}
 		}
 		else if(attacking){
@@ -179,7 +170,8 @@ public class Player extends MapObject{
 				curAction = ATTACKING;
 				animation.setFrames(sprites.get(ATTACKING));
 				animation.setDelay(100);
-				width = 76;
+				
+				weapon.attack();
 			}
 		}
 		else{
@@ -187,14 +179,14 @@ public class Player extends MapObject{
 				curAction = IDLE;
 				animation.setFrames(sprites.get(IDLE));
 				animation.setDelay(100);
-				width = 64;
 			}
 		}
 		animation.update();
-		
+		weapon.update();
 		//stops attack animation
 		if(animation.getFrame() == 3){
 			attacking = false;
+			weapon.stopAttack();
 		}
 		
 		if(right) facingRight = true;
@@ -206,12 +198,22 @@ public class Player extends MapObject{
 		
 		//draw player
 		if(facingRight){
-		    //draws player facing the right
-			g.drawImage(animation.getImage(), (int)(x + xmap - width / 2), (int)(y + ymap - height / 2), width, height, null);
+			if(attacking){
+				g.drawImage(animation.getImage(), (int)(x + xmap - width / 2), (int)(y + ymap - height / 2), width, height, null);
+				weapon.draw(g, facingRight);
+			}
+			else{
+				g.drawImage(animation.getImage(), (int)(x + xmap - width / 2), (int)(y + ymap - height / 2), width, height, null);
+			}
+			
 		}
 		else{
-		    //draws player facing the left
-			g.drawImage(animation.getImage(), (int)(x + xmap - width / 2 + width), (int)(y + ymap - height / 2), -width, height, null);
+		    if(attacking){
+		    	g.drawImage(animation.getImage(), (int)(x + xmap - width / 2 + width), (int)(y + ymap - height / 2), -width, height, null);
+		    	weapon.draw(g, facingRight);		    }
+		    else{
+		    	g.drawImage(animation.getImage(), (int)(x + xmap - width / 2 + width), (int)(y + ymap - height / 2), -width, height, null);
+		    }
 		}
 	}
 	
@@ -226,6 +228,8 @@ public class Player extends MapObject{
 	public void setGliding(boolean b){gliding = b;}
 	
 	public void setAttacking(boolean b){attacking = b;}
+	
+	public void setWeapon(Weapon w){weapon = w;}
 	
 	public void checkResetConditions(){
 		if(getHealth() < 0){

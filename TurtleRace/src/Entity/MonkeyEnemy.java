@@ -151,28 +151,34 @@ public class MonkeyEnemy extends MapObject implements Runnable{
 	}
 	
 	public void walkLeft(){
-		curAction = WALKING;
-		animation.setFrames(sprites.get(WALKING));
-		animation.setDelay(100);
-		facingRight = false;
-		left = true;
-		right = false;
+		if(curAction != WALKING){
+			curAction = WALKING;
+			animation.setFrames(sprites.get(WALKING));
+			animation.setDelay(100);
+			facingRight = false;
+			left = true;
+			right = false;
+		}
 	}
 	
 	public void walkRight(){
-		curAction = WALKING;
-		animation.setFrames(sprites.get(WALKING));
-		animation.setDelay(100);
-		facingRight = true;
-		right = true;
-		left = false;
+		if(curAction != WALKING){
+			curAction = WALKING;
+			animation.setFrames(sprites.get(WALKING));
+			animation.setDelay(100);
+			facingRight = true;
+			right = true;
+			left = false;
+		}
 	}
 	
 	public void stopMoving(){
-		right = false; left = false;
-		curAction = IDLE;
-		animation.setFrames(sprites.get(IDLE));
-		animation.setDelay(400);
+		if(curAction != IDLE){
+			curAction = IDLE;
+			animation.setFrames(sprites.get(IDLE));
+			animation.setDelay(400);
+			right = false; left = false;
+		}
 	}
 
 	@Override
