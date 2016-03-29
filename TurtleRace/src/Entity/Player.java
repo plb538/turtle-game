@@ -51,7 +51,7 @@ public class Player extends MapObject{
 		
 		//physics modifiers
 		moveSpeed = 0.3;
-		maxSpeed = 2.0;
+		maxSpeed = 2.5;
 		stopSpeed = 0.4;
 		fallSpeed = 0.15;
 		maxFallSpeed = 4.0;
@@ -205,12 +205,6 @@ public class Player extends MapObject{
 		setMapPosition();
 		
 		//draw player
-		if(flinching){
-			long elapsed = (System.nanoTime() - flinchTimer) / 1000000;
-			if(elapsed / 100 % 2 == 0){
-				return;
-			}
-		}
 		if(facingRight){
 		    //draws player facing the right
 			g.drawImage(animation.getImage(), (int)(x + xmap - width / 2), (int)(y + ymap - height / 2), width, height, null);

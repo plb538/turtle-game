@@ -9,17 +9,17 @@ import javax.imageio.ImageIO;
 import Main.Game;
 import TileMap.TileMap;
 
-public class MonkeyEnemy extends MapObject{
+public class MonkeyEnemy extends MapObject implements Runnable{
 	
 	//character information
 	private int health;
 	private int maxHealth;
 	private boolean dead = false;
-	private boolean flinching;
-	private long flinchTimer;
 	private long startTime;
 	private boolean facingRight;
-	
+	private int targetTime = 2000;
+	private Thread thread;
+		
 	//animations
 	private ArrayList<BufferedImage[]> sprites;
 	private final int[] numFrames = {1, 3};
@@ -30,11 +30,13 @@ public class MonkeyEnemy extends MapObject{
 	
 	public MonkeyEnemy(TileMap tm){
 		super(tm);
-		
+		facingRight = false;
+		thread = new Thread();
+		thread.start();
 		//monkey's size and collision size
 		width = 64;
 		height = 64;
-		cwidth = 36;
+		cwidth = 32;
 		cheight = 60;
 		
 		//physics modifiers
@@ -51,7 +53,7 @@ public class MonkeyEnemy extends MapObject{
 			BufferedImage spriteSheet = ImageIO.read(getClass().getResourceAsStream("/sprites/monkeySpriteSheet.png"));
 			sprites = new ArrayList<BufferedImage[]>();
 			
-			for(int i = 0; i < 2; i++){
+			for(int i = 0; i < numFrames.length; i++){
 				BufferedImage[] bi = new BufferedImage[numFrames[i]];
 				for(int j = 0; j < numFrames[i]; j++){
 					bi[j] = spriteSheet.getSubimage(j*width, i*height, width, height); //breaks down the sprite sheet					
@@ -115,29 +117,67 @@ public class MonkeyEnemy extends MapObject{
 		getNextPosition(); 
 		checkTileMapCollision();//check for collision
 		setPosition(xtemp, ytemp);
-		
-		startTime = System.nanoTime();
-		curAction = WALKING;
-		animation.setFrames(sprites.get(WALKING));
-		animation.setDelay(100);
-		walkLeft();
+	
+		int rand = (int)(Math.random()*2);
+	
+		if(rand % 2 == 0){
+			if(animation.getFrame() == 2){
+				stopMoving();
+			}
+			else{
+				walkLeft();
+			}
+		}
+		else{
+			if(animation.getFrame() == 2){
+				stopMoving();
+			}
+			else{
+				walkRight();
+			}
+		}
+		animation.update();
 	}
 	
 	public void draw(Graphics2D g){
 	    //positions object on map
 		setMapPosition();
-		g.drawImage(animation.getImage(), (int)(x + xmap - width / 2), (int)(y + ymap - height / 2), width, height, null);
+		if((Game.p1.getx() <= this.getx()) && (Game.p2.getx() <= this.getx())){
+			g.drawImage(animation.getImage(), (int)(x + xmap - width / 2 + width), (int)(y + ymap - height / 2), -width, height, null);
+		}
+		else{
+			g.drawImage(animation.getImage(), (int)(x + xmap - width / 2), (int)(y + ymap - height / 2), width, height, null);
+		}
 	}
 	
 	public void walkLeft(){
+		curAction = WALKING;
+		animation.setFrames(sprites.get(WALKING));
+		animation.setDelay(100);
 		facingRight = false;
-		long elapsed = (Math.abs(System.nanoTime() - startTime) / 1000000);
-		//while(elapsed < animation.getDelay()){
-		//	left = true;
-		//}
+		left = true;
+		right = false;
 	}
 	
 	public void walkRight(){
+		curAction = WALKING;
+		animation.setFrames(sprites.get(WALKING));
+		animation.setDelay(100);
+		facingRight = true;
+		right = true;
+		left = false;
+	}
+	
+	public void stopMoving(){
+		right = false; left = false;
+		curAction = IDLE;
+		animation.setFrames(sprites.get(IDLE));
+		animation.setDelay(400);
+	}
+
+	@Override
+	public void run(){
+		// TODO Auto-generated method stub
 		
 	}
 }
