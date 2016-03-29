@@ -24,7 +24,7 @@ public class LevelState extends GameState{
 	
 	//Entity objects
 	private Player player;
-	//private MonkeyEnemy monkey;
+	private MonkeyEnemy monkey;
 	private Portal portal;
 	
 	private Player player2;
@@ -65,8 +65,8 @@ public class LevelState extends GameState{
 		Game.p1 = new Player(tileMap);
 		Game.p1.setPosition(100, tileMap.getHeight() - 100);
 		
-		//monkey = new MonkeyEnemy(tileMap);
-		//monkey.setPosition(600, 450);
+		monkey = new MonkeyEnemy(tileMap);
+		monkey.setPosition(600, 450);
 		
         //creates portal 
 		portal = new Portal(tileMap);
@@ -90,7 +90,7 @@ public class LevelState extends GameState{
 	@Override
 	public void update(){	
 		Game.p1.update();
-		//monkey.update();
+		monkey.update();
 		portal.update();
 		
 		//allows map to move
@@ -151,7 +151,7 @@ public class LevelState extends GameState{
 		Game.p1.draw(g);
 		
 		//draw enemy
-		//monkey.draw(g);
+		monkey.draw(g);
 		
 		//draw portal
 		portal.draw(g, tileMap);

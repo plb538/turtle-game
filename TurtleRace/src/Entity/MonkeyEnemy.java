@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
+import Main.Game;
 import TileMap.TileMap;
 
 public class MonkeyEnemy extends MapObject{
@@ -16,6 +17,8 @@ public class MonkeyEnemy extends MapObject{
 	private boolean dead = false;
 	private boolean flinching;
 	private long flinchTimer;
+	private long startTime;
+	private boolean facingRight;
 	
 	//animations
 	private ArrayList<BufferedImage[]> sprites;
@@ -45,7 +48,7 @@ public class MonkeyEnemy extends MapObject{
 		
 		//load sprite
 		try{
-			BufferedImage spriteSheet = ImageIO.read(getClass().getResourceAsStream("/sprites/LargerTurtle.png"));
+			BufferedImage spriteSheet = ImageIO.read(getClass().getResourceAsStream("/sprites/monkeySpriteSheet.png"));
 			sprites = new ArrayList<BufferedImage[]>();
 			
 			for(int i = 0; i < 2; i++){
@@ -112,11 +115,29 @@ public class MonkeyEnemy extends MapObject{
 		getNextPosition(); 
 		checkTileMapCollision();//check for collision
 		setPosition(xtemp, ytemp);
+		
+		startTime = System.nanoTime();
+		curAction = WALKING;
+		animation.setFrames(sprites.get(WALKING));
+		animation.setDelay(100);
+		walkLeft();
 	}
 	
 	public void draw(Graphics2D g){
 	    //positions object on map
 		setMapPosition();
 		g.drawImage(animation.getImage(), (int)(x + xmap - width / 2), (int)(y + ymap - height / 2), width, height, null);
+	}
+	
+	public void walkLeft(){
+		facingRight = false;
+		long elapsed = (Math.abs(System.nanoTime() - startTime) / 1000000);
+		//while(elapsed < animation.getDelay()){
+		//	left = true;
+		//}
+	}
+	
+	public void walkRight(){
+		
 	}
 }

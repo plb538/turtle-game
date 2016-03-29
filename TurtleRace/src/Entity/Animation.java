@@ -30,6 +30,8 @@ public class Animation{
 	
 	public void setDelay(long d){delay = d;}
 	
+	public long getDelay(){return delay;}
+	
 	//plays the animation 
 	public void update(){
 		playedOnce = false;
