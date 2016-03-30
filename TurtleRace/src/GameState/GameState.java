@@ -149,7 +149,10 @@ public abstract class GameState{
 		if(k == KeyEvent.VK_RIGHT) Game.p1.setRight(true);
 		if(k == KeyEvent.VK_UP) Game.p1.setJumping(true);
 		if(k == KeyEvent.VK_Q) Game.p1.setGliding(true);
-		if(k == KeyEvent.VK_W) Game.p1.setAttacking(true);
+		if(k == KeyEvent.VK_W){
+			Game.p1.setAttacking(true);
+			gsm.overlayAudio("/Audio/player/swing-stick.wav");
+		}
 	}
 	
 	public void keyReleased(int k){
@@ -160,29 +163,33 @@ public abstract class GameState{
 	}
 	
 	public void checkIfHit(Player p, ArrayList<MonkeyEnemy> mes){
-		ArrayList<MonkeyEnemy> copy = new ArrayList<MonkeyEnemy>(mes);
+
 		for(MonkeyEnemy me : mes){
 			if((p.getx() + 60 >= me.getx() && p.getx() <= me.getx() + me.getWidth()) && p.checkIfAttacking()){
 				me.health -= p.weapon.damage;
 				if(p.weapon.getAnimation().getFrame() == 2){
 					me.setVector(4, 0);
+					gsm.overlayAudio("/Audio/monkey/flinch.wav");
 				}
 			}
 			if((p.getx() - 30 <= me.getx() + me.getCWidth() && p.getx() >= me.getx()) && p.checkIfAttacking()){
 				me.health -= p.weapon.damage;
 				if(p.weapon.getAnimation().getFrame() == 2){
 					me.setVector(-4, 0);
+					gsm.overlayAudio("/Audio/monkey/flinch.wav");
 				}
 			}
 			if((p.getx() + p.getCWidth() - 4 >=  me.getx()) && (p.getx() + p.getCWidth() -4 <= me.getx() + me.getCWidth()) && (p.gety() + p.getCHeight() >= me.gety()) && (p.gety() + p.getCHeight() <= me.gety() + me.getCHeight())){
 				p.takeDamage(10);
 				p.setVector(-4, 0);
 				p.checkResetConditions();
+				gsm.overlayAudio("/Audio/player/flinch.wav");
 			}
 			if((p.getx() >=  me.getx()) && (p.getx() <= me.getx() + me.getCWidth()) && (p.gety() + p.getCHeight() >= me.gety()) && (p.gety() + p.getCHeight() <= me.gety() + me.getCHeight())){
 				p.takeDamage(10);
 				p.setVector(4, 0);
 				p.checkResetConditions();
+				gsm.overlayAudio("/Audio/player/flinch.wav");
 			}			
 			if(me.getHealth() <= 0){
 				mes.remove(me);

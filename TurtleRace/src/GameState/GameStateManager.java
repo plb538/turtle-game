@@ -51,6 +51,10 @@ public class GameStateManager{
 	}
 	
 	public void setState(int state){
+		if(state == 3){
+			stopAudio();
+			startAudio("/Audio/music/level-music.wav");
+		}
 		curState = state;
 		gameStates.get(curState).init();
 	}

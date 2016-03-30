@@ -30,6 +30,7 @@ public class LevelState extends GameState{
 	
 	@Override
 	public void init(){
+		
 		tileMap = new TileMap(64);
 		
 		ArrayList<String> list = new ArrayList<String>();
