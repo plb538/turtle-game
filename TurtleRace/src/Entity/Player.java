@@ -160,7 +160,7 @@ public class Player extends MapObject{
 			if(curAction != ATTACKING){
 				curAction = ATTACKING;
 				animation.setFrames(sprites.get(ATTACKING));
-				animation.setDelay(100);
+				animation.setDelay(40);
 				
 				weapon.attack();
 			}
@@ -169,7 +169,7 @@ public class Player extends MapObject{
 			if(curAction != ATTACKING){
 				curAction = ATTACKING;
 				animation.setFrames(sprites.get(ATTACKING));
-				animation.setDelay(100);
+				animation.setDelay(40);
 				
 				weapon.attack();
 			}

@@ -84,15 +84,12 @@ public class LevelState extends GameState{
 		healthBar = new DrawnHealth(Game.p1);
 		progress = new DrawnProgress(Game.p1, tileMap);
 		
-
 		//Create player 2 objects
 		Game.p2 = new Player(tileMap);
 		Game.p2.setPosition(100, tileMap.getHeight()-100);
 			
 		healthBar2 = new DrawnHealth(Game.p2);
 		progress2 = new DrawnProgress(Game.p2, tileMap);
-			
-
 	}
 	
 	@Override
@@ -118,28 +115,18 @@ public class LevelState extends GameState{
 		checkIfHit(Game.p1, monkeys);
 		checkIfHit(Game.p2, monkeys);
 	
-		
-		//System.out.println( "Player y pos: " + (Game.p1.gety() + Game.p1.getCHeight()) + " " + "Monkey y pos: " + " " + m1.gety() + " " + (m1.gety() + m1.getCHeight()));
-		
-        //player reaches portal will cause GameState to change to the next level
-		//if(Game.p1.getx() == portal.getx() && Game.p1.gety() == portal.gety() + 15){
-		//	gsm.setState(gsm.LEVELSTATE2);
-		//}
-		
-		System.out.println("PX:" + Game.p1.getx() + "| PY:" + Game.p1.gety() + "|PortalX:" + portal.getx() + "|PortalY:" + portal.gety());
-		
+		System.out.println(m1.health + " " + m2.health);
 		
 		if(((Game.p1.getx() >= (portal.getx() - 20)) && (Game.p1.getx() <= (portal.getx() + 20))) && 
 			((Game.p1.gety() >= (portal.gety() - 5)) && (Game.p1.gety() <= (portal.gety() + 35)))){
 			//System.out.println("InPotal");
-			gsm.setState(gsm.LEVELSTATE2);
+			gsm.setState(gsm.getState() + 1);
 		}
 		
 		
 		//if player falls of map
 		if(Game.p1.notOnScreen()){
 			Game.p1.setPosition(100, tileMap.getHeight() - 100);
-			Game.p1.takeDamage(20);
 		}
 
 		if(gsm.modeMultiplayer){
@@ -205,8 +192,6 @@ public class LevelState extends GameState{
 			if(Game.p2.state == gsm.getState()){
 				Game.p2.draw(g);
 			}
-			//healthBar2.draw(g, Game.p2);
-			//progress2.draw(g, Game.p2, tileMap);
 		}
 		
 	}
@@ -214,11 +199,16 @@ public class LevelState extends GameState{
 	public void checkIfHit(Player p, ArrayList<MonkeyEnemy> mes){
 		ArrayList<MonkeyEnemy> copy = new ArrayList<MonkeyEnemy>(mes);
 		for(MonkeyEnemy me : mes){
-			if((p.getx() + 54 > me.getx() && p.getx() < me.getx() + me.getWidth()) && p.checkIfAttacking()){
+			if((p.getx() + 60 >= me.getx() && p.getx() <= me.getx() + me.getWidth()) && p.checkIfAttacking()){
 				me.health -= p.weapon.damage;
-				//me.setPosition(me.getx() + 5, me.gety());
-				if(p.weapon.getAnimation().getFrame() == 1){
+				if(p.weapon.getAnimation().getFrame() == 2){
 					me.setVector(4, 0);
+				}
+			}
+			if((p.getx() - 30 <= me.getx() + me.getCWidth() && p.getx() >= me.getx()) && p.checkIfAttacking()){
+				me.health -= p.weapon.damage;
+				if(p.weapon.getAnimation().getFrame() == 2){
+					me.setVector(-4, 0);
 				}
 			}
 			if((p.getx() + p.getCWidth() - 4 >=  me.getx()) && (p.getx() + p.getCWidth() -4 <= me.getx() + me.getCWidth()) && (p.gety() + p.getCHeight() >= me.gety()) && (p.gety() + p.getCHeight() <= me.gety() + me.getCHeight())){
@@ -226,11 +216,11 @@ public class LevelState extends GameState{
 				p.setVector(-4, 0);
 				p.checkResetConditions();
 			}
-			//if((p.getx() >=  me.getx()) && (p.getx() <= me.getx()) && (p.gety() + p.getCHeight() >= me.gety()) && (p.gety() + p.getCHeight() <= me.gety() + me.getCHeight())){
-				//p.takeDamage(2);
-				//p.setVector(4, 0);
-				//p.checkResetConditions();
-			//}				
+			if((p.getx() >=  me.getx()) && (p.getx() <= me.getx() + me.getCWidth()) && (p.gety() + p.getCHeight() >= me.gety()) && (p.gety() + p.getCHeight() <= me.gety() + me.getCHeight())){
+				p.takeDamage(10);
+				p.setVector(4, 0);
+				p.checkResetConditions();
+			}			
 			if(me.getHealth() <= 0){
 				copy.remove(me);
 			}
