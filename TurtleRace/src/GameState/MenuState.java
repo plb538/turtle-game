@@ -47,7 +47,7 @@ public class MenuState extends GameState{
 		System.out.println("Initilizing MenuState");
 	
 		 try {
-	            AudioInputStream audio = AudioSystem.getAudioInputStream(new File("/Audio/music/testsong.wav"));
+	            AudioInputStream audio = AudioSystem.getAudioInputStream(new File("/Audio/testsong.wav"));
 	            Clip clip = AudioSystem.getClip();
 	            clip.open(audio);
 	            clip.start();
