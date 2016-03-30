@@ -43,7 +43,6 @@ public class GameStateManager{
 		gameStates.add(new LevelState2(this));
 		gameStates.add(new JumpPuzzle1(this));
 		gameStates.add(new EndState(this));
-		gameStates.add(new SetupState(this));
 		
 		String filename = "/Audio/music/menu-music.wav";
 		startAudio(filename);
