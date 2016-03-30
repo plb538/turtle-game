@@ -47,7 +47,6 @@ public class MenuState extends GameState{
 
 	@Override
 	public void init(){
-		
 	}
 
 	@Override
@@ -96,6 +95,9 @@ public class MenuState extends GameState{
 			if(curOption == options.length){
 				curOption = 0;
 			}
+		}
+		if(k == KeyEvent.VK_ESCAPE){
+			gsm.stopAudio();
 		}
 	}
 

@@ -45,6 +45,7 @@ public class GameStateManager{
 		gameStates.add(new JumpPuzzle1(this));
 		gameStates.add(new SetupState(this));
 		String filename = "C:/Users/steve/git/Paddy-Steven/TurtleRace/resources/Audio/Test.wav";
+		//String filename = "/Audio/Test.wav";
 		startAudio(filename);
 	}
 	
@@ -71,6 +72,7 @@ public class GameStateManager{
 	//calls the current gamestates keyPressed method
 	public void keyPressed(int k){
 		gameStates.get(curState).keyPressed(k);
+		
 	}
 	
 	public void keyReleased(int k){
@@ -80,9 +82,11 @@ public class GameStateManager{
 		
 		try {
 			 
-			 audioFileIn = new FileInputStream(new File(filename));
-			 audioStream = new AudioStream(audioFileIn);
-			 audioPlayer.player.start(audioStream);
+
+			audioFileIn = new FileInputStream(new File(filename));
+			audioStream = new AudioStream(audioFileIn);
+			AudioPlayer.player.start(audioStream);
+			
 			 
 	        }
 		 catch(Throwable e){
@@ -92,7 +96,7 @@ public class GameStateManager{
 	}
 	
 	public void stopAudio(){
-		audioPlayer.stop();
+		AudioPlayer.player.stop(audioStream);
 	}
 	
 	public void updateAudio(String file){
