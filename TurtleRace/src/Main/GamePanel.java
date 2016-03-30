@@ -92,6 +92,8 @@ public class GamePanel extends JPanel implements Runnable, KeyListener{
 	 * Draws the actual game to the screen
 	 */
 	private void drawToScreen(){
+		
+		
 		Graphics2D g2 = (Graphics2D)getGraphics();
 		g2.drawImage(image, 0, 0, WIDTH, HEIGHT, null);
 

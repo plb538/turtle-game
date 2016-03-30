@@ -9,16 +9,15 @@ import javax.imageio.ImageIO;
 import Main.Game;
 import TileMap.TileMap;
 
-public class MonkeyEnemy extends MapObject implements Runnable{
+public class MonkeyEnemy extends MapObject{
 	
 	//character information
-	private int health;
+	public int health;
 	private int maxHealth;
 	private boolean dead = false;
 	private long startTime;
 	private boolean facingRight;
 	private int targetTime = 2000;
-	private Thread thread;
 		
 	//animations
 	private ArrayList<BufferedImage[]> sprites;
@@ -31,8 +30,7 @@ public class MonkeyEnemy extends MapObject implements Runnable{
 	public MonkeyEnemy(TileMap tm){
 		super(tm);
 		facingRight = false;
-		thread = new Thread();
-		thread.start();
+		dead = false;
 		//monkey's size and collision size
 		width = 64;
 		height = 64;
@@ -113,6 +111,7 @@ public class MonkeyEnemy extends MapObject implements Runnable{
 		}
 	}
 	
+	@SuppressWarnings("deprecation")
 	public void update(){
 		getNextPosition(); 
 		checkTileMapCollision();//check for collision
@@ -125,7 +124,7 @@ public class MonkeyEnemy extends MapObject implements Runnable{
 				stopMoving();
 			}
 			else{
-				walkLeft();
+				//walkLeft();
 			}
 		}
 		else{
@@ -133,10 +132,14 @@ public class MonkeyEnemy extends MapObject implements Runnable{
 				stopMoving();
 			}
 			else{
-				walkRight();
+				//walkRight();
 			}
 		}
 		animation.update();
+		if(this.health <= 0){
+			this.health = 0;
+			this.dead = true;
+		}
 	}
 	
 	public void draw(Graphics2D g){
@@ -180,10 +183,12 @@ public class MonkeyEnemy extends MapObject implements Runnable{
 			right = false; left = false;
 		}
 	}
-
-	@Override
-	public void run(){
-		// TODO Auto-generated method stub
-		
-	}
+	
+	public int getHealth(){return health;}
+	
+	public void setHealth(int health){this.health = health;}
+	
+	public boolean checkIfDead(){return dead;}
+	
+	public boolean checkFacingRight(){return facingRight;}
 }

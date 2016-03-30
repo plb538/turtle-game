@@ -1,5 +1,7 @@
 package Main;
 
+import java.awt.Canvas;
+
 import javax.swing.JFrame;
 
 import Entity.Player;
@@ -25,7 +27,6 @@ public class Game{
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setLocationRelativeTo(null);
 		window.pack(); window.setLocationRelativeTo(null);
-		
 		
 	}
 	

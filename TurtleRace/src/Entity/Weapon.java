@@ -10,6 +10,7 @@ import Main.Game;
 
 public class Weapon extends MapObject{
 
+	public int damage = 1;
 	//animations
 	private static final int ATTACKING = 0;
 	private static final int IDLE = 1;
@@ -20,6 +21,8 @@ public class Weapon extends MapObject{
 	
 	private int xOffset = 16;
 	private int yOffset = 16;
+	
+	
 	
 	public Weapon(Player p){
 		
@@ -72,6 +75,7 @@ public class Weapon extends MapObject{
 			curAction = ATTACKING;
 			animation.setFrames(sprites.get(ATTACKING));
 			animation.setDelay(100);
+			
 		}
 	}
 	
@@ -82,4 +86,5 @@ public class Weapon extends MapObject{
 			animation.setDelay(-1);
 		}
 	}
+	public Animation getAnimation(){return animation;}
 }

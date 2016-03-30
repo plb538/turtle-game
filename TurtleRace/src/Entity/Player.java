@@ -20,7 +20,7 @@ public class Player extends MapObject{
 	
 	//attacking stuff
 	private boolean attacking;
-	private Weapon weapon;
+	public Weapon weapon;
 	
 	//gliding
 	private boolean gliding;
@@ -47,7 +47,7 @@ public class Player extends MapObject{
 		
 		//physics modifiers
 		moveSpeed = 0.3;
-		maxSpeed = 2.5;
+		maxSpeed = 2.0;
 		stopSpeed = 0.4;
 		fallSpeed = 0.15;
 		maxFallSpeed = 4.0;
@@ -229,7 +229,11 @@ public class Player extends MapObject{
 	
 	public void setAttacking(boolean b){attacking = b;}
 	
+	public boolean checkIfAttacking(){return attacking;}
+	
 	public void setWeapon(Weapon w){weapon = w;}
+	
+	public Weapon getWeapon(){return weapon;}
 	
 	public void checkResetConditions(){
 		if(getHealth() < 0){

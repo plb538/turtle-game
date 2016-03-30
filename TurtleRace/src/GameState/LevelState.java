@@ -24,7 +24,9 @@ public class LevelState extends GameState{
 	
 	//Entity objects
 	private Player player;
-	private MonkeyEnemy monkey;
+	public ArrayList<MonkeyEnemy> monkeys;
+	private MonkeyEnemy m1;
+	private MonkeyEnemy m2;
 	private Portal portal;
 	
 	private Player player2;
@@ -65,8 +67,13 @@ public class LevelState extends GameState{
 		Game.p1 = new Player(tileMap);
 		Game.p1.setPosition(100, tileMap.getHeight() - 100);
 		
-		monkey = new MonkeyEnemy(tileMap);
-		monkey.setPosition(600, 450);
+		monkeys = new ArrayList<MonkeyEnemy>();
+		m1 = new MonkeyEnemy(tileMap);
+		m2 = new MonkeyEnemy(tileMap);
+		monkeys.add(m1);
+		monkeys.add(m2);
+		m1.setPosition(600, 450);
+		m2.setPosition(1200, 150);
 		
         //creates portal 
 		portal = new Portal(tileMap);
@@ -90,12 +97,20 @@ public class LevelState extends GameState{
 	@Override
 	public void update(){	
 		Game.p1.update();
-		monkey.update();
+		
+		for(MonkeyEnemy mes : monkeys){
+			mes.update();
+		}
 		portal.update();
 		
 		//allows map to move
 		tileMap.setPosition(GamePanel.WIDTH / 2 - Game.p1.getx(), GamePanel.HEIGHT / 2 - Game.p1.gety());
         
+		checkIfHit(Game.p1, monkeys);
+		checkIfHit(Game.p2, monkeys);
+	
+		
+		System.out.println(m1.health + " " + monkeys.size() + " " + Game.p1.weapon.getAnimation().getFrame());
         //player reaches portal will cause GameState to change to the next level
 		if(Game.p1.getx() == portal.getx() && Game.p1.gety() == portal.gety() + 15){
 			gsm.setState(gsm.LEVELSTATE2);
@@ -151,7 +166,9 @@ public class LevelState extends GameState{
 		Game.p1.draw(g);
 		
 		//draw enemy
-		monkey.draw(g);
+		for(MonkeyEnemy mes : monkeys){
+			mes.draw(g);
+		}
 		
 		//draw portal
 		portal.draw(g, tileMap);
@@ -173,6 +190,23 @@ public class LevelState extends GameState{
 		
 	}
 
+	public void checkIfHit(Player p, ArrayList<MonkeyEnemy> mes){
+		ArrayList<MonkeyEnemy> copy = new ArrayList<MonkeyEnemy>(mes);
+		for(MonkeyEnemy me : mes){
+			if((p.getx() + 54 > me.getx() && p.getx() < me.getx() + me.getWidth()) && p.checkIfAttacking()){
+				me.health -= p.weapon.damage;
+				//me.setPosition(me.getx() + 5, me.gety());
+				if(p.weapon.getAnimation().getFrame() == 1){
+					me.setVector(3, 0);
+				}
+			}
+			if(me.getHealth() <= 0){
+				copy.remove(me);
+			}
+		}
+		monkeys = copy;
+	}
+	
 	@Override
 	public void keyPressed(int k){
 		if(k == KeyEvent.VK_ENTER){
@@ -180,8 +214,6 @@ public class LevelState extends GameState{
 		}
 		if(k == KeyEvent.VK_LEFT) Game.p1.setLeft(true);
 		if(k == KeyEvent.VK_RIGHT) Game.p1.setRight(true);
-		//if(k == KeyEvent.VK_UP) player.setUp(true);
-		if(k == KeyEvent.VK_DOWN){Game.p1.setDown(true); Game.p1.takeDamage(20);} //Remember to remove this for obvious reasons
 		if(k == KeyEvent.VK_UP) Game.p1.setJumping(true);
 		if(k == KeyEvent.VK_Q) Game.p1.setGliding(true);
 		if(k == KeyEvent.VK_W) Game.p1.setAttacking(true);
@@ -191,11 +223,8 @@ public class LevelState extends GameState{
 	public void keyReleased(int k){
 		if(k == KeyEvent.VK_LEFT) Game.p1.setLeft(false);
 		if(k == KeyEvent.VK_RIGHT) Game.p1.setRight(false);
-		//if(k == KeyEvent.VK_UP) player.setUp(false);
-		if(k == KeyEvent.VK_DOWN) Game.p1.setDown(false);
 		if(k == KeyEvent.VK_UP) Game.p1.setJumping(false);
 		if(k == KeyEvent.VK_Q) Game.p1.setGliding(false);
-		//if(k == KeyEvent.VK_W) Game.p1.setAttacking(false);
 	}
 	
 }

@@ -153,23 +153,17 @@ public class LevelState2 extends GameState{
 
 	@Override
 	public void keyPressed(int k){
-		if(k == KeyEvent.VK_ENTER){
-			gsm.setState(4);
-		}
 		if(k == KeyEvent.VK_LEFT) Game.p1.setLeft(true);
 		if(k == KeyEvent.VK_RIGHT) Game.p1.setRight(true);
-		//if(k == KeyEvent.VK_UP) player.setUp(true);
-		if(k == KeyEvent.VK_DOWN){Game.p1.setDown(true); Game.p1.takeDamage(20);} //Remember to remove this for obvious reasons
 		if(k == KeyEvent.VK_UP) Game.p1.setJumping(true);
 		if(k == KeyEvent.VK_Q) Game.p1.setGliding(true);
+		if(k == KeyEvent.VK_W) Game.p1.setAttacking(true);
 	}
 
 	@Override
 	public void keyReleased(int k){
 		if(k == KeyEvent.VK_LEFT) Game.p1.setLeft(false);
 		if(k == KeyEvent.VK_RIGHT) Game.p1.setRight(false);
-		//if(k == KeyEvent.VK_UP) player.setUp(false);
-		if(k == KeyEvent.VK_DOWN) Game.p1.setDown(false);
 		if(k == KeyEvent.VK_UP) Game.p1.setJumping(false);
 		if(k == KeyEvent.VK_Q) Game.p1.setGliding(false);
 	}
