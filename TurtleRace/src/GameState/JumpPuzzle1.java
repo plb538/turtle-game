@@ -13,18 +13,6 @@ import graphicalElements.DrawnProgress;
 
 //basically the same as LevelState but with different map
 public class JumpPuzzle1 extends GameState{
-
-	//map stuff
-	private TileMap tileMap;
-	private Background bg;
-	
-	//Entity stuff
-	//private MonkeyEnemy monkey;
-	private Portal portal;
-	
-	//graphical element stuff
-	private DrawnHealth healthBar;
-	private DrawnProgress progress;
 	
 	public JumpPuzzle1(GameStateManager gsm){
 		this.gsm = gsm;
