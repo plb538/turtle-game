@@ -44,8 +44,8 @@ public class GameStateManager{
 		gameStates.add(new LevelState2(this));
 		gameStates.add(new JumpPuzzle1(this));
 		gameStates.add(new SetupState(this));
-		String filename = "C:/Users/steve/git/Paddy-Steven/TurtleRace/resources/Audio/Test.wav";
-		//String filename = "/Audio/Test.wav";
+		//String filename = "C:/Users/steve/git/Paddy-Steven/TurtleRace/resources/Audio/Test.wav";
+		String filename = "/Audio/Test.wav";
 		startAudio(filename);
 	}
 	
@@ -82,8 +82,8 @@ public class GameStateManager{
 		
 		try {
 			 
-
-			audioFileIn = new FileInputStream(new File(filename));
+			
+			audioFileIn = this.getClass().getResourceAsStream(filename);
 			audioStream = new AudioStream(audioFileIn);
 			AudioPlayer.player.start(audioStream);
 			
