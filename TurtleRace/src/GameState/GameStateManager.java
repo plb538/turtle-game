@@ -78,12 +78,12 @@ public class GameStateManager{
 	public void keyReleased(int k){
 		gameStates.get(curState).keyReleased(k);
 	}
-	private void startAudio(String filename){
+	private void startAudio(String file){
 		
 		try {
 			 
-			if(filename != null){
-				audioFileIn = this.getClass().getResourceAsStream(filename);
+			if(file != null){
+				audioFileIn = this.getClass().getResourceAsStream(file);
 				audioStream = new AudioStream(audioFileIn);
 				AudioPlayer.player.start(audioStream);
 				} 
@@ -101,5 +101,16 @@ public class GameStateManager{
 	public void updateAudio(String file){
 		stopAudio();
 		startAudio(file);
+	}
+	
+	public void overlayAudio(String file){
+		System.out.println(file);
+		try{
+			AudioStream overlay = new AudioStream(this.getClass().getResourceAsStream(file));
+			AudioPlayer.player.start(overlay);
+		} catch(IOException e){
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
