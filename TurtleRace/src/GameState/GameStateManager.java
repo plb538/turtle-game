@@ -78,16 +78,15 @@ public class GameStateManager{
 	public void keyReleased(int k){
 		gameStates.get(curState).keyReleased(k);
 	}
-	public void startAudio(String filename){
+	private void startAudio(String filename){
 		
 		try {
 			 
-			
-			audioFileIn = this.getClass().getResourceAsStream(filename);
-			audioStream = new AudioStream(audioFileIn);
-			AudioPlayer.player.start(audioStream);
-			
-			 
+			if(filename != null){
+				audioFileIn = this.getClass().getResourceAsStream(filename);
+				audioStream = new AudioStream(audioFileIn);
+				AudioPlayer.player.start(audioStream);
+				} 
 	        }
 		 catch(Throwable e){
 			 e.printStackTrace();
@@ -95,11 +94,12 @@ public class GameStateManager{
 		
 	}
 	
-	public void stopAudio(){
+	private void stopAudio(){
 		AudioPlayer.player.stop(audioStream);
 	}
 	
 	public void updateAudio(String file){
-		
+		stopAudio();
+		startAudio(file);
 	}
 }

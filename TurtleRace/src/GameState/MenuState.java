@@ -97,7 +97,7 @@ public class MenuState extends GameState{
 			}
 		}
 		if(k == KeyEvent.VK_ESCAPE){
-			gsm.stopAudio();
+			gsm.updateAudio(null);
 		}
 	}
 
