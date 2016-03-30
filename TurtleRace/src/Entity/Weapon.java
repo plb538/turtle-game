@@ -74,7 +74,7 @@ public class Weapon extends MapObject{
 		if(curAction != ATTACKING){
 			curAction = ATTACKING;
 			animation.setFrames(sprites.get(ATTACKING));
-			animation.setDelay(100);
+			animation.setDelay(40);
 			
 		}
 	}

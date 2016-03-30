@@ -123,7 +123,7 @@ public class MonkeyEnemy extends MapObject{
 				stopMoving();
 			}
 			else{
-				//walkLeft();
+				walkLeft();
 			}
 		}
 		else{
@@ -131,7 +131,7 @@ public class MonkeyEnemy extends MapObject{
 				stopMoving();
 			}
 			else{
-				//walkRight();
+				walkRight();
 			}
 		}
 		animation.update();
