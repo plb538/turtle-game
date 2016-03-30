@@ -42,14 +42,12 @@ public class GameStateManager{
 		gameStates.add(new LevelState(this));
 		gameStates.add(new LevelState2(this));
 		gameStates.add(new JumpPuzzle1(this));
-<<<<<<< HEAD
 		gameStates.add(new EndState(this));
-=======
 		gameStates.add(new SetupState(this));
-		//String filename = "C:/Users/steve/git/Paddy-Steven/TurtleRace/resources/Audio/Test.wav";
+		
 		String filename = "/Audio/music/Test.wav";
 		startAudio(filename);
->>>>>>> branch 'master' of https://gitlab.com/5895-2016/Paddy-Steven.git
+
 	}
 	
 	public void setState(int state){

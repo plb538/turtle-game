@@ -46,13 +46,6 @@ public class MenuState extends GameState{
 	}
 
 	@Override
-<<<<<<< HEAD
-=======
-	public void init(){
-	}
-
-	@Override
->>>>>>> branch 'master' of https://gitlab.com/5895-2016/Paddy-Steven.git
 	public void update(){
 	    //moves background
 		bg.update();
