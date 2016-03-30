@@ -119,12 +119,23 @@ public class LevelState extends GameState{
 		checkIfHit(Game.p2, monkeys);
 	
 		
-		System.out.println( "Player y pos: " + (Game.p1.gety() + Game.p1.getCHeight()) + " " + "Monkey y pos: " + " " + m1.gety() + " " + (m1.gety() + m1.getCHeight()));
+		//System.out.println( "Player y pos: " + (Game.p1.gety() + Game.p1.getCHeight()) + " " + "Monkey y pos: " + " " + m1.gety() + " " + (m1.gety() + m1.getCHeight()));
 		
         //player reaches portal will cause GameState to change to the next level
-		if(Game.p1.getx() == portal.getx() && Game.p1.gety() == portal.gety() + 15){
+		//if(Game.p1.getx() == portal.getx() && Game.p1.gety() == portal.gety() + 15){
+		//	gsm.setState(gsm.LEVELSTATE2);
+		//}
+		
+		System.out.println("PX:" + Game.p1.getx() + "| PY:" + Game.p1.gety() + "|PortalX:" + portal.getx() + "|PortalY:" + portal.gety());
+		
+		
+		if(((Game.p1.getx() >= (portal.getx() - 20)) && (Game.p1.getx() <= (portal.getx() + 20))) && 
+			((Game.p1.gety() >= (portal.gety() - 5)) && (Game.p1.gety() <= (portal.gety() + 35)))){
+			//System.out.println("InPotal");
 			gsm.setState(gsm.LEVELSTATE2);
 		}
+		
+		
 		//if player falls of map
 		if(Game.p1.notOnScreen()){
 			Game.p1.setPosition(100, tileMap.getHeight() - 100);
