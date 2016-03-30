@@ -1,8 +1,9 @@
 package GameState;
 
 import java.awt.Graphics2D;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
+import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
 
@@ -17,6 +18,10 @@ public class GameStateManager{
 	public boolean modeMultiplayer = false;
 	public ObjectOutputStream outToServer;
 	public ObjectInputStream inFromServer;
+	
+	private InputStream audioFileIn;
+	private AudioStream audioStream;
+	private AudioPlayer audioPlayer;
 
 	//different game states
 	public static final int MENUSTATE = 0;
@@ -39,6 +44,8 @@ public class GameStateManager{
 		gameStates.add(new LevelState2(this));
 		gameStates.add(new JumpPuzzle1(this));
 		gameStates.add(new SetupState(this));
+		String filename = "C:/Users/steve/git/Paddy-Steven/TurtleRace/resources/Audio/Test.wav";
+		startAudio(filename);
 	}
 	
 	public void setState(int state){
@@ -68,5 +75,27 @@ public class GameStateManager{
 	
 	public void keyReleased(int k){
 		gameStates.get(curState).keyReleased(k);
+	}
+	public void startAudio(String filename){
+		
+		try {
+			 
+			 audioFileIn = new FileInputStream(new File(filename));
+			 audioStream = new AudioStream(audioFileIn);
+			 audioPlayer.player.start(audioStream);
+			 
+	        }
+		 catch(Throwable e){
+			 e.printStackTrace();
+		 }
+		
+	}
+	
+	public void stopAudio(){
+		audioPlayer.stop();
+	}
+	
+	public void updateAudio(String file){
+		
 	}
 }

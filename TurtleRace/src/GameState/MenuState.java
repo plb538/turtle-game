@@ -4,11 +4,13 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
-import java.io.File;
 
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+ 
+
 
 import Main.GamePanel;
 import TileMap.Background;
@@ -40,23 +42,11 @@ public class MenuState extends GameState{
 		catch(Exception e){
 			e.printStackTrace();
 		}
+		init();
 	}
 
 	@Override
 	public void init(){
-		System.out.println("Initilizing MenuState");
-	
-		 try {
-	            AudioInputStream audio = AudioSystem.getAudioInputStream(new File("/Audio/testsong.wav"));
-	            Clip clip = AudioSystem.getClip();
-	            clip.open(audio);
-	            clip.start();
-	        }
-		 catch(Throwable e){
-			 e.printStackTrace();
-		 }
-		
-		
 		
 	}
 
@@ -113,6 +103,7 @@ public class MenuState extends GameState{
 	public void keyReleased(int k){}
 	
 	private void select(){
+
 		switch(curOption){
 			case 0 : 
 				gsm.setState(GameStateManager.LEVELSTATE);
