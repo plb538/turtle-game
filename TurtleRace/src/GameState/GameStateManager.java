@@ -1,8 +1,9 @@
 package GameState;
 
 import java.awt.Graphics2D;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
+import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
 
@@ -17,6 +18,9 @@ public class GameStateManager{
 	public boolean modeMultiplayer = false;
 	public ObjectOutputStream outToServer;
 	public ObjectInputStream inFromServer;
+	
+	private InputStream audioFileIn;
+	private AudioStream audioStream;
 
 	//different game states
 	public static final int MENUSTATE = 0;
@@ -38,7 +42,14 @@ public class GameStateManager{
 		gameStates.add(new LevelState(this));
 		gameStates.add(new LevelState2(this));
 		gameStates.add(new JumpPuzzle1(this));
+<<<<<<< HEAD
 		gameStates.add(new EndState(this));
+=======
+		gameStates.add(new SetupState(this));
+		//String filename = "C:/Users/steve/git/Paddy-Steven/TurtleRace/resources/Audio/Test.wav";
+		String filename = "/Audio/music/Test.wav";
+		startAudio(filename);
+>>>>>>> branch 'master' of https://gitlab.com/5895-2016/Paddy-Steven.git
 	}
 	
 	public void setState(int state){
@@ -64,9 +75,45 @@ public class GameStateManager{
 	//calls the current gamestates keyPressed method
 	public void keyPressed(int k){
 		gameStates.get(curState).keyPressed(k);
+		
 	}
 	
 	public void keyReleased(int k){
 		gameStates.get(curState).keyReleased(k);
+	}
+	private void startAudio(String file){
+		
+		try {
+			 
+			if(file != null){
+				audioFileIn = this.getClass().getResourceAsStream(file);
+				audioStream = new AudioStream(audioFileIn);
+				AudioPlayer.player.start(audioStream);
+				} 
+	        }
+		 catch(Throwable e){
+			 e.printStackTrace();
+		 }
+		
+	}
+	
+	private void stopAudio(){
+		AudioPlayer.player.stop(audioStream);
+	}
+	
+	public void updateAudio(String file){
+		stopAudio();
+		startAudio(file);
+	}
+	
+	public void overlayAudio(String file){
+		//System.out.println(file);
+		try{
+			AudioStream overlay = new AudioStream(this.getClass().getResourceAsStream(file));
+			AudioPlayer.player.start(overlay);
+		} catch(IOException e){
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

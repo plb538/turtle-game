@@ -5,10 +5,18 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+ 
+
+
 import Main.GamePanel;
 import TileMap.Background;
 
 public class MenuState extends GameState{
+
 	
 	//this state's background
 	private Background bg;
@@ -34,9 +42,17 @@ public class MenuState extends GameState{
 		catch(Exception e){
 			e.printStackTrace();
 		}
+		init();
 	}
 
 	@Override
+<<<<<<< HEAD
+=======
+	public void init(){
+	}
+
+	@Override
+>>>>>>> branch 'master' of https://gitlab.com/5895-2016/Paddy-Steven.git
 	public void update(){
 	    //moves background
 		bg.update();
@@ -83,12 +99,19 @@ public class MenuState extends GameState{
 				curOption = 0;
 			}
 		}
+		if(k == KeyEvent.VK_ESCAPE){
+			gsm.updateAudio(null);
+		}
+		if(k == KeyEvent.VK_W){
+			gsm.overlayAudio("/Audio/player/swing-stick.wav");
+		}
 	}
 
 	@Override
 	public void keyReleased(int k){}
 	
 	private void select(){
+
 		switch(curOption){
 			case 0 : 
 				gsm.setState(GameStateManager.LEVELSTATE);
