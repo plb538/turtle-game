@@ -45,7 +45,7 @@ public class GameStateManager{
 		gameStates.add(new EndState(this));
 		gameStates.add(new SetupState(this));
 		
-		String filename = "/Audio/music/Test.wav";
+		String filename = "/Audio/music/menu-music.wav";
 		startAudio(filename);
 
 	}
