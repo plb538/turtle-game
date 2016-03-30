@@ -3,6 +3,8 @@ package GameState;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 
 import Entity.MonkeyEnemy;
@@ -17,7 +19,6 @@ import graphicalElements.DrawnProgress;
 import networking.InformationPacket;
 
 public class LevelState extends GameState{
-
 	//map info
 	private TileMap tileMap;
 	private Background bg;
@@ -89,6 +90,14 @@ public class LevelState extends GameState{
 	
 	@Override
 	public void update(){	
+		
+		try{
+			System.out.println(InetAddress.getLocalHost().getHostAddress());
+		} catch(UnknownHostException e3){
+			// TODO Auto-generated catch block
+			e3.printStackTrace();
+		}
+		
 		Game.p1.update();
 		monkey.update();
 		portal.update();
