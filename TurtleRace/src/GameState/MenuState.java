@@ -37,9 +37,6 @@ public class MenuState extends GameState{
 	}
 
 	@Override
-	public void init(){}
-
-	@Override
 	public void update(){
 	    //moves background
 		bg.update();
@@ -106,6 +103,12 @@ public class MenuState extends GameState{
 				System.exit(0);
 				break;
 		}
+	}
+
+	@Override
+	public void init(){
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

@@ -17,19 +17,6 @@ import graphicalElements.DrawnProgress;
 import networking.InformationPacket;
 
 public class LevelState2 extends GameState{
-
-	//map stuff
-	private TileMap tileMap;
-	private Background bg;
-	
-	//Entity stuff
-	private Player player;
-	//private MonkeyEnemy monkey;
-	private Portal portal;
-	
-	//graphical element stuff
-	private DrawnHealth healthBar;
-	private DrawnProgress progress;
 	
 	public LevelState2(GameStateManager gsm){
 		this.gsm = gsm;
@@ -58,6 +45,7 @@ public class LevelState2 extends GameState{
 		Game.p2.setObjectOnTileMap(tileMap);
 		Game.p2.setPosition(100, tileMap.getHeight() - 100);
 		
+		monkeys = new ArrayList<MonkeyEnemy>();
 		//monkey = new MonkeyEnemy(tileMap);
 		//monkey.setPosition(600, 450);
 		
@@ -67,105 +55,4 @@ public class LevelState2 extends GameState{
 		healthBar = new DrawnHealth(Game.p1);
 		progress = new DrawnProgress(Game.p1, tileMap);
 	}
-
-	@Override
-	public void update(){	
-		Game.p1.update();
-		//monkey.update();
-		portal.update();
-		
-		//allows map to move
-		tileMap.setPosition(GamePanel.WIDTH / 2 - Game.p1.getx(), GamePanel.HEIGHT / 2 - Game.p1.gety());
-
-		if(Game.p1.getx() == portal.getx() && Game.p1.gety() == portal.gety() + 15){
-			gsm.setState(gsm.JUMPPUZZLE1);
-		}
-		if(Game.p1.notOnScreen()){
-			Game.p1.setPosition(100, tileMap.getHeight() - 100);
-			Game.p1.takeDamage(20);
-		}
-		
-		if(gsm.modeMultiplayer){
-			
-			InformationPacket myPacket = new InformationPacket(Game.p1, gsm.getState());
-			
-			try{
-				gsm.outToServer.writeObject(myPacket);
-			} catch(IOException e1){
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			InformationPacket test = null;
-			try{
-			test = (InformationPacket)gsm.inFromServer.readObject();
-			//System.out.println(test.getx() + " " + test.gety());
-			
-			} catch(ClassNotFoundException e){
-			// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch(IOException e){
-			// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			try{
-				Game.p2.updateP2(test);
-			}catch(Throwable e2){
-					e2.printStackTrace();
-			}
-			
-		}
-	}
-
-	@Override
-	public void draw(Graphics2D g){
-		//draw background
-		bg.draw(g);
-		
-		//draw tile map
-		tileMap.draw(g);
-		
-		//draw player
-		Game.p1.draw(g);
-		
-		//draw enemy
-		//monkey.draw(g);
-		
-		//draw portal
-		portal.draw(g, tileMap);
-		
-		//draw health
-		healthBar.draw(g, Game.p1);
-		
-		//draw progress
-		progress.draw(g, Game.p1, tileMap);
-		
-		if(gsm.modeMultiplayer){
-			
-			if(Game.p2.state == gsm.getState()){
-				Game.p2.draw(g);
-			}
-			//healthBar2.draw(g, Game.p2);
-			//progress2.draw(g, Game.p2, tileMap);
-		}
-		
-	}
-
-	@Override
-	public void keyPressed(int k){
-		if(k == KeyEvent.VK_LEFT) Game.p1.setLeft(true);
-		if(k == KeyEvent.VK_RIGHT) Game.p1.setRight(true);
-		if(k == KeyEvent.VK_UP) Game.p1.setJumping(true);
-		if(k == KeyEvent.VK_Q) Game.p1.setGliding(true);
-		if(k == KeyEvent.VK_W) Game.p1.setAttacking(true);
-	}
-
-	@Override
-	public void keyReleased(int k){
-		if(k == KeyEvent.VK_LEFT) Game.p1.setLeft(false);
-		if(k == KeyEvent.VK_RIGHT) Game.p1.setRight(false);
-		if(k == KeyEvent.VK_UP) Game.p1.setJumping(false);
-		if(k == KeyEvent.VK_Q) Game.p1.setGliding(false);
-	}
-	
 }
