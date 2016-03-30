@@ -180,13 +180,13 @@ public abstract class GameState{
 				}
 			}
 			if((p.getx() + p.getCWidth() - 4 >=  me.getx()) && (p.getx() + p.getCWidth() -4 <= me.getx() + me.getCWidth()) && (p.gety() + p.getCHeight() >= me.gety()) && (p.gety() + p.getCHeight() <= me.gety() + me.getCHeight())){
-				p.takeDamage(10);
+				p.takeDamage(20);
 				p.setVector(-4, 0);
 				p.checkResetConditions();
 				gsm.overlayAudio("/Audio/player/flinch.wav");
 			}
 			if((p.getx() >=  me.getx()) && (p.getx() <= me.getx() + me.getCWidth()) && (p.gety() + p.getCHeight() >= me.gety()) && (p.gety() + p.getCHeight() <= me.gety() + me.getCHeight())){
-				p.takeDamage(10);
+				p.takeDamage(20);
 				p.setVector(4, 0);
 				p.checkResetConditions();
 				gsm.overlayAudio("/Audio/player/flinch.wav");
