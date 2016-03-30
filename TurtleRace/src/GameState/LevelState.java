@@ -110,7 +110,8 @@ public class LevelState extends GameState{
 		checkIfHit(Game.p2, monkeys);
 	
 		
-		System.out.println(m1.health + " " + monkeys.size() + " " + Game.p1.weapon.getAnimation().getFrame());
+		System.out.println( "Player y pos: " + (Game.p1.gety() + Game.p1.getCHeight()) + " " + "Monkey y pos: " + " " + m1.gety() + " " + (m1.gety() + m1.getCHeight()));
+		
         //player reaches portal will cause GameState to change to the next level
 		if(Game.p1.getx() == portal.getx() && Game.p1.gety() == portal.gety() + 15){
 			gsm.setState(gsm.LEVELSTATE2);
@@ -197,9 +198,19 @@ public class LevelState extends GameState{
 				me.health -= p.weapon.damage;
 				//me.setPosition(me.getx() + 5, me.gety());
 				if(p.weapon.getAnimation().getFrame() == 1){
-					me.setVector(3, 0);
+					me.setVector(4, 0);
 				}
 			}
+			if((p.getx() + p.getCWidth() - 4 >=  me.getx()) && (p.getx() + p.getCWidth() -4 <= me.getx() + me.getCWidth()) && (p.gety() + p.getCHeight() >= me.gety()) && (p.gety() + p.getCHeight() <= me.gety() + me.getCHeight())){
+				p.takeDamage(10);
+				p.setVector(-4, 0);
+				p.checkResetConditions();
+			}
+			//if((p.getx() >=  me.getx()) && (p.getx() <= me.getx()) && (p.gety() + p.getCHeight() >= me.gety()) && (p.gety() + p.getCHeight() <= me.gety() + me.getCHeight())){
+				//p.takeDamage(2);
+				//p.setVector(4, 0);
+				//p.checkResetConditions();
+			//}				
 			if(me.getHealth() <= 0){
 				copy.remove(me);
 			}

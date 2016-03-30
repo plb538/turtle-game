@@ -236,7 +236,7 @@ public class Player extends MapObject{
 	public Weapon getWeapon(){return weapon;}
 	
 	public void checkResetConditions(){
-		if(getHealth() < 0){
+		if(getHealth() <= 0){
 			dead = true;
 		}
 		

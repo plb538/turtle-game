@@ -10,7 +10,7 @@ import Main.Game;
 
 public class Weapon extends MapObject{
 
-	public int damage = 1;
+	public int damage = 4;
 	//animations
 	private static final int ATTACKING = 0;
 	private static final int IDLE = 1;

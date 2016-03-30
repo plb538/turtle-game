@@ -111,7 +111,6 @@ public class MonkeyEnemy extends MapObject{
 		}
 	}
 	
-	@SuppressWarnings("deprecation")
 	public void update(){
 		getNextPosition(); 
 		checkTileMapCollision();//check for collision
