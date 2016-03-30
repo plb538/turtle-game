@@ -189,10 +189,4 @@ public abstract class GameState{
 			}
 		}
 	}
-	
-	public void addMonkeyEnemy(MonkeyEnemy m, int xpos, int ypos, TileMap tileMap){
-		m = new MonkeyEnemy(tileMap);
-		monkeys.add(m);
-		m.setPosition(xpos, ypos);
-	}
 }
