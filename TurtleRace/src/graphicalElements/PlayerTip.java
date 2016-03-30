@@ -14,8 +14,8 @@ public class PlayerTip{
 	private int height;
 	
 	public PlayerTip(){
-		xpos = 200;
-		ypos = 200;
+		xpos = 180;
+		ypos = 250;
 		width = 100;
 		height = 20;
 	}

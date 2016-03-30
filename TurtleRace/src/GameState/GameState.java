@@ -134,7 +134,9 @@ public abstract class GameState{
 				
 		//draw progress
 		progress.draw(g, Game.p1, tileMap);
-		pt.draw(g);
+		if(pt != null){
+			pt.draw(g);
+		}
 				
 		if(gsm.modeMultiplayer){
 					
