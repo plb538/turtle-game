@@ -21,7 +21,6 @@ public class GameStateManager{
 	
 	private InputStream audioFileIn;
 	private AudioStream audioStream;
-	private AudioPlayer audioPlayer;
 
 	//different game states
 	public static final int MENUSTATE = 0;
@@ -104,7 +103,7 @@ public class GameStateManager{
 	}
 	
 	public void overlayAudio(String file){
-		System.out.println(file);
+		//System.out.println(file);
 		try{
 			AudioStream overlay = new AudioStream(this.getClass().getResourceAsStream(file));
 			AudioPlayer.player.start(overlay);
