@@ -51,7 +51,7 @@ public class GameStateManager{
 		gameStates.add(new JumpPuzzle1(this));
 		gameStates.add(new EndState(this));
 		
-		String filename = "/Audio/music/track1-quiet.wav";
+		String filename = "/Audio/music/EarthyCrust.wav";
 		audioManager = new AudioManager();
 		audioManager.updateAudio(filename);
 		
