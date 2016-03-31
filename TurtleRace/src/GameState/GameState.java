@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 
 import Entity.MonkeyEnemy;
 import Entity.Player;
@@ -180,6 +181,7 @@ public abstract class GameState{
 	
 	public void checkIfHit(Player p, ArrayList<MonkeyEnemy> mes){
 
+		try{
 		for(MonkeyEnemy me : mes){
 			if((p.getx() + 60 >= me.getx() && p.getx() <= me.getx() + me.getWidth()) && p.checkIfAttacking()){
 				me.health -= p.weapon.damage;
@@ -210,6 +212,12 @@ public abstract class GameState{
 			if(me.getHealth() <= 0){
 				mes.remove(me);
 			}
+		}
+		}catch(ConcurrentModificationException e){
+			//Do nothing
+			
+		}catch(Throwable e2){
+			e2.printStackTrace();
 		}
 	}
 }
