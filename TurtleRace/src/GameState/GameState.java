@@ -146,9 +146,9 @@ public abstract class GameState{
 				
 		if(gsm.modeMultiplayer){
 					
-			//if(Game.p2.state == gsm.getState()){
+			if(Game.p2.state == gsm.getState()){
 				Game.p2.draw(g);
-			//}
+			}
 		}
 	}
 	
