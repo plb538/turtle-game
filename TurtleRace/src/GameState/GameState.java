@@ -53,7 +53,6 @@ public abstract class GameState{
 		*/
 		
 		Game.p1.update();
-		Game.p2.update();
 		
 		if(monkeys.size() > 0){
 			for(MonkeyEnemy mes : monkeys){
