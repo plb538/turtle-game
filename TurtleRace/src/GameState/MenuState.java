@@ -125,12 +125,7 @@ public class MenuState extends GameState{
 	public void init(){
 		// TODO Auto-generated method stub
 		
-		try{
-			System.out.println(InetAddress.getLocalHost().getHostAddress());
-		} catch(UnknownHostException e){
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 		
 	}
 	

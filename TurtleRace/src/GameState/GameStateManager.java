@@ -8,21 +8,24 @@ import java.util.ArrayList;
 
 import Main.Game;
 import audioplayer.AudioManager;
-import networking.MultiplayerThread;
+import networking.ReadThread;
+import networking.SendThread;
 
 public class GameStateManager{
 	
 	private ArrayList<GameState> gameStates;
 	private int curState;
 	
-	public boolean isHost;
-	public ServerSocket hostSocket;
-	public Socket clientSocket;
+	public boolean isHost = false;
+	public ServerSocket hostSocket = null;
+	public Socket clientSocket = null;
 	public boolean modeMultiplayer = false;
-	public ObjectOutputStream outToServer;
-	public ObjectInputStream inFromServer;
+	public ObjectOutputStream outToServer = null;
+	public ObjectInputStream inFromServer = null;
 	
-	private MultiplayerThread multiplayerThread;
+	private ReadThread readThread = null;
+	private SendThread sendThread = null;
+	public boolean connected = false;
 	
 	private AudioManager audioManager;
 
@@ -52,7 +55,8 @@ public class GameStateManager{
 		audioManager = new AudioManager();
 		audioManager.updateAudio(filename);
 		
-		multiplayerThread = new MultiplayerThread(this, Game.p2);
+		connected = false;
+		modeMultiplayer = false;
 	}
 	
 	public void setState(int state){
@@ -99,6 +103,12 @@ public class GameStateManager{
 
 	public void updateAudio(String file){
 		audioManager.updateAudio(file);
+		
+	}
+	
+	public void startMultiplayer(){
+		readThread = new ReadThread(this);
+		sendThread = new SendThread(this);
 		
 	}
 }

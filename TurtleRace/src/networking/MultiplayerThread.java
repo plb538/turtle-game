@@ -1,24 +1,19 @@
 package networking;
-
-import Entity.Player;
 import GameState.GameStateManager;
-import Main.Game;
 
-public class MultiplayerThread implements Runnable{
+public abstract class MultiplayerThread implements Runnable{
 
-	private GameStateManager gsm;
-	private Thread thread;
-	private boolean running;
-	private int tickrate = 60;
-	private long targetTime = 1000/tickrate;
-	private Player p2;
+	protected GameStateManager gsm;
+	protected Thread thread;
+	protected boolean running;
+	protected int tickrate = 60;
+	protected long targetTime = 1000/tickrate;
 	
-	public MultiplayerThread(GameStateManager _gsm, Player _p2){
+	public MultiplayerThread(GameStateManager _gsm){
 		super();
 		gsm = _gsm;
 		thread = new Thread(this);
 		running = true;
-		p2 = _p2;
 		thread.start();
 	}
 	
@@ -44,33 +39,8 @@ public class MultiplayerThread implements Runnable{
 				}
 			}
 		}
-		
-	private void update(){
-		//System.out.println("Multiplayer Thread updating");
-		if(gsm.modeMultiplayer){
-			//System.out.println("Game is in multiplayer mode");
-			InformationPacket myPacket = new InformationPacket(Game.p1, gsm.getState());
-			
-			try{
-				gsm.outToServer.writeObject(myPacket);
-			} catch(Throwable e1){
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			InformationPacket test = null;
-			try{
-			test = (InformationPacket)gsm.inFromServer.readObject();
-			//System.out.println("PACKET||" + " OtherX:" + test.getx() + "|OtherY: " + test.gety() + "|OtherState:" + test.getstate());
-			//System.out.println("UpdatingP2");
-			Game.p2.updateP2(test);
-			
-			} catch(Throwable e){
-			// TODO Auto-generated catch block
-				e.printStackTrace();		
-		
-			}
-		}
-	}
+	
+	protected abstract void update();
 }
 
 
