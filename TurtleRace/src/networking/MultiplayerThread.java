@@ -15,6 +15,7 @@ public class MultiplayerThread implements Runnable{
 		super();
 		gsm = _gsm;
 		thread = new Thread(this);
+		running = true;
 		thread.start();
 	}
 	
