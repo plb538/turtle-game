@@ -1,22 +1,16 @@
 package GameState;
 
-import java.awt.Graphics2D;
-import java.awt.event.KeyEvent;
-import java.io.IOException;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 
 import Entity.MonkeyEnemy;
 import Entity.Player;
 import Entity.Portal;
 import Main.Game;
-import Main.GamePanel;
 import TileMap.Background;
 import TileMap.TileMap;
 import graphicalElements.DrawnHealth;
 import graphicalElements.DrawnProgress;
-import networking.InformationPacket;
+import graphicalElements.PlayerTip;
 
 public class LevelState extends GameState{
 		
@@ -76,5 +70,6 @@ public class LevelState extends GameState{
 			
 		healthBar2 = new DrawnHealth(Game.p2);
 		progress2 = new DrawnProgress(Game.p2, tileMap);
+		pt = new PlayerTip("Press Up to jump and W to attack", 180, 250);
 	}
 }

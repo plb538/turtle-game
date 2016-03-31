@@ -16,6 +16,7 @@ import TileMap.Background;
 import TileMap.TileMap;
 import graphicalElements.DrawnHealth;
 import graphicalElements.DrawnProgress;
+import graphicalElements.PlayerTip;
 import networking.InformationPacket;
 
 public abstract class GameState{
@@ -37,6 +38,7 @@ public abstract class GameState{
 		
 	protected DrawnHealth healthBar2;
 	protected DrawnProgress progress2;
+	protected PlayerTip pt;
 
 	public abstract void init();
 	
@@ -132,6 +134,10 @@ public abstract class GameState{
 				
 		//draw progress
 		progress.draw(g, Game.p1, tileMap);
+		
+		if(pt != null){
+			pt.draw(g);
+		}
 				
 		if(gsm.modeMultiplayer){
 					
