@@ -42,7 +42,6 @@ public class MenuState extends GameState{
 		catch(Exception e){
 			e.printStackTrace();
 		}
-		init();
 	}
 
 	@Override
