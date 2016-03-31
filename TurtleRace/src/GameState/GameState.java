@@ -134,6 +134,7 @@ public abstract class GameState{
 				
 		//draw progress
 		progress.draw(g, Game.p1, tileMap);
+		
 		if(pt != null){
 			pt.draw(g);
 		}
