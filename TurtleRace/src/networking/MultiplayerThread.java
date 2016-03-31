@@ -57,7 +57,7 @@ public class MultiplayerThread implements Runnable{
 			InformationPacket test = null;
 			try{
 			test = (InformationPacket)gsm.inFromServer.readObject();
-			System.out.println(test.getx() + " " + test.gety());
+			System.out.println("OtherX:" + test.getx() + "|OtherY: " + test.gety() + "|OtherState:" + test.getstate());
 			
 			} catch(Throwable e){
 			// TODO Auto-generated catch block
