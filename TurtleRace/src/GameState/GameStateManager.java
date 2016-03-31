@@ -7,6 +7,7 @@ import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
 
+import Main.Game;
 import networking.MultiplayerThread;
 
 public class GameStateManager{
@@ -51,7 +52,7 @@ public class GameStateManager{
 		String filename = "/Audio/music/menu-music-quiet.wav";
 		startAudio(filename);
 		
-		multiplayerThread = new MultiplayerThread(this);
+		multiplayerThread = new MultiplayerThread(this, Game.p2);
 	}
 	
 	public void setState(int state){

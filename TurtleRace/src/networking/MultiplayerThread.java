@@ -1,5 +1,6 @@
 package networking;
 
+import Entity.Player;
 import GameState.GameStateManager;
 import Main.Game;
 
@@ -10,12 +11,14 @@ public class MultiplayerThread implements Runnable{
 	private boolean running;
 	private int tickrate = 30;
 	private long targetTime = 1000/tickrate;
+	private Player p2;
 	
-	public MultiplayerThread(GameStateManager _gsm){
+	public MultiplayerThread(GameStateManager _gsm, Player _p2){
 		super();
 		gsm = _gsm;
 		thread = new Thread(this);
 		running = true;
+		p2 = _p2;
 		thread.start();
 	}
 	
@@ -65,7 +68,7 @@ public class MultiplayerThread implements Runnable{
 
 			
 			try{
-				Game.p2.updateP2(test);
+				p2.updateP2(test);
 			}catch(Throwable e2){
 				e2.printStackTrace();
 				}
