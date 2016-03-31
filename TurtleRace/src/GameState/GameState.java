@@ -150,17 +150,15 @@ public abstract class GameState{
 		}
 				
 		if(gsm.modeMultiplayer){
-
+			//System.out.println("IF1");
 			if(Game.p2.state == gsm.getState()){
+				//System.out.println("IF2");
 				Game.p2.draw(g);
 			}
 		}
 	}
 	
 	public void keyPressed(int k){
-		if(k == KeyEvent.VK_ENTER){
-			gsm.setState(gsm.getState() + 1);
-		}
 		if(k == KeyEvent.VK_LEFT) Game.p1.setLeft(true);
 		if(k == KeyEvent.VK_RIGHT) Game.p1.setRight(true);
 		if(k == KeyEvent.VK_UP) Game.p1.setJumping(true);

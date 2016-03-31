@@ -43,9 +43,9 @@ public class MultiplayerThread implements Runnable{
 		}
 		
 	private void update(){
-		System.out.println("Mult Thread updating");
+		//System.out.println("Multiplayer Thread updating");
 		if(gsm.modeMultiplayer){
-			System.out.println("Game is in multipalyer mode");
+			//System.out.println("Game is in multiplayer mode");
 			InformationPacket myPacket = new InformationPacket(Game.p1, gsm.getState());
 			
 			try{
@@ -57,7 +57,7 @@ public class MultiplayerThread implements Runnable{
 			InformationPacket test = null;
 			try{
 			test = (InformationPacket)gsm.inFromServer.readObject();
-			//System.out.println(test.getx() + " " + test.gety());
+			System.out.println(test.getx() + " " + test.gety());
 			
 			} catch(Throwable e){
 			// TODO Auto-generated catch block
