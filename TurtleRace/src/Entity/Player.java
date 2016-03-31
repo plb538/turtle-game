@@ -17,6 +17,8 @@ public class Player extends MapObject{
 	private boolean dead = false;
 	private boolean facingRight;
 	public int state;
+	private long startTime;
+	private int deathCounter;
 	
 	//attacking stuff
 	private boolean attacking;
@@ -34,6 +36,7 @@ public class Player extends MapObject{
 	private static final int WALKING = 1;
 	private static final int GLIDING = 2;
 	private static final int ATTACKING = 3;
+	
 	
 	public Player(TileMap tm){
 		//super(tm);
@@ -238,6 +241,7 @@ public class Player extends MapObject{
 	public void checkResetConditions(){
 		if(getHealth() <= 0){
 			dead = true;
+			deathCounter++;
 		}
 		
 		int resetx = tileMap.getTileSize()+25;
@@ -264,4 +268,17 @@ public class Player extends MapObject{
 		// TODO Auto-generated method stub
 		return state;
 	}
+	
+	public void setStart(){
+		startTime = System.nanoTime();
+	}
+	
+	public long getStartTime(){
+		return startTime;
+	}
+
+	public int getDeathCount(){
+		return deathCounter;
+	}
+
 }

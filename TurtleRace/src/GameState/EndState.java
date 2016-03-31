@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
+import Main.Game;
 import Main.GamePanel;
 import TileMap.Background;
 
@@ -18,6 +19,7 @@ public class EndState extends GameState{
 	private Color titleColor;
 	private Font titleFont;
 	private Font font;
+	private long finishTime;
 	
 	public EndState(GameStateManager gsm){
 		this.gsm = gsm;
@@ -37,7 +39,9 @@ public class EndState extends GameState{
 	}
 
 	@Override
-	public void init(){}
+	public void init(){
+		finishTime = System.nanoTime();
+	}
 
 	@Override
 	public void update(){
@@ -53,7 +57,14 @@ public class EndState extends GameState{
 		g.setColor(titleColor);
 		g.setFont(titleFont);
 		g.drawString("Thanks for Playing!", GamePanel.WIDTH/4, 100);
+		g.drawString("Your Score:" + (1000000-((finishTime - Game.p1.getStartTime()) / 1000000000)), GamePanel.WIDTH/4, 250);
+		g.drawString("Your Deaths:" + Game.p1.getDeathCount(), GamePanel.WIDTH/4, 350);
 		
+		if(gsm.modeMultiplayer){
+			g.drawString("Oppoonet's Score:" + (1000000-((finishTime - Game.p2.getStartTime()) / 1000000000)), GamePanel.WIDTH/4, 450);
+			g.drawString("Opponent's Deaths:" + Game.p2.getDeathCount(), GamePanel.WIDTH/4, 350);
+			
+		}
 		
 	}
 	//key press options for menu screen
