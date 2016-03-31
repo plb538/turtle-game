@@ -76,7 +76,12 @@ public abstract class GameState{
 		if(Game.p1.notOnScreen()){
 			Game.p1.setPosition(100, tileMap.getHeight() - 100);
 		}
-
+		
+		if(gsm.modeMultiplayer){
+			gsm.updateP2Thread();
+		}
+		
+		/*
 		if(gsm.modeMultiplayer){
 
 			InformationPacket myPacket = new InformationPacket(Game.p1, gsm.getState());
@@ -106,7 +111,7 @@ public abstract class GameState{
 					e2.printStackTrace();
 			}
 		}
-			
+		*/
 		
 	}
 	

@@ -7,6 +7,8 @@ import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
 
+import networking.MultiplayerThread;
+
 public class GameStateManager{
 	
 	private ArrayList<GameState> gameStates;
@@ -18,6 +20,8 @@ public class GameStateManager{
 	public boolean modeMultiplayer = false;
 	public ObjectOutputStream outToServer;
 	public ObjectInputStream inFromServer;
+	
+	private MultiplayerThread multiplayerThread;
 	
 	private InputStream audioFileIn;
 	private AudioStream audioStream;
@@ -46,7 +50,8 @@ public class GameStateManager{
 		
 		String filename = "/Audio/music/menu-music-quiet.wav";
 		startAudio(filename);
-
+		
+		multiplayerThread = new MultiplayerThread(this);
 	}
 	
 	public void setState(int state){
@@ -116,5 +121,9 @@ public class GameStateManager{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public void updateP2Thread(){
+		
 	}
 }
