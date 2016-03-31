@@ -1,13 +1,13 @@
 package GameState;
 
 import java.awt.Graphics2D;
-import sun.audio.AudioPlayer;
-import sun.audio.AudioStream;
+
 import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
 
 import Main.Game;
+import audioplayer.AudioManager;
 import networking.MultiplayerThread;
 
 public class GameStateManager{
@@ -24,8 +24,7 @@ public class GameStateManager{
 	
 	private MultiplayerThread multiplayerThread;
 	
-	private InputStream audioFileIn;
-	private AudioStream audioStream;
+	private AudioManager audioManager;
 
 	//different game states
 	public static final int MENUSTATE = 0;
@@ -50,15 +49,15 @@ public class GameStateManager{
 		gameStates.add(new EndState(this));
 		
 		String filename = "/Audio/music/menu-music-quiet.wav";
-		startAudio(filename);
+		audioManager = new AudioManager();
+		audioManager.updateAudio(filename);
 		
 		multiplayerThread = new MultiplayerThread(this, Game.p2);
 	}
 	
 	public void setState(int state){
 		if(state == 3){
-			stopAudio();
-			startAudio("/Audio/music/level-music-quiet.wav");
+			audioManager.updateAudio("/Audio/music/level-music-quiet.wav");
 		}
 		curState = state;
 		gameStates.get(curState).init();
@@ -88,43 +87,18 @@ public class GameStateManager{
 	public void keyReleased(int k){
 		gameStates.get(curState).keyReleased(k);
 	}
-	private void startAudio(String file){
-		
-		try {
-			 
-			if(file != null){
-				audioFileIn = this.getClass().getResourceAsStream(file);
-				audioStream = new AudioStream(audioFileIn);
-				AudioPlayer.player.start(audioStream);
-				} 
-	        }
-		 catch(Throwable e){
-			 e.printStackTrace();
-		 }
-		
-	}
 	
-	private void stopAudio(){
-		AudioPlayer.player.stop(audioStream);
-	}
 	
-	public void updateAudio(String file){
-		stopAudio();
-		startAudio(file);
+	public void updateP2Thread(){
+		
 	}
 	
 	public void overlayAudio(String file){
-		//System.out.println(file);
-		try{
-			AudioStream overlay = new AudioStream(this.getClass().getResourceAsStream(file));
-			AudioPlayer.player.start(overlay);
-		} catch(IOException e){
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		audioManager.overlayAudio(file);
 	}
-	
-	public void updateP2Thread(){
+
+	public void updateAudio(String file){
+		audioManager.updateAudio(file);
 		
 	}
 }

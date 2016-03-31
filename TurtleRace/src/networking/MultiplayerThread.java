@@ -60,7 +60,7 @@ public class MultiplayerThread implements Runnable{
 			InformationPacket test = null;
 			try{
 			test = (InformationPacket)gsm.inFromServer.readObject();
-			System.out.println("OtherX:" + test.getx() + "|OtherY: " + test.gety() + "|OtherState:" + test.getstate());
+			System.out.println("PACKET||" + " OtherX:" + test.getx() + "|OtherY: " + test.gety() + "|OtherState:" + test.getstate());
 			
 			} catch(Throwable e){
 			// TODO Auto-generated catch block
@@ -68,6 +68,8 @@ public class MultiplayerThread implements Runnable{
 
 			
 			try{
+				//something isn't right here
+				//Packet has right info but it isn't updating the player properly
 				p2.updateP2(test);
 			}catch(Throwable e2){
 				e2.printStackTrace();
