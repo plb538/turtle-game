@@ -95,9 +95,6 @@ public class MenuState extends GameState{
 		if(k == KeyEvent.VK_ESCAPE){
 			gsm.updateAudio(null);
 		}
-		if(k == KeyEvent.VK_W){
-			gsm.overlayAudio("/Audio/player/swing-stick.wav");
-		}
 	}
 
 	@Override
