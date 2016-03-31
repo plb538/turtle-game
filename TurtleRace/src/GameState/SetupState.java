@@ -3,6 +3,7 @@ package GameState;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.HeadlessException;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -51,6 +52,15 @@ public class SetupState extends GameState{
 		
 		gsm.modeMultiplayer = true;
 		
+        try{
+			JOptionPane.showMessageDialog(null, "Your IP Address is:" + InetAddress.getLocalHost().getHostAddress()  , "Info", JOptionPane.INFORMATION_MESSAGE);
+		} catch(Throwable e1){
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+
+		
 		int hostInput = JOptionPane.YES_NO_OPTION;
 		
 		int hostResult = JOptionPane.showConfirmDialog(null, "Are you the host?", "", hostInput);
@@ -97,7 +107,8 @@ public class SetupState extends GameState{
 		}catch(Throwable e){
 			e.printStackTrace();
 		};
-		
+		gsm.connected = true;
+		gsm.startMultiplayer();
 		gsm.setState(gsm.LEVELSTATE);
 	}
 

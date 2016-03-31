@@ -36,7 +36,7 @@ public class Player extends MapObject{
 	private static final int ATTACKING = 3;
 	
 	public Player(TileMap tm){
-		super(tm);
+		//super(tm);
 		
 		weapon = new Weapon(this);
 		//sprite width and height
@@ -258,5 +258,10 @@ public class Player extends MapObject{
 		curAction = packet.getaction();
 		animation.setFrames(sprites.get(packet.getaction()));
 		animation.setDelay(100);
+	}
+
+	public int getState(){
+		// TODO Auto-generated method stub
+		return state;
 	}
 }

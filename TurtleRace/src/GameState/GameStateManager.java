@@ -1,26 +1,33 @@
 package GameState;
 
 import java.awt.Graphics2D;
-import sun.audio.AudioPlayer;
-import sun.audio.AudioStream;
+
 import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
+
+import Main.Game;
+import audioplayer.AudioManager;
+import networking.ReadThread;
+import networking.SendThread;
 
 public class GameStateManager{
 	
 	private ArrayList<GameState> gameStates;
 	private int curState;
 	
-	public boolean isHost;
-	public ServerSocket hostSocket;
-	public Socket clientSocket;
+	public boolean isHost = false;
+	public ServerSocket hostSocket = null;
+	public Socket clientSocket = null;
 	public boolean modeMultiplayer = false;
-	public ObjectOutputStream outToServer;
-	public ObjectInputStream inFromServer;
+	public ObjectOutputStream outToServer = null;
+	public ObjectInputStream inFromServer = null;
 	
-	private InputStream audioFileIn;
-	private AudioStream audioStream;
+	private ReadThread readThread = null;
+	private SendThread sendThread = null;
+	public boolean connected = false;
+	
+	private AudioManager audioManager;
 
 	//different game states
 	public static final int MENUSTATE = 0;
@@ -44,15 +51,17 @@ public class GameStateManager{
 		gameStates.add(new JumpPuzzle1(this));
 		gameStates.add(new EndState(this));
 		
-		String filename = "/Audio/music/menu-music-quiet.wav";
-		startAudio(filename);
-
+		String filename = "/Audio/music/track1-quiet.wav";
+		audioManager = new AudioManager();
+		audioManager.updateAudio(filename);
+		
+		connected = false;
+		modeMultiplayer = false;
 	}
 	
 	public void setState(int state){
 		if(state == 3){
-			stopAudio();
-			startAudio("/Audio/music/level-music-quiet.wav");
+			audioManager.updateAudio("/Audio/music/track2-quiet.wav");
 		}
 		curState = state;
 		gameStates.get(curState).init();
@@ -82,39 +91,24 @@ public class GameStateManager{
 	public void keyReleased(int k){
 		gameStates.get(curState).keyReleased(k);
 	}
-	private void startAudio(String file){
-		
-		try {
-			 
-			if(file != null){
-				audioFileIn = this.getClass().getResourceAsStream(file);
-				audioStream = new AudioStream(audioFileIn);
-				AudioPlayer.player.start(audioStream);
-				} 
-	        }
-		 catch(Throwable e){
-			 e.printStackTrace();
-		 }
-		
-	}
 	
-	private void stopAudio(){
-		AudioPlayer.player.stop(audioStream);
-	}
 	
-	public void updateAudio(String file){
-		stopAudio();
-		startAudio(file);
+	public void updateP2Thread(){
+		
 	}
 	
 	public void overlayAudio(String file){
-		//System.out.println(file);
-		try{
-			AudioStream overlay = new AudioStream(this.getClass().getResourceAsStream(file));
-			AudioPlayer.player.start(overlay);
-		} catch(IOException e){
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		audioManager.overlayAudio(file);
+	}
+
+	public void updateAudio(String file){
+		audioManager.updateAudio(file);
+		
+	}
+	
+	public void startMultiplayer(){
+		readThread = new ReadThread(this);
+		sendThread = new SendThread(this);
+		
 	}
 }

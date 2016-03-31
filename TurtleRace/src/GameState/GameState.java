@@ -43,12 +43,14 @@ public abstract class GameState{
 	public abstract void init();
 	
 	public void update(){
+		/*
 		try{
 			System.out.println(InetAddress.getLocalHost().getHostAddress());
 		} catch(UnknownHostException e3){
 			// TODO Auto-generated catch block
 			e3.printStackTrace();
 		}
+		*/
 		
 		Game.p1.update();
 		
@@ -56,6 +58,9 @@ public abstract class GameState{
 			for(MonkeyEnemy mes : monkeys){
 			mes.update();
 			}
+		}
+		else{
+			portal.activate();
 		}
 		
 		portal.update();
@@ -66,17 +71,24 @@ public abstract class GameState{
 		checkIfHit(Game.p1, monkeys);
 		checkIfHit(Game.p2, monkeys);
 		
-		if(((Game.p1.getx() >= (portal.getx() - 20)) && (Game.p1.getx() <= (portal.getx() + 20))) && 
+		if(portal.checkIfActivated()){
+			if(((Game.p1.getx() >= (portal.getx() - 20)) && (Game.p1.getx() <= (portal.getx() + 20))) && 
 			((Game.p1.gety() >= (portal.gety() - 5)) && (Game.p1.gety() <= (portal.gety() + 35)))){
 			//System.out.println("InPotal");
 			gsm.setState(gsm.getState() + 1);
+			}
 		}
-		
+	
 		//if player falls of map
 		if(Game.p1.notOnScreen()){
 			Game.p1.setPosition(100, tileMap.getHeight() - 100);
 		}
-
+		
+		if(gsm.modeMultiplayer){
+			gsm.updateP2Thread();
+		}
+		
+		/*
 		if(gsm.modeMultiplayer){
 
 			InformationPacket myPacket = new InformationPacket(Game.p1, gsm.getState());
@@ -106,7 +118,7 @@ public abstract class GameState{
 					e2.printStackTrace();
 			}
 		}
-			
+		*/
 		
 	}
 	
@@ -134,20 +146,21 @@ public abstract class GameState{
 				
 		//draw progress
 		progress.draw(g, Game.p1, tileMap);
-		pt.draw(g);
+		
+		if(pt != null){
+			pt.draw(g);
+		}
 				
 		if(gsm.modeMultiplayer){
-					
-			if(Game.p2.state == gsm.getState()){
+			//System.out.println("Game is in multiplayer mode. Mystate=" + gsm.getState() + ". OtherState = " + Game.p2.getState());
+			if(Game.p2.getState() == gsm.getState()){
+				//System.out.println("Drawing P2");
 				Game.p2.draw(g);
 			}
 		}
 	}
 	
 	public void keyPressed(int k){
-		if(k == KeyEvent.VK_ENTER){
-			gsm.setState(gsm.getState() + 1);
-		}
 		if(k == KeyEvent.VK_LEFT) Game.p1.setLeft(true);
 		if(k == KeyEvent.VK_RIGHT) Game.p1.setRight(true);
 		if(k == KeyEvent.VK_UP) Game.p1.setJumping(true);

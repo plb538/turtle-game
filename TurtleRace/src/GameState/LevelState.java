@@ -11,6 +11,7 @@ import TileMap.TileMap;
 import graphicalElements.DrawnHealth;
 import graphicalElements.DrawnProgress;
 import graphicalElements.PlayerTip;
+import networking.InformationPacket;
 
 public class LevelState extends GameState{
 		
@@ -44,7 +45,7 @@ public class LevelState extends GameState{
 		bg = new Background("/Backgrounds/default-background.png", 1);	
 		
 		//creates player and sets player's tilemap to LevelState's tilemap
-		Game.p1 = new Player(tileMap);
+		Game.p1.setObjectOnTileMap(tileMap);
 		Game.p1.setPosition(100, tileMap.getHeight() - 100);
 		
 		monkeys = new ArrayList<MonkeyEnemy>();
@@ -65,11 +66,13 @@ public class LevelState extends GameState{
 		progress = new DrawnProgress(Game.p1, tileMap);
 		
 		//Create player 2 objects
-		Game.p2 = new Player(tileMap);
+		Game.p2.setObjectOnTileMap(tileMap);
 		Game.p2.setPosition(100, tileMap.getHeight()-100);
 			
 		healthBar2 = new DrawnHealth(Game.p2);
 		progress2 = new DrawnProgress(Game.p2, tileMap);
-		pt = new PlayerTip();
+		pt = new PlayerTip("Press Up to jump and W to attack", 180, 250);
+		
+		
 	}
 }

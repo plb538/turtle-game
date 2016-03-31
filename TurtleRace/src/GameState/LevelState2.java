@@ -14,6 +14,7 @@ import TileMap.Background;
 import TileMap.TileMap;
 import graphicalElements.DrawnHealth;
 import graphicalElements.DrawnProgress;
+import graphicalElements.PlayerTip;
 import networking.InformationPacket;
 
 public class LevelState2 extends GameState{
@@ -54,5 +55,6 @@ public class LevelState2 extends GameState{
 		
 		healthBar = new DrawnHealth(Game.p1);
 		progress = new DrawnProgress(Game.p1, tileMap);
+		pt = new PlayerTip("Press Q to glide. Try it while jumping", 180, 250);
 	}
 }
