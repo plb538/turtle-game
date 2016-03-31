@@ -36,7 +36,7 @@ public class Player extends MapObject{
 	private static final int ATTACKING = 3;
 	
 	public Player(TileMap tm){
-		super(tm);
+		//super(tm);
 		
 		weapon = new Weapon(this);
 		//sprite width and height

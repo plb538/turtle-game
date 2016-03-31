@@ -60,26 +60,19 @@ public class MultiplayerThread implements Runnable{
 			InformationPacket test = null;
 			try{
 			test = (InformationPacket)gsm.inFromServer.readObject();
-			System.out.println("PACKET||" + " OtherX:" + test.getx() + "|OtherY: " + test.gety() + "|OtherState:" + test.getstate());
+			//System.out.println("PACKET||" + " OtherX:" + test.getx() + "|OtherY: " + test.gety() + "|OtherState:" + test.getstate());
+			//System.out.println("UpdatingP2");
+			Game.p2.updateP2(test);
 			
 			} catch(Throwable e){
 			// TODO Auto-generated catch block
-				e.printStackTrace();
-
-			
-			try{
-				//something isn't right here
-				//Packet has right info but it isn't updating the player properly
-				p2.updateP2(test);
-			}catch(Throwable e2){
-				e2.printStackTrace();
-				}
+				e.printStackTrace();		
+		
 			}
-		
-		
 		}
 	}
-
 }
+
+
 
 
