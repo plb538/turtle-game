@@ -40,7 +40,7 @@ public class EndState extends GameState{
 
 	@Override
 	public void init(){
-		finishTime = System.nanoTime();
+		Game.p1.setFinishTime(System.nanoTime());
 	}
 
 	@Override
@@ -56,14 +56,13 @@ public class EndState extends GameState{
 		//draw title
 		g.setColor(titleColor);
 		g.setFont(titleFont);
-		g.drawString("Thanks for Playing!", GamePanel.WIDTH/4, 100);
-		g.drawString("Your Score:" + (1000000-((finishTime - Game.p1.getStartTime()) / 1000000000)), GamePanel.WIDTH/4, 250);
-		g.drawString("Your Deaths:" + Game.p1.getDeathCount(), GamePanel.WIDTH/4, 350);
+		g.drawString("Thanks for Playing!", GamePanel.WIDTH/6, 100);
+		g.drawString("Your Score:" + (10000-(((Game.p1.getFinishTime() - Game.p1.getStartTime()) / 1000000000) % 10000)), GamePanel.WIDTH/6, 250);
+		g.drawString("Your Deaths:" + Game.p1.getDeathCount(), GamePanel.WIDTH/6, 350);
 		
 		if(gsm.modeMultiplayer){
-			g.drawString("Oppoonet's Score:" + (1000000-((finishTime - Game.p2.getStartTime()) / 1000000000)), GamePanel.WIDTH/4, 450);
-			g.drawString("Opponent's Deaths:" + Game.p2.getDeathCount(), GamePanel.WIDTH/4, 350);
-			
+			g.drawString("Oppoonet's Score:" + (10000-(((Game.p2.getFinishTime() - Game.p2.getStartTime()) / 1000000000) % 10000)), GamePanel.WIDTH/6, 450);
+			g.drawString("Opponent's Deaths:" + Game.p2.getDeathCount(), GamePanel.WIDTH/6, 550);
 		}
 		
 	}

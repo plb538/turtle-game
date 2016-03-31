@@ -18,6 +18,7 @@ public class Player extends MapObject{
 	private boolean facingRight;
 	public int state;
 	private long startTime;
+	private long finishTime;
 	private int deathCounter;
 	
 	//attacking stuff
@@ -258,6 +259,9 @@ public class Player extends MapObject{
 		this.setPosition(packet.getx(), packet.gety());
 		this.health = packet.gethealth();
 		this.state = packet.getstate();
+		if(packet.getstate() < 6){
+			this.finishTime = packet.getTime();
+		}
 		//System.out.print(packet.getaction());
 		curAction = packet.getaction();
 		animation.setFrames(sprites.get(packet.getaction()));
@@ -279,6 +283,16 @@ public class Player extends MapObject{
 
 	public int getDeathCount(){
 		return deathCounter;
+	}
+
+	public long getFinishTime(){
+		// TODO Auto-generated method stub
+		return finishTime;
+	}
+
+	public void setFinishTime(long nanoTime){
+		// TODO Auto-generated method stub
+		finishTime = nanoTime;
 	}
 
 }
