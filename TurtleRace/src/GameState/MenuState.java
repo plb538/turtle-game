@@ -77,18 +77,18 @@ public class MenuState extends GameState{
 	@Override
 	public void keyPressed(int k){
 		if(k == KeyEvent.VK_ENTER){
-			gsm.overlayAudio("/Audio/menu/menu-select.wav");
+			gsm.overlayAudio("/Audio/menu/menu-select-loud.wav");
 			select();
 		}
 		if(k == KeyEvent.VK_UP){
-			gsm.overlayAudio("/Audio/menu/menu-move.wav");
+			gsm.overlayAudio("/Audio/menu/menu-move-loud.wav");
 			curOption--;
 			if(curOption == -1){
 				curOption = options.length -1;
 			}
 		}
 		if(k == KeyEvent.VK_DOWN){
-			gsm.overlayAudio("/Audio/menu/menu-move.wav");
+			gsm.overlayAudio("/Audio/menu/menu-move-loud.wav");
 			curOption++;
 			if(curOption == options.length){
 				curOption = 0;
