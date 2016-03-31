@@ -9,7 +9,7 @@ public class MultiplayerThread implements Runnable{
 	private GameStateManager gsm;
 	private Thread thread;
 	private boolean running;
-	private int tickrate = 30;
+	private int tickrate = 60;
 	private long targetTime = 1000/tickrate;
 	private Player p2;
 	
