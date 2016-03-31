@@ -14,6 +14,8 @@ public class MultiplayerThread implements Runnable{
 	public MultiplayerThread(GameStateManager _gsm){
 		super();
 		gsm = _gsm;
+		thread = new Thread(this);
+		thread.start();
 	}
 	
 
@@ -40,8 +42,9 @@ public class MultiplayerThread implements Runnable{
 		}
 		
 	private void update(){
+		System.out.println("Mult Thread updating");
 		if(gsm.modeMultiplayer){
-
+			System.out.println("Game is in multipalyer mode");
 			InformationPacket myPacket = new InformationPacket(Game.p1, gsm.getState());
 			
 			try{
