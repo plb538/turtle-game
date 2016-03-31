@@ -152,9 +152,9 @@ public abstract class GameState{
 		}
 				
 		if(gsm.modeMultiplayer){
-			//System.out.println("IF1");
-			if(Game.p2.state == gsm.getState()){
-				//System.out.println("IF2");
+			System.out.println("Game is in multiplayer mode. Mystate=" + gsm.getState());
+			if(Game.p2.getState() == gsm.getState()){
+				System.out.println("Drawing P2");
 				Game.p2.draw(g);
 			}
 		}

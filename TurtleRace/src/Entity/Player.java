@@ -259,4 +259,9 @@ public class Player extends MapObject{
 		animation.setFrames(sprites.get(packet.getaction()));
 		animation.setDelay(100);
 	}
+
+	public int getState(){
+		// TODO Auto-generated method stub
+		return state;
+	}
 }
