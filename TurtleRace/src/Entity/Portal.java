@@ -17,6 +17,8 @@ public class Portal extends MapObject{
 	//animation actions		
 	private static final int IDLE = 0;
 	
+	private boolean activated;
+	
 	public Portal(TileMap tm){
 		super(tm);
 		//portal size and collision size
@@ -27,6 +29,8 @@ public class Portal extends MapObject{
 		
 		//So portal starts on ground
 		fallSpeed = 10; 
+		
+		activated = false;
 		
 		//load sprite
 		try{
@@ -45,7 +49,7 @@ public class Portal extends MapObject{
 			animation = new Animation();
 			curAction = IDLE;
 			animation.setFrames(sprites.get(IDLE));
-			animation.setDelay(50);
+			animation.setDelay(-1);
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -58,9 +62,21 @@ public class Portal extends MapObject{
 		setPosition(xtemp, ytemp);
 		
 		animation.update();
+		if(!activated){
+			animation.setDelay(-1);
+		}
+		else{
+			animation.setDelay(50);
+		}
 	}
 	//draws the portal to the map
 	public void draw(Graphics2D g, TileMap tm){
 		g.drawImage(animation.getImage(), (int)(x + tm.getx() - width / 2), (int)(y + tm.gety() - height / 2), width, height, null);
 	}
+	
+	public void activate(){
+		activated = true;
+	}
+	
+	public boolean checkIfActivated(){return activated;}
 }

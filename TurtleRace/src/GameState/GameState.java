@@ -57,6 +57,9 @@ public abstract class GameState{
 			mes.update();
 			}
 		}
+		else{
+			portal.activate();
+		}
 		
 		portal.update();
 		
@@ -66,12 +69,14 @@ public abstract class GameState{
 		checkIfHit(Game.p1, monkeys);
 		checkIfHit(Game.p2, monkeys);
 		
-		if(((Game.p1.getx() >= (portal.getx() - 20)) && (Game.p1.getx() <= (portal.getx() + 20))) && 
+		if(portal.checkIfActivated()){
+			if(((Game.p1.getx() >= (portal.getx() - 20)) && (Game.p1.getx() <= (portal.getx() + 20))) && 
 			((Game.p1.gety() >= (portal.gety() - 5)) && (Game.p1.gety() <= (portal.gety() + 35)))){
 			//System.out.println("InPotal");
 			gsm.setState(gsm.getState() + 1);
+			}
 		}
-		
+	
 		//if player falls of map
 		if(Game.p1.notOnScreen()){
 			Game.p1.setPosition(100, tileMap.getHeight() - 100);
