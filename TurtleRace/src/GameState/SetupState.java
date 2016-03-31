@@ -29,6 +29,7 @@ public class SetupState extends GameState{
 	private Color titleColor;
 	private Font titleFont;
 	private Font font;
+	private String ip = "N/A";
 	
 	public SetupState(GameStateManager gsm){
 		this.gsm = gsm;
@@ -53,13 +54,13 @@ public class SetupState extends GameState{
 		gsm.modeMultiplayer = true;
 		
         try{
-			JOptionPane.showMessageDialog(null, "Your IP Address is:" + InetAddress.getLocalHost().getHostAddress()  , "Info", JOptionPane.INFORMATION_MESSAGE);
+			ip = InetAddress.getLocalHost().getHostAddress();
 		} catch(Throwable e1){
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 
-
+        
 		
 		int hostInput = JOptionPane.YES_NO_OPTION;
 		
@@ -123,7 +124,9 @@ public class SetupState extends GameState{
 		bg.draw(g);
 		
 		//draw title
-		
+		g.setColor(titleColor);
+		g.setFont(titleFont);
+		g.drawString("Your IP is:" + ip, GamePanel.WIDTH/6, 100);
 		
 	}
 	//key press options for menu screen
