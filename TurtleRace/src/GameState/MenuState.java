@@ -35,7 +35,7 @@ public class MenuState extends GameState{
 			bg = new Background("/Backgrounds/turtle.PNG", 1);
 			bg.setVector(0, 0); //determines if background is moving
 			
-			titleColor = new Color(255, 0, 0);
+			titleColor = new Color(255, 255, 255);
 			titleFont = new Font("Century Gothic", Font.PLAIN, 56);
 			font = new Font("Arial", Font.PLAIN, 36);
 		}
@@ -60,18 +60,18 @@ public class MenuState extends GameState{
 		g.setColor(titleColor);
 		g.setFont(titleFont);
 		
-		g.drawString(title, 400, 200);
+		g.drawString(title, 400, 150);
 		
 		//draw menu options
 		g.setFont(font);
 		for(int i = 0; i < options.length; i++){
 			if(i == curOption){
-				g.setColor(Color.BLACK);
+				g.setColor(Color.CYAN);
 			}
 			else{
-				g.setColor(Color.RED);
+				g.setColor(Color.WHITE);
 			}
-			g.drawString(options[i], 600, 320 + i*30);
+			g.drawString(options[i], 500, 250 + i*30);
 		}
 	}
 	//key press options for menu screen

@@ -29,7 +29,7 @@ public class OptionState extends GameState{
 			bg = new Background("/Backgrounds/gears.png", 1);
 			bg.setVector(0, 0); //determines if background is moving
 			
-			titleColor = new Color(255, 0, 0);
+			titleColor = new Color(255, 255, 255);
 			titleFont = new Font("Century Gothic", Font.PLAIN, 56);
 			font = new Font("Arial", Font.PLAIN, 26);
 		}
@@ -60,10 +60,10 @@ public class OptionState extends GameState{
 		g.setFont(font);
 		for(int i = 0; i < options.length; i++){
 			if(i == curOption){
-				g.setColor(Color.WHITE);
+				g.setColor(Color.CYAN);
 			}
 			else{
-				g.setColor(Color.RED);
+				g.setColor(Color.WHITE);
 			}
 			g.drawString(options[i], 520, 280 + i*30);
 		}
