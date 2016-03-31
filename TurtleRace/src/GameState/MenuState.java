@@ -9,8 +9,8 @@ import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
- 
-
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 import Main.GamePanel;
 import TileMap.Background;
@@ -124,6 +124,13 @@ public class MenuState extends GameState{
 	@Override
 	public void init(){
 		// TODO Auto-generated method stub
+		
+		try{
+			System.out.println(InetAddress.getLocalHost().getHostAddress());
+		} catch(UnknownHostException e){
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 	

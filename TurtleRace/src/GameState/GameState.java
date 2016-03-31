@@ -43,12 +43,14 @@ public abstract class GameState{
 	public abstract void init();
 	
 	public void update(){
+		/*
 		try{
 			System.out.println(InetAddress.getLocalHost().getHostAddress());
 		} catch(UnknownHostException e3){
 			// TODO Auto-generated catch block
 			e3.printStackTrace();
 		}
+		*/
 		
 		Game.p1.update();
 		
