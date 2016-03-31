@@ -164,7 +164,10 @@ public abstract class GameState{
 	public void keyPressed(int k){
 		if(k == KeyEvent.VK_LEFT) Game.p1.setLeft(true);
 		if(k == KeyEvent.VK_RIGHT) Game.p1.setRight(true);
-		if(k == KeyEvent.VK_UP) Game.p1.setJumping(true);
+		if(k == KeyEvent.VK_UP){
+			gsm.overlayAudio("/Audio/player/jump-loud.wav");
+			Game.p1.setJumping(true);
+		}
 		if(k == KeyEvent.VK_Q) Game.p1.setGliding(true);
 		if(k == KeyEvent.VK_W){
 			Game.p1.setAttacking(true);
