@@ -10,7 +10,8 @@ import Main.Game;
 import TileMap.TileMap;
 import networking.InformationPacket;
 
-public class Player extends MapObject{
+@SuppressWarnings("serial")
+public class Player extends MapObject implements java.io.Serializable{
 
 	//player stuff
 	private int health;
@@ -274,6 +275,7 @@ public class Player extends MapObject{
 		animation.setFrames(sprites.get(packet.getaction()));
 		animation.setDelay(100);
 		this.setFacingRight(packet.getFacingRight());
+		//this.setAttacking(packet.checkIfAttacking());
 	}
 
 	public int getState(){
