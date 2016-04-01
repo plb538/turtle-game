@@ -95,7 +95,7 @@ public class GameStateManager{
 	
 	
 	public void updateP2Thread(){
-		
+	
 	}
 	
 	public void overlayAudio(String file){
@@ -110,6 +110,5 @@ public class GameStateManager{
 	public void startMultiplayer(){
 		readThread = new ReadThread(this);
 		sendThread = new SendThread(this);
-		
 	}
 }

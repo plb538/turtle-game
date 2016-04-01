@@ -44,16 +44,11 @@ public abstract class GameState{
 	public abstract void init();
 	
 	public void update(){
-		/*
-		try{
-			System.out.println(InetAddress.getLocalHost().getHostAddress());
-		} catch(UnknownHostException e3){
-			// TODO Auto-generated catch block
-			e3.printStackTrace();
-		}
-		*/
+		
+
 		
 		Game.p1.update();
+		//Game.p2.update();
 		
 		if(monkeys.size() > 0){
 			for(MonkeyEnemy mes : monkeys){
@@ -88,39 +83,6 @@ public abstract class GameState{
 		if(gsm.modeMultiplayer){
 			gsm.updateP2Thread();
 		}
-		
-		/*
-		if(gsm.modeMultiplayer){
-
-			InformationPacket myPacket = new InformationPacket(Game.p1, gsm.getState());
-			
-			try{
-				gsm.outToServer.writeObject(myPacket);
-			} catch(IOException e1){
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			InformationPacket test = null;
-			try{
-			test = (InformationPacket)gsm.inFromServer.readObject();
-			//System.out.println(test.getx() + " " + test.gety());
-			
-			} catch(ClassNotFoundException e){
-			// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch(IOException e){
-			// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			try{
-				Game.p2.updateP2(test);
-			}catch(Throwable e2){
-					e2.printStackTrace();
-			}
-		}
-		*/
-		
 	}
 	
 	public void draw(Graphics2D g){
@@ -162,6 +124,9 @@ public abstract class GameState{
 	}
 	
 	public void keyPressed(int k){
+		//remember to remove
+		if(k == KeyEvent.VK_ENTER) gsm.setState(gsm.JUMPPUZZLE1);
+		
 		if(k == KeyEvent.VK_LEFT) Game.p1.setLeft(true);
 		if(k == KeyEvent.VK_RIGHT) Game.p1.setRight(true);
 		if(k == KeyEvent.VK_UP){
@@ -186,14 +151,14 @@ public abstract class GameState{
 
 		try{
 		for(MonkeyEnemy me : mes){
-			if((p.getx() + 60 >= me.getx() && p.getx() <= me.getx() + me.getWidth()) && p.checkIfAttacking()){
+			if((p.getx() + 60 >= me.getx() && p.getx() <= me.getx() + me.getWidth()) && p.checkIfAttacking() && ((p.gety() + p.getCHeight() <= me.gety() + me.getCHeight()) && p.gety() + p.getCHeight() >= me.gety())){
 				me.health -= p.weapon.damage;
 				if(p.weapon.getAnimation().getFrame() == 2){
 					me.setVector(4, 0);
 					gsm.overlayAudio("/Audio/monkey/flinch.wav");
 				}
 			}
-			if((p.getx() - 30 <= me.getx() + me.getCWidth() && p.getx() >= me.getx()) && p.checkIfAttacking()){
+			if((p.getx() - 30 <= me.getx() + me.getCWidth() && p.getx() >= me.getx()) && p.checkIfAttacking() && ((p.gety() + p.getCHeight() <= me.gety() + me.getCHeight()) && p.gety() + p.getCHeight() >= me.gety())){
 				me.health -= p.weapon.damage;
 				if(p.weapon.getAnimation().getFrame() == 2){
 					me.setVector(-4, 0);
