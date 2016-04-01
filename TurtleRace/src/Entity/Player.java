@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
+import Main.Game;
 import TileMap.TileMap;
 import networking.InformationPacket;
 
@@ -235,7 +236,13 @@ public class Player extends MapObject{
 	
 	public boolean checkIfAttacking(){return attacking;}
 	
-	public void setWeapon(Weapon w){weapon = w;}
+	public boolean getFacingRight(){return facingRight;}
+	
+	public void setFacingRight(boolean fr){this.facingRight = fr;}
+	
+	public Animation getAnimation(){return animation;}
+	
+	public void setAnimation(Animation a){this.animation = a;}
 	
 	public Weapon getWeapon(){return weapon;}
 	
@@ -266,6 +273,7 @@ public class Player extends MapObject{
 		curAction = packet.getaction();
 		animation.setFrames(sprites.get(packet.getaction()));
 		animation.setDelay(100);
+		this.setFacingRight(packet.getFacingRight());
 	}
 
 	public int getState(){

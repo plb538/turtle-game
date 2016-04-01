@@ -72,7 +72,5 @@ public class LevelState extends GameState{
 		healthBar2 = new DrawnHealth(Game.p2);
 		progress2 = new DrawnProgress(Game.p2, tileMap);
 		pt = new PlayerTip("Press Up to jump and W to attack", 180, 250);
-		
-		
 	}
 }
