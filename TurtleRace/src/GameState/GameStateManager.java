@@ -72,6 +72,7 @@ public class GameStateManager{
 	//calls the current gamestates update method
 	public void update(){
 		try{
+			audioManager.checkLoop();
 			gameStates.get(curState).update();
 		} catch(Throwable e){
 			// TODO Auto-generated catch block

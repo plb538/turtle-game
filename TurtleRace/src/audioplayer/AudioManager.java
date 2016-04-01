@@ -8,8 +8,8 @@ import sun.audio.AudioStream;
 
 public class AudioManager{
 	
-	private AudioStream audioStream;
-	private InputStream audioFileIn;
+	private AudioStream audioStream = null;
+	private InputStream audioFileIn = null;
 	
 private void startAudio(String file){
 		
@@ -25,6 +25,12 @@ private void startAudio(String file){
 			 e.printStackTrace();
 		 }
 		
+	}
+
+	public void checkLoop(){
+		if(!(AudioPlayer.player.player.isAlive())){
+			AudioPlayer.player.start(audioStream);
+		}
 	}
 	
 	private void stopAudio(){
