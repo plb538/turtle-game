@@ -48,6 +48,8 @@ public class Player extends MapObject implements java.io.Serializable{
 	public Player(TileMap tm){
 		//super(tm);
 		
+		startTime = System.nanoTime();
+		
 		weapon = new Weapon(this);
 		hat = new Hat(this);
 		//sprite width and height

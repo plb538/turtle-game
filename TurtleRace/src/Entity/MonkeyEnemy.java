@@ -117,12 +117,7 @@ public class MonkeyEnemy extends MapObject{
 	public void update(){
 		
 		if(bFlagMulti){
-			
-			if(damageTaken > maxHealth){
 
-				dead = true;
-				health = 0;
-			}
 		}else{
 			
 
@@ -213,8 +208,12 @@ public class MonkeyEnemy extends MapObject{
 	public void setMultiFlag(){
 		bFlagMulti = true;
 	}
+	
+	public synchronized void takeDamage(int damage){
+		health -= damage;
+	}
 
-	public void updateP2(int xpos, int ypos, int hp){
+	public synchronized void updateP2(int xpos, int ypos, int hp){
 		// TODO Auto-generated method stub
 		
 		//if(bFlagMulti){

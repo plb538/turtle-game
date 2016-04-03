@@ -15,6 +15,7 @@ public class InformationPacket implements java.io.Serializable{
 	private int health;
 	private int action;
 	private long timestamp;
+	private long startTime;
 	private boolean facingRight;
 	private List<Integer> monkeyX = new ArrayList<>();
 	private List<Integer> monkeyY = new ArrayList<>();
@@ -34,6 +35,7 @@ public class InformationPacket implements java.io.Serializable{
 		action = player.getAction();
 		timestamp= System.nanoTime();
 		facingRight = player.getFacingRight();
+		startTime = player.getStartTime();
 		//isAttacking = player.checkIfAttacking();
 		
 		if(monkeys != null && monkeys.size() > 0){
@@ -57,6 +59,7 @@ public class InformationPacket implements java.io.Serializable{
 		action = player.getAction();
 		timestamp = System.nanoTime();
 		facingRight = player.getFacingRight();
+		startTime = player.getStartTime();
 		//isAttacking = player.checkIfAttacking();
 	}
 	/*
@@ -76,7 +79,11 @@ public class InformationPacket implements java.io.Serializable{
 	 */
 	public int getstate(){return state;}
 	
-	public long getTime(){return timestamp;}
+	public long getTime(){return startTime - timestamp;}
+	
+	public long getStartTime(){return startTime;}
+	
+	public long getTimeStamp(){return timestamp;}
 	
 	public int getaction(){return action;}
 	

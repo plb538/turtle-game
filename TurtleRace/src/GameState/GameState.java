@@ -172,14 +172,14 @@ public abstract class GameState{
 		for(MonkeyEnemy me : mes){
 			if(!(me.checkIfDead())){
 				if((p.getx() + 60 >= me.getx() && p.getx() <= me.getx() + me.getWidth()) && p.checkIfAttacking() && ((p.gety() + p.getCHeight() <= me.gety() + me.getCHeight()) && p.gety() + p.getCHeight() >= me.gety())){
-					me.health -= p.weapon.damage;
+					me.takeDamage(p.weapon.damage);
 					if(p.weapon.getAnimation().getFrame() == 2){
 						me.setVector(4, 0);
 						gsm.overlayAudio("/Audio/monkey/flinch.wav");
 					}
 				}
 				if((p.getx() - 30 <= me.getx() + me.getCWidth() && p.getx() >= me.getx()) && p.checkIfAttacking() && ((p.gety() + p.getCHeight() <= me.gety() + me.getCHeight()) && p.gety() + p.getCHeight() >= me.gety())){
-					me.health -= p.weapon.damage;
+					me.takeDamage(p.weapon.damage);
 					if(p.weapon.getAnimation().getFrame() == 2){
 						me.setVector(-4, 0);
 						gsm.overlayAudio("/Audio/monkey/flinch.wav");
