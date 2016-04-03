@@ -20,7 +20,7 @@ public class PlayerTip{
 	}
 	
 	public void draw(Graphics2D g){
-		g.setColor(Color.BLACK);
+		g.setColor(Color.WHITE);
 		g.setFont(new Font("Arial", Font.PLAIN, 20));
 		if(Game.p1.getx() < 350){
 			g.drawString(string, xpos, ypos);

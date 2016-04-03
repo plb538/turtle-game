@@ -10,6 +10,7 @@ import TileMap.Background;
 import TileMap.TileMap;
 import graphicalElements.DrawnHealth;
 import graphicalElements.DrawnProgress;
+import graphicalElements.PlayerTip;
 
 //basically the same as LevelState but with different map
 public class JumpPuzzle1 extends GameState{
@@ -62,5 +63,6 @@ public class JumpPuzzle1 extends GameState{
 		
 		healthBar = new DrawnHealth(Game.p1);
 		progress = new DrawnProgress(Game.p1, tileMap);
+		pt = new PlayerTip("You must defeat all monkeys before finding the portal", 180, 250);
 	}
 }
