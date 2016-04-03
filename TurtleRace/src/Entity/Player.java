@@ -22,10 +22,14 @@ public class Player extends MapObject implements java.io.Serializable{
 	private long startTime;
 	private long finishTime;
 	private int deathCounter;
+	private boolean wearingHat = true; //Only initialed here for testing, remove later
 	
 	//attacking stuff
 	private boolean attacking;
 	public Weapon weapon;
+	
+	//player hat
+	private Hat hat;
 	
 	//gliding
 	private boolean gliding;
@@ -45,6 +49,7 @@ public class Player extends MapObject implements java.io.Serializable{
 		//super(tm);
 		
 		weapon = new Weapon(this);
+		hat = new Hat(this);
 		//sprite width and height
 		width = 64;
 		height = 64;
@@ -221,6 +226,9 @@ public class Player extends MapObject implements java.io.Serializable{
 		    	g.drawImage(animation.getImage(), (int)(x + xmap - width / 2 + width), (int)(y + ymap - height / 2), -width, height, null);
 		    }
 		}
+		if(checkWearingHat()){
+			hat.draw(g, facingRight);
+		}
 	}
 	
 	public int getHealth(){return health;}
@@ -246,6 +254,10 @@ public class Player extends MapObject implements java.io.Serializable{
 	public void setAnimation(Animation a){this.animation = a;}
 	
 	public Weapon getWeapon(){return weapon;}
+	
+	public boolean checkWearingHat(){return wearingHat;}
+	
+	public void setWearingHat(boolean b){wearingHat = b;}
 	
 	public void checkResetConditions(){
 		if(getHealth() <= 0){
