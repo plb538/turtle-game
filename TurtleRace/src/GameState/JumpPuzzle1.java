@@ -41,7 +41,7 @@ public class JumpPuzzle1 extends GameState{
 		bg = new Background("/Backgrounds/default-background.png", 1);	
 		
 		Game.p1.setObjectOnTileMap(tileMap);
-		Game.p1.setPosition(100, tileMap.getHeight() - 300);
+		Game.p1.setPosition(100, tileMap.getHeight() - 100);
 		
 		monkeys = new ArrayList<MonkeyEnemy>();
 		m1 = new MonkeyEnemy(tileMap);
