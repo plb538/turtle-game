@@ -267,8 +267,8 @@ public class Player extends MapObject implements java.io.Serializable{
 			deathCounter++;
 		}
 		
-		int resetx = tileMap.getTileSize()+50;
-		int resety = tileMap.getHeight() - 300;
+		int resetx = tileMap.getTileSize()+100;
+		int resety = tileMap.getHeight() - 200;
 		
 		if(checkDead()){
 			setPosition(resetx,resety);

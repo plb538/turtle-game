@@ -59,7 +59,7 @@ public class EnemyLevel2 extends GameState{
 		
         //creates portal 
 		portal = new Portal(tileMap);
-		portal.setPosition(tileMap.getWidth()-96*2, 450);
+		portal.setPosition(150, 500);
 		
 		//creates player one's health bar and progress bar
 		healthBar = new DrawnHealth(Game.p1);
