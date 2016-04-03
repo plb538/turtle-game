@@ -36,7 +36,7 @@ public class Hat extends MapObject{
 		
 		//load sprites
 		try{
-			BufferedImage spriteSheet = ImageIO.read(getClass().getResourceAsStream("/hats/headbandNoTurtle.png"));
+			BufferedImage spriteSheet = ImageIO.read(getClass().getResourceAsStream("/hats/heliHatNoTurtle.png"));
 			sprites = new ArrayList<BufferedImage[]>();
 			        
 			//break up sprite sheet
