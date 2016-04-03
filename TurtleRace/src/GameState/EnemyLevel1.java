@@ -46,7 +46,7 @@ public class EnemyLevel1 extends GameState{
 		
 		//creates player and sets player's tilemap to LevelState's tilemap
 		Game.p1.setObjectOnTileMap(tileMap);
-		Game.p1.setPosition(100, tileMap.getHeight() - 100);
+		Game.p1.setPosition(100, tileMap.getHeight() - 300);
 		
 		monkeys = new ArrayList<MonkeyEnemy>();
 		

@@ -58,7 +58,7 @@ public class JumpPuzzle4 extends GameState{
 		m4.setPosition(900, 500);
 		
 		portal = new Portal(tileMap);
-		portal.setPosition(100, 100);
+		portal.setPosition(100, 200);
 		
 		healthBar = new DrawnHealth(Game.p1);
 		progress = new DrawnProgress(Game.p1, tileMap);
