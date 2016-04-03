@@ -114,13 +114,16 @@ public class MonkeyEnemy extends MapObject{
 		}
 	}
 	
+	
+	@Override
+	public synchronized void setPosition(double x, double y){
+		this.x = x;
+		this.y = y;
+	}
+	
 	public void update(){
 		
-		if(bFlagMulti){
-
-		}else{
-			
-
+		if(!(bFlagMulti) || (Game.p1.getState() != Game.p2.getState())){
 			
 			getNextPosition(); 
 			checkTileMapCollision();//check for collision
