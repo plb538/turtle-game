@@ -12,6 +12,7 @@ public class InformationPacket implements java.io.Serializable{
 	private int action;
 	private long timestamp;
 	private boolean facingRight;
+	//private boolean isAttacking;
 	
 	/*
 	 * Constructor
@@ -26,6 +27,7 @@ public class InformationPacket implements java.io.Serializable{
 		action = player.getAction();
 		timestamp= System.nanoTime();
 		facingRight = player.getFacingRight();
+		//isAttacking = player.checkIfAttacking();
 	}
 	/*
 	 * Invoked on each game thread update to update the player's state
@@ -39,6 +41,7 @@ public class InformationPacket implements java.io.Serializable{
 		action = player.getAction();
 		timestamp = System.nanoTime();
 		facingRight = player.getFacingRight();
+		//isAttacking = player.checkIfAttacking();
 	}
 	/*
 	 * Returns most recent x position
@@ -62,4 +65,6 @@ public class InformationPacket implements java.io.Serializable{
 	public int getaction(){return action;}
 	
 	public boolean getFacingRight(){return facingRight;}
+	
+	//public boolean checkIfAttacking(){return isAttacking;}
 }
