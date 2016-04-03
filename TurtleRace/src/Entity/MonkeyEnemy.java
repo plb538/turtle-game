@@ -8,6 +8,7 @@ import javax.imageio.ImageIO;
 
 import Main.Game;
 import TileMap.TileMap;
+import networking.InformationPacket;
 
 public class MonkeyEnemy extends MapObject{
 	
@@ -18,6 +19,8 @@ public class MonkeyEnemy extends MapObject{
 	private long startTime;
 	private boolean facingRight;
 	private int targetTime = 2000;
+	private boolean bFlagMulti = false;
+	private int damageTaken = 0;
 		
 	//animations
 	private ArrayList<BufferedImage[]> sprites;
@@ -112,43 +115,59 @@ public class MonkeyEnemy extends MapObject{
 	}
 	
 	public void update(){
-		getNextPosition(); 
-		checkTileMapCollision();//check for collision
-		setPosition(xtemp, ytemp);
+		
+		if(bFlagMulti){
+			
+			if(damageTaken > maxHealth){
+
+				dead = true;
+				health = 0;
+			}
+		}else{
+			
+
+			
+			getNextPosition(); 
+			checkTileMapCollision();//check for collision
+			setPosition(xtemp, ytemp);
 	
-		int rand = (int)(Math.random()*2);
+			int rand = (int)(Math.random()*2);
 	
-		if(rand % 2 == 0){
-			if(animation.getFrame() == 2){
-				stopMoving();
+			if(rand % 2 == 0){
+				if(animation.getFrame() == 2){
+					stopMoving();
+				}
+				else{
+					walkLeft();
+				}
 			}
 			else{
-				walkLeft();
+				if(animation.getFrame() == 2){
+					stopMoving();
+				}
+				else{
+					walkRight();
+				}
 			}
-		}
-		else{
-			if(animation.getFrame() == 2){
-				stopMoving();
+			animation.update();
+			if(this.health <= 0){
+				this.health = 0;
+				this.dead = true;
 			}
-			else{
-				walkRight();
-			}
-		}
-		animation.update();
-		if(this.health <= 0){
-			this.health = 0;
-			this.dead = true;
 		}
 	}
 	
 	public void draw(Graphics2D g){
 	    //positions object on map
-		setMapPosition();
-		if((Game.p1.getx() <= this.getx()) && (Game.p2.getx() <= this.getx())){
-			g.drawImage(animation.getImage(), (int)(x + xmap - width / 2 + width), (int)(y + ymap - height / 2), -width, height, null);
-		}
-		else{
-			g.drawImage(animation.getImage(), (int)(x + xmap - width / 2), (int)(y + ymap - height / 2), width, height, null);
+		if(!(dead)){
+		
+			setMapPosition();
+			if((Game.p1.getx() <= this.getx()) && (Game.p2.getx() <= this.getx())){
+				g.drawImage(animation.getImage(), (int)(x + xmap - width / 2 + width), (int)(y + ymap - height / 2), -width, height, null);
+			}
+			else{
+				g.drawImage(animation.getImage(), (int)(x + xmap - width / 2), (int)(y + ymap - height / 2), width, height, null);
+			}
 		}
 	}
 	
@@ -190,4 +209,24 @@ public class MonkeyEnemy extends MapObject{
 	public boolean checkIfDead(){return dead;}
 	
 	public boolean checkFacingRight(){return facingRight;}
+	
+	public void setMultiFlag(){
+		bFlagMulti = true;
+	}
+
+	public void updateP2(int xpos, int ypos, int hp){
+		// TODO Auto-generated method stub
+		
+		//if(bFlagMulti){
+			
+			this.setPosition(xpos, ypos);
+			this.health = hp;
+			if(hp <= 0){
+				hp = 0;
+				dead = true;
+			}
+			
+		//}
+		
+	}
 }

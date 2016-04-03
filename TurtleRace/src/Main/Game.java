@@ -16,6 +16,7 @@ public class Game{
 	
 	public static Player p1;
 	public static Player p2;
+	public static Printer Printer = new Printer();
 	
 	public static void main(String[] args){
 		p1 = new Player(null);

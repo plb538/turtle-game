@@ -21,6 +21,11 @@ public class ReadThread extends MultiplayerThread{
 					//System.out.println("PACKET||" + " OtherX:" + test.getx() + "|OtherY: " + test.gety() + "|OtherState:" + test.getstate());
 					//System.out.println("UpdatingP2");
 					Game.p2.updateP2(test);
+					
+					if(gsm.getState() == test.getstate()){
+						gsm.gameStates.get(gsm.getState()).updateMonkeyPosP2(test); //.updateMonkeyPosP2(test);
+					}
+
 				} catch(Throwable e){
 					// TODO Auto-generated catch block
 					e.printStackTrace();		

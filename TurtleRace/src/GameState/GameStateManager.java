@@ -8,12 +8,13 @@ import java.util.ArrayList;
 
 import Main.Game;
 import audioplayer.AudioManager;
+import networking.InformationPacket;
 import networking.ReadThread;
 import networking.SendThread;
 
 public class GameStateManager{
 	
-	private ArrayList<GameState> gameStates;
+	public ArrayList<GameState> gameStates;
 	private int curState;
 	
 	public boolean isHost = false;
@@ -94,8 +95,8 @@ public class GameStateManager{
 	}
 	
 	
-	public void updateP2Thread(){
-	
+	public void updateP2Thread(InformationPacket test){
+		gameStates.get(curState).updateMonkeyPosP2(test);
 	}
 	
 	public void overlayAudio(String file){

@@ -30,7 +30,7 @@ public abstract class GameState{
 	protected Background bg;
 		
 	//Entity objects
-	protected ArrayList<MonkeyEnemy> monkeys;
+	public static ArrayList<MonkeyEnemy> monkeys;
 	protected Portal portal;
 	
 	//graphical element objects
@@ -50,14 +50,27 @@ public abstract class GameState{
 		Game.p1.update();
 		//Game.p2.update();
 		
-		if(monkeys.size() > 0){
-			for(MonkeyEnemy mes : monkeys){
-			mes.update();
+		if(gsm.modeMultiplayer && !(gsm.isHost)){
+			for(MonkeyEnemy mes: monkeys){
+				mes.setMultiFlag();
 			}
 		}
-		else{
+		
+		boolean allDead = true;
+		if(monkeys.size() > 0){
+			for(MonkeyEnemy mes : monkeys){
+				mes.update();
+				if(!(mes.checkIfDead())){
+					allDead = false;
+				}
+			}
+		}
+
+		if(allDead){
 			portal.activate();
 		}
+		
+		
 		
 		portal.update();
 		
@@ -80,9 +93,15 @@ public abstract class GameState{
 			Game.p1.setPosition(100, tileMap.getHeight() - 100);
 		}
 		
-		if(gsm.modeMultiplayer){
-			gsm.updateP2Thread();
-		}
+	}
+	
+	public void updateMonkeyPosP2(InformationPacket test){
+		if(monkeys.size() > 0){
+			//for(MonkeyEnemy mes : monkeys){
+			for(int i = 0; i < monkeys.size(); i++){
+				monkeys.get(i).updateP2(test.getMonkeyX(i), test.getMonkeyY(i), test.getMonkeyHP(i));	
+			}
+		}	
 	}
 	
 	public void draw(Graphics2D g){
@@ -151,34 +170,38 @@ public abstract class GameState{
 
 		try{
 		for(MonkeyEnemy me : mes){
-			if((p.getx() + 60 >= me.getx() && p.getx() <= me.getx() + me.getWidth()) && p.checkIfAttacking() && ((p.gety() + p.getCHeight() <= me.gety() + me.getCHeight()) && p.gety() + p.getCHeight() >= me.gety())){
-				me.health -= p.weapon.damage;
-				if(p.weapon.getAnimation().getFrame() == 2){
-					me.setVector(4, 0);
-					gsm.overlayAudio("/Audio/monkey/flinch.wav");
+			if(!(me.checkIfDead())){
+				if((p.getx() + 60 >= me.getx() && p.getx() <= me.getx() + me.getWidth()) && p.checkIfAttacking() && ((p.gety() + p.getCHeight() <= me.gety() + me.getCHeight()) && p.gety() + p.getCHeight() >= me.gety())){
+					me.health -= p.weapon.damage;
+					if(p.weapon.getAnimation().getFrame() == 2){
+						me.setVector(4, 0);
+						gsm.overlayAudio("/Audio/monkey/flinch.wav");
+					}
 				}
-			}
-			if((p.getx() - 30 <= me.getx() + me.getCWidth() && p.getx() >= me.getx()) && p.checkIfAttacking() && ((p.gety() + p.getCHeight() <= me.gety() + me.getCHeight()) && p.gety() + p.getCHeight() >= me.gety())){
-				me.health -= p.weapon.damage;
-				if(p.weapon.getAnimation().getFrame() == 2){
-					me.setVector(-4, 0);
-					gsm.overlayAudio("/Audio/monkey/flinch.wav");
+				if((p.getx() - 30 <= me.getx() + me.getCWidth() && p.getx() >= me.getx()) && p.checkIfAttacking() && ((p.gety() + p.getCHeight() <= me.gety() + me.getCHeight()) && p.gety() + p.getCHeight() >= me.gety())){
+					me.health -= p.weapon.damage;
+					if(p.weapon.getAnimation().getFrame() == 2){
+						me.setVector(-4, 0);
+						gsm.overlayAudio("/Audio/monkey/flinch.wav");
+					}
 				}
-			}
-			if((p.getx() + p.getCWidth() - 4 >=  me.getx()) && (p.getx() + p.getCWidth() -4 <= me.getx() + me.getCWidth()) && (p.gety() + p.getCHeight() >= me.gety()) && (p.gety() + p.getCHeight() <= me.gety() + me.getCHeight())){
-				p.takeDamage(20);
-				p.setVector(-4, 0);
-				p.checkResetConditions();
-				gsm.overlayAudio("/Audio/player/flinch.wav");
-			}
-			if((p.getx() >=  me.getx()) && (p.getx() <= me.getx() + me.getCWidth()) && (p.gety() + p.getCHeight() >= me.gety()) && (p.gety() + p.getCHeight() <= me.gety() + me.getCHeight())){
-				p.takeDamage(20);
-				p.setVector(4, 0);
-				p.checkResetConditions();
-				gsm.overlayAudio("/Audio/player/flinch.wav");
-			}			
+				if((p.getx() + p.getCWidth() - 4 >=  me.getx()) && (p.getx() + p.getCWidth() -4 <= me.getx() + me.getCWidth()) && (p.gety() + p.getCHeight() >= me.gety()) && (p.gety() + p.getCHeight() <= me.gety() + me.getCHeight())){
+					p.takeDamage(20);
+					p.setVector(-4, 0);
+					p.checkResetConditions();
+					gsm.overlayAudio("/Audio/player/flinch.wav");
+				}
+				if((p.getx() >=  me.getx()) && (p.getx() <= me.getx() + me.getCWidth()) && (p.gety() + p.getCHeight() >= me.gety()) && (p.gety() + p.getCHeight() <= me.gety() + me.getCHeight())){
+					p.takeDamage(20);
+					p.setVector(4, 0);
+					p.checkResetConditions();
+					gsm.overlayAudio("/Audio/player/flinch.wav");
+				}
+			/*
 			if(me.getHealth() <= 0){
 				mes.remove(me);
+			}
+			*/
 			}
 		}
 		}catch(ConcurrentModificationException e){
