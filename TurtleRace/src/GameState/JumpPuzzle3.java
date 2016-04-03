@@ -41,7 +41,7 @@ public class JumpPuzzle3 extends GameState{
 		bg = new Background("/Backgrounds/default-background.png", 1);	
 		
 		Game.p1.setObjectOnTileMap(tileMap);
-		Game.p1.setPosition(100, tileMap.getHeight() - 200);
+		Game.p1.setPosition(600, tileMap.getHeight() - 300);
 		
 		monkeys = new ArrayList<MonkeyEnemy>();
 		m1 = new MonkeyEnemy(tileMap);
@@ -58,7 +58,7 @@ public class JumpPuzzle3 extends GameState{
 		m4.setPosition(900, 500);
 		
 		portal = new Portal(tileMap);
-		portal.setPosition(tileMap.getWidth() - 1.5*tileMap.getTileSize(), 100);
+		portal.setPosition(tileMap.getWidth()/2, 100);
 		
 		healthBar = new DrawnHealth(Game.p1);
 		progress = new DrawnProgress(Game.p1, tileMap);
