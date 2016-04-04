@@ -284,6 +284,7 @@ public class Player extends MapObject implements java.io.Serializable{
 	public void updateP2(InformationPacket packet){
 		this.setPosition(packet.getx(), packet.gety());
 		this.health = packet.gethealth();
+		this.setHat(packet.gethat());
 		this.state = packet.getstate();
 		if(packet.getstate() < 6){
 			this.finishTime = packet.getTime();
