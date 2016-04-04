@@ -12,7 +12,7 @@ public class InformationPacket implements java.io.Serializable{
 	//Variables
 	private static final long serialVersionUID = 1L;
 	private int state;
-	private Hat hat;
+	//private Hat hat = null;
 	private int xpos;
 	private int ypos;
 	private int health;
@@ -34,7 +34,7 @@ public class InformationPacket implements java.io.Serializable{
 		state = _state;
 		xpos = player.getx();
 		ypos = player.gety();
-		hat = player.getHat();
+		//hat = player.getHat();
 		health = player.getHealth();
 		action = player.getAction();
 		timestamp= System.nanoTime();
@@ -57,7 +57,7 @@ public class InformationPacket implements java.io.Serializable{
 	 */
 	public void update(Player player, int _state){
 		state = _state;
-		hat = player.getHat();
+		//hat = player.getHat();
 		xpos = player.getx();
 		ypos = player.gety();
 		health = player.getHealth();
@@ -113,10 +113,7 @@ public class InformationPacket implements java.io.Serializable{
 	public int getMonkeyHP(int index){
 		return this.monkeyHP.get(index);
 	}
-	public Hat gethat(){
-		// TODO Auto-generated method stub
-		return hat;
-	}
+
 	
 	
 	
