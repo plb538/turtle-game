@@ -32,12 +32,25 @@ public abstract class GameState{
 	//graphical element objects
 	protected DrawnHealth healthBar;
 	protected DrawnProgress progress;
-		
 	protected DrawnHealth healthBar2;
 	protected DrawnProgress progress2;
 	protected PlayerTip pt;
 
 	public abstract void init();
+	
+	/*
+	 * update()
+	 * -Main update loop
+	 * Updates the following:
+	 * 	-Updates the player
+	 *  -Sets flag for monkeys if multiplayer
+	 *  -Checks if the portal should be activated
+	 *  -Updates the portal
+	 *  -Updates the map's scrolling if it should be moved
+	 *  -Checks if any player or monkey has been hit
+	 *  -Check if the player has fallen off the screen (Not possible on all stages)
+	 *  -Check if the player has entered a portal
+	 */
 	
 	public void update(){
 		Game.p1.update();
@@ -49,18 +62,21 @@ public abstract class GameState{
 			}
 		}
 		
-		boolean allDead = true;
-		if(monkeys.size() > 0){
-			for(MonkeyEnemy mes : monkeys){
-				mes.update();
-				if(!(mes.checkIfDead())){
-					allDead = false;
+		if(!(portal.checkIfActivated())){
+		
+			boolean allDead = true;
+			if(monkeys.size() > 0){
+				for(MonkeyEnemy mes : monkeys){
+					mes.update();
+					if(!(mes.checkIfDead())){
+						allDead = false;
+					}
 				}
 			}
-		}
 
-		if(allDead){
-			portal.activate();
+			if(allDead){
+				portal.activate();
+			}
 		}
 		portal.update();
 		
@@ -84,6 +100,11 @@ public abstract class GameState{
 		}
 	}
 	
+	
+	/*
+	 * updateMonkeyPosP2(InformationPacket test)
+	 * 	-Updates the non-host player's monkeys in multiplayer mode
+	 */
 	public void updateMonkeyPosP2(InformationPacket test){
 		if(monkeys.size() > 0){
 			//for(MonkeyEnemy mes : monkeys){
@@ -93,6 +114,20 @@ public abstract class GameState{
 		}	
 	}
 	
+	/*
+	 * draw(Graphics 2D g)
+	 * 	-Draws successive graphical elements to an image to be drawn to the screen
+	 * 	-Draws in following ordeR:
+	 * 		-Background
+	 * 		-Map
+	 * 		-Player
+	 * 		-Enemies
+	 * 		-Portal
+	 * 		-Health Bar
+	 * 		-Progress Bar
+	 * 		-Player tip (If applicible)
+	 * 		-Player 2 (If applicible)
+	 */
 	public void draw(Graphics2D g){
 		//draw background
 		bg.draw(g);
@@ -133,6 +168,11 @@ public abstract class GameState{
 		}
 	}
 	
+	/*
+	 * keyPressed(int k)
+	 * 	-Handles keyboard input appropriately
+	 */
+	
 	public void keyPressed(int k){
 
 		if(k == KeyEvent.VK_LEFT) Game.p1.setLeft(true);
@@ -148,12 +188,23 @@ public abstract class GameState{
 		}
 	}
 	
+	/*
+	 * keyReleased(int k)
+	 * 	-Handles released keyboard input appropriately
+	 */
+	
 	public void keyReleased(int k){
 		if(k == KeyEvent.VK_LEFT) Game.p1.setLeft(false);
 		if(k == KeyEvent.VK_RIGHT) Game.p1.setRight(false);
 		if(k == KeyEvent.VK_UP) Game.p1.setJumping(false);
 		if(k == KeyEvent.VK_Q) Game.p1.setGliding(false);
 	}
+	
+	/*
+	 * checkIfHit()
+	 * -Hit detection
+	 * -Also plays audio if hits occur
+	 */
 	
 	public void checkIfHit(Player p, ArrayList<MonkeyEnemy> mes){
 
@@ -186,16 +237,8 @@ public abstract class GameState{
 					p.checkResetConditions();
 					gsm.overlayAudio("/Audio/player/flinch.wav");
 				}
-			/*
-			if(me.getHealth() <= 0){
-				mes.remove(me);
-			}
-			*/
 			}
 		}
-		}catch(ConcurrentModificationException e){
-			//Do nothing
-			
 		}catch(Throwable e2){
 			e2.printStackTrace();
 		}

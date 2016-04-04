@@ -7,6 +7,7 @@ import Entity.Player;
 
 public class InformationPacket implements java.io.Serializable{
 
+	//Variables
 	private static final long serialVersionUID = 1L;
 	private int state;
 	private int xpos;
@@ -78,26 +79,32 @@ public class InformationPacket implements java.io.Serializable{
 	 */
 	public int getstate(){return state;}
 	
+	//Returns the time between the other player starting and the time the packet was sent
 	public long getTime(){return startTime - timestamp;}
 	
+	//Returns the other player's start time
 	public long getStartTime(){return startTime;}
 	
+	//Returns the packet's timestamp
 	public long getTimeStamp(){return timestamp;}
 	
+	//Returns the other player's current actoin
 	public int getaction(){return action;}
 	
+	//Returns whether the other player is facing right
 	public boolean getFacingRight(){return facingRight;}
 	
 	//public boolean checkIfAttacking(){return isAttacking;}
 	
+	//Returns a particular monkey's x position
 	public int getMonkeyX(int index){
 		return this.monkeyX.get(index);
 	}
-	
+	//Returns a particular monkey's y position
 	public int getMonkeyY(int index){
 		return this.monkeyY.get(index);
 	}
-	
+	//Returns a particular monkey's health
 	public int getMonkeyHP(int index){
 		return this.monkeyHP.get(index);
 	}

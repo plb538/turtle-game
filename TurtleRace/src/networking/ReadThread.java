@@ -10,6 +10,14 @@ public class ReadThread extends MultiplayerThread{
 		// TODO Auto-generated constructor stub
 	}
 
+	
+	//Read thread update()
+	/*
+	 *-Waits for a packet from the other player
+	 *-Reads the packet
+	 *-Updates the player position
+	 *-Updates the monkey's if the players are in the same state 
+	 */
 	@Override
 	public void update(){
 		InformationPacket test = null;
