@@ -78,9 +78,6 @@ public abstract class GameState{
 				portal.activate();
 			}
 		}
-		
-		
-		
 		portal.update();
 		
 		//allows map to move
@@ -101,9 +98,6 @@ public abstract class GameState{
 		if(Game.p1.notOnScreen()){
 			Game.p1.setPosition(100, tileMap.getHeight() - 100);
 		}
-		
-		System.out.println(Game.p1.getHat().getHat());
-		
 	}
 	
 	

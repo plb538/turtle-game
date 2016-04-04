@@ -80,7 +80,7 @@ public class DesignerState extends GameState implements ActionListener{
 	@Override
 	public void update(){
 		bg.update();
-		if(frame == null){
+		if(!frame.isShowing()){
 			gsm.setState(gsm.MENUSTATE);
 		}
 	}
@@ -107,8 +107,6 @@ public class DesignerState extends GameState implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e){
-		//System.out.println(e.getSource());
-		System.out.println(e.getActionCommand());
 		if(e.getActionCommand() == options[0]){
 			hat = new Hat(Game.p1);
 			hat.initHat("headbandNoTurtle.png");
