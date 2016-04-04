@@ -43,7 +43,8 @@ public class GameStateManager{
 	public static final int ENEMYLEVEL2 = 10;
 	public static final int ENEMYLEVEL3 = 11;	
 	public static final int ENEMYLEVEL4 = 12;
-	public static final int TurtleDesigner = 15;
+	public static final int ENDSTATE = 13;
+	public static final int TurtleDesigner = 14;
 	
 	
 	public GameStateManager(){

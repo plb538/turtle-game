@@ -40,9 +40,6 @@ public abstract class GameState{
 	public abstract void init();
 	
 	public void update(){
-		
-
-		
 		Game.p1.update();
 		//Game.p2.update();
 		
@@ -88,6 +85,8 @@ public abstract class GameState{
 		if(Game.p1.notOnScreen()){
 			Game.p1.setPosition(100, tileMap.getHeight() - 100);
 		}
+		
+		System.out.println(Game.p1.getHat().getHat());
 		
 	}
 	
