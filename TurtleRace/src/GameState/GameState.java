@@ -102,6 +102,8 @@ public abstract class GameState{
 			Game.p1.setPosition(100, tileMap.getHeight() - 100);
 		}
 		
+		System.out.println(Game.p1.getHat().getHat());
+		
 	}
 	
 	

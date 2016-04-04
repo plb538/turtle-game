@@ -254,7 +254,12 @@ public class Player extends MapObject implements java.io.Serializable{
 	
 	public Weapon getWeapon(){return weapon;}
 	
-	public void setHat(Hat h){hat = h;}
+	public void setHat(Hat h){
+		hat = h;
+		wearingHat = true;
+	}
+	
+	public Hat getHat(){return hat;}
 	
 	public boolean checkWearingHat(){return wearingHat;}
 	

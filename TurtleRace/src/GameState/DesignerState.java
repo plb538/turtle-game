@@ -1,6 +1,7 @@
 package GameState;
 
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
@@ -8,7 +9,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import Entity.Hat;
 import Main.Game;
@@ -18,10 +20,18 @@ public class DesignerState extends GameState implements ActionListener{
 
 	private Background bg;
 	
-	private String[] options = { "Headband", "Helicopter Hat", "Undies", "Strawberry Hat"};
+	private String[] options = {"Headband", "Helicopter Hat", "Undies", "Strawberry Hat"};
 	private Color titleColor;
 	private Font titleFont;
 	private Font font;
+	
+	JFrame frame;
+	JButton butt0;
+	private JButton butt1;
+	private JButton butt2;
+	private JButton butt3;
+	
+	private Hat hat;
 	
 	public DesignerState(GameStateManager gsm){
 		this.gsm = gsm;
@@ -41,27 +51,38 @@ public class DesignerState extends GameState implements ActionListener{
 	}
 	@Override
 	public void init(){
+		frame = new JFrame();
+		frame.setLayout(new FlowLayout());
+		frame.setVisible(true);
+		frame.setLocationRelativeTo(null);
+		frame.setResizable(false);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frame.setSize(200, 180);
+	
+		JButton butt0 = new JButton("Headband");
+		butt0.addActionListener(this);
+		frame.add(butt0);
 		
-		//int hostInput = JOptionPane.YES_NO_OPTION;
-	    //int hostResult = JOptionPane.showConfirmDialog(null, "Are you the host?", "", hostInput);
+		JButton butt1 = new JButton("Helicopter Hat");
+		butt1.addActionListener(this);
+		frame.add(butt1);
 		
-		JButton[] butt = new JButton[4];
-		butt[0] = new JButton("HeadBand");
-		butt[1] = new JButton("Helicopter Hat");
-		butt[2] = new JButton("Undies");
-		butt[3] = new JButton("Strawberry Hat");
-		int input = JOptionPane.showOptionDialog(null, "Please Select a Hat", "Hat Select", 0, JOptionPane.INFORMATION_MESSAGE, null, butt, butt[0]);
-		switch(input){
-			
-			case 0: Game.p1.setHat(new Hat(Game.p1));
-					
-				break;
-			
-		}
+		JButton butt2 = new JButton("Undies");
+		butt2.addActionListener(this);
+		frame.add(butt2);
+		
+		JButton butt3 = new JButton("Strawberry Hat");
+		butt3.addActionListener(this);
+		frame.add(butt3);
+		
+	
 	}
 	@Override
 	public void update(){
 		bg.update();
+		if(frame == null){
+			gsm.setState(gsm.MENUSTATE);
+		}
 	}
 
 	@Override
@@ -86,7 +107,34 @@ public class DesignerState extends GameState implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e){
-		// TODO Auto-generated method stub
-		
+		//System.out.println(e.getSource());
+		System.out.println(e.getActionCommand());
+		if(e.getActionCommand() == options[0]){
+			hat = new Hat(Game.p1);
+			hat.initHat("headbandNoTurtle.png");
+			Game.p1.setHat(hat);
+			System.out.println("I am wearing the " + hat.getHat());
+		}
+		else if(e.getActionCommand() == options[1]){
+			hat = new Hat(Game.p1);
+			hat.initHat("heliHatNoTurtle.png");
+			Game.p1.setHat(hat);
+			System.out.println("I am wearing the " + hat.getHat());
+		}
+		else if(e.getActionCommand() == options[2]){
+			hat = new Hat(Game.p1);
+			hat.initHat("femaleUndiesNoTurtle.png");
+			Game.p1.setHat(hat);
+			System.out.println("I am wearing the " + hat.getHat());
+		}
+		else if(e.getActionCommand() == options[3]){
+			hat = new Hat(Game.p1);
+			hat.initHat("strawberryHatNoTurtle.png");
+			Game.p1.setHat(hat);
+			System.out.println("I am wearing the " + hat.getHat());
+		}
+		else{
+			System.out.println("Da fuq?");
+		}
 	}
 }

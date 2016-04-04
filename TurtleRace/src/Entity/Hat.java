@@ -1,6 +1,8 @@
 package Entity;
 
 import java.awt.Graphics2D;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
@@ -15,7 +17,7 @@ public class Hat extends MapObject{
 	private final int[] numFrames = {1};
 	
 	private int xOffset = 0;
-	private int yOffset = 10;
+	private int yOffset = 11;
 	
 	private String hatName;
 	
@@ -29,16 +31,19 @@ public class Hat extends MapObject{
 		//sprite width and height
 		width = 64;
 		height = 84;
-		
+	}
+	
+	public void initHat(String hatName){
+		this.hatName = hatName;
 		//load sprites
 		try{
 			BufferedImage spriteSheet = ImageIO.read(getClass().getResourceAsStream("/hats/" + hatName));
 			sprites = new ArrayList<BufferedImage[]>();
-			        
+				        
 			//break up sprite sheet
 			for(int i = 0; i < numFrames.length; i++){
 				BufferedImage[] bi = new BufferedImage[numFrames[i]];
-						
+								
 				for(int j = 0; j < numFrames[i]; j++){
 					bi[j] = spriteSheet.getSubimage(j*width, i*height, width, height);	
 				}
