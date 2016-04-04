@@ -17,7 +17,7 @@ public class Hat extends MapObject{
 	private final int[] numFrames = {1};
 	
 	private int xOffset = 0;
-	private int yOffset = 11;
+	private int yOffset = 12;
 	
 	private String hatName;
 	

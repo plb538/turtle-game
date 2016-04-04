@@ -10,7 +10,6 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 import Entity.Hat;
 import Main.Game;
@@ -23,42 +22,25 @@ public class DesignerState extends GameState implements ActionListener{
 	private String[] options = {"Headband", "Helicopter Hat", "Undies", "Strawberry Hat"};
 	private Color titleColor;
 	private Font titleFont;
-	private Font font;
 	
-	JFrame frame;
-	JButton butt0;
-	private JButton butt1;
-	private JButton butt2;
-	private JButton butt3;
+	private JFrame frame;
 	
 	private Hat hat;
 	
 	public DesignerState(GameStateManager gsm){
 		this.gsm = gsm;
-		
-		try{
-			//bg = new Background("/Backgrounds/testBG.png", 1);
-			bg = new Background("/Backgrounds/gears.png", 1);
-			bg.setVector(0, 0); //determines if background is moving
-			
-			titleColor = new Color(255, 255, 255);
-			titleFont = new Font("Century Gothic", Font.PLAIN, 56);
-			font = new Font("Arial", Font.PLAIN, 26);
-		}
-		catch(Exception e){
-			e.printStackTrace();
-		}
+	
 	}
 	@Override
 	public void init(){
 		frame = new JFrame();
 		frame.setLayout(new FlowLayout());
 		frame.setVisible(true);
-		frame.setLocationRelativeTo(null);
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setSize(200, 180);
-	
+		frame.setLocationRelativeTo(null);
+		
 		JButton butt0 = new JButton("Headband");
 		butt0.addActionListener(this);
 		frame.add(butt0);
@@ -79,7 +61,7 @@ public class DesignerState extends GameState implements ActionListener{
 	}
 	@Override
 	public void update(){
-		bg.update();
+		//bg.update();
 		if(!frame.isShowing()){
 			gsm.setState(gsm.MENUSTATE);
 		}
@@ -88,7 +70,7 @@ public class DesignerState extends GameState implements ActionListener{
 	@Override
 	public void draw(Graphics2D g){
 		//draw background
-		bg.draw(g);
+		//bg.draw(g);
 		
 		//draw title
 		g.setColor(titleColor);
@@ -111,28 +93,21 @@ public class DesignerState extends GameState implements ActionListener{
 			hat = new Hat(Game.p1);
 			hat.initHat("headbandNoTurtle.png");
 			Game.p1.setHat(hat);
-			System.out.println("I am wearing the " + hat.getHat());
 		}
 		else if(e.getActionCommand() == options[1]){
 			hat = new Hat(Game.p1);
 			hat.initHat("heliHatNoTurtle.png");
 			Game.p1.setHat(hat);
-			System.out.println("I am wearing the " + hat.getHat());
 		}
 		else if(e.getActionCommand() == options[2]){
 			hat = new Hat(Game.p1);
 			hat.initHat("femaleUndiesNoTurtle.png");
 			Game.p1.setHat(hat);
-			System.out.println("I am wearing the " + hat.getHat());
 		}
 		else if(e.getActionCommand() == options[3]){
 			hat = new Hat(Game.p1);
 			hat.initHat("strawberryHatNoTurtle.png");
 			Game.p1.setHat(hat);
-			System.out.println("I am wearing the " + hat.getHat());
-		}
-		else{
-			System.out.println("Da fuq?");
 		}
 	}
 }
