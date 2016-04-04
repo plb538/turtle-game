@@ -141,9 +141,7 @@ public abstract class GameState{
 	}
 	
 	public void keyPressed(int k){
-		//remember to remove
-		if(k == KeyEvent.VK_ENTER) gsm.setState(gsm.JUMPPUZZLE1);
-		
+
 		if(k == KeyEvent.VK_LEFT) Game.p1.setLeft(true);
 		if(k == KeyEvent.VK_RIGHT) Game.p1.setRight(true);
 		if(k == KeyEvent.VK_UP){
