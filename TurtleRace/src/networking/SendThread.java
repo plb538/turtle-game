@@ -8,7 +8,11 @@ public class SendThread extends MultiplayerThread{
 	public SendThread(GameStateManager _gsm){
 			super(_gsm);
 	}
-	
+	//Send thread update()
+		/*
+		 *-Creates a packet
+		 *Sends the packet
+		 */
 	@Override
 	public void update(){
 		//System.out.println("Game is in multiplayer mode");
