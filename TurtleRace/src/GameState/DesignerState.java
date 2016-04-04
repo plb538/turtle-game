@@ -10,6 +10,7 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 import Entity.Hat;
 import Main.Game;
@@ -38,8 +39,11 @@ public class DesignerState extends GameState implements ActionListener{
 		frame.setVisible(true);
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		frame.setSize(200, 180);
+		frame.setSize(180, 220);
 		frame.setLocationRelativeTo(null);
+		
+		frame.add(new JLabel("Choose a hat!"));
+		frame.add(new JLabel("Or click X for no hat"));
 		
 		JButton butt0 = new JButton("Headband");
 		butt0.addActionListener(this);
