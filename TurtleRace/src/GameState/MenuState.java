@@ -14,8 +14,7 @@ public class MenuState extends GameState{
 	
 	//private String[] options = {"Start Single Player", "Start Multiplayer", "Turtle Designer", "Options",  "Quit"};
 	private String[] options = {"Start Single Player", "Start Multiplayer", "Turtle Designer",  "Quit"};
-	
-	private String[] inputStream = null;
+
 	private int inputcounter = 0;
 	
 	private int curOption = 0;
