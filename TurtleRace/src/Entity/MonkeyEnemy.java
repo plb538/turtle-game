@@ -8,7 +8,6 @@ import javax.imageio.ImageIO;
 
 import Main.Game;
 import TileMap.TileMap;
-import networking.InformationPacket;
 
 public class MonkeyEnemy extends MapObject{
 	

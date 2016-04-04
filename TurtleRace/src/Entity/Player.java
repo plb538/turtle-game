@@ -3,10 +3,7 @@ package Entity;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-
 import javax.imageio.ImageIO;
-
-import Main.Game;
 import TileMap.TileMap;
 import networking.InformationPacket;
 

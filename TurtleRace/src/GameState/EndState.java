@@ -3,7 +3,6 @@ package GameState;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
-import java.awt.event.KeyEvent;
 
 import Main.Game;
 import Main.GamePanel;

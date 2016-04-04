@@ -1,21 +1,19 @@
 package GameState;
 
-import java.awt.Graphics2D;
-import java.awt.event.KeyEvent;
-import java.io.IOException;
+
 import java.util.ArrayList;
 
 import Entity.MonkeyEnemy;
-import Entity.Player;
+
 import Entity.Portal;
 import Main.Game;
-import Main.GamePanel;
+
 import TileMap.Background;
 import TileMap.TileMap;
 import graphicalElements.DrawnHealth;
 import graphicalElements.DrawnProgress;
 import graphicalElements.PlayerTip;
-import networking.InformationPacket;
+
 
 public class LevelState2 extends GameState{
 	

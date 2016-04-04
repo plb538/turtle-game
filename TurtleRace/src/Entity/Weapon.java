@@ -6,8 +6,6 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
-import Main.Game;
-
 public class Weapon extends MapObject{
 
 	public int damage = 4;

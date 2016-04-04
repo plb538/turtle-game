@@ -2,18 +2,14 @@ package graphicalElements;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
-
-import javax.swing.JPanel;
-
 import Entity.Player;
 import Main.GamePanel;
-import TileMap.TileMap;
+
 
 public class DrawnHealth{
 
 	//Parameters
-	private int health;
+
 	private int xpos;
 	private int ypos;
 	private int width;
@@ -24,7 +20,7 @@ public class DrawnHealth{
 	 * Sets up the parameters for the bar
 	 */
 	public DrawnHealth(Player player){
-		health = player.getHealth();
+
 		xpos = GamePanel.WIDTH - 210; 
 		ypos = 10;
 		width = 200; 

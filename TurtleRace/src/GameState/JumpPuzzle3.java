@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import Entity.MonkeyEnemy;
 import Entity.Portal;
 import Main.Game;
-import Main.GamePanel;
 import TileMap.Background;
 import TileMap.TileMap;
 import graphicalElements.DrawnHealth;

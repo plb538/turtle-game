@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 
-import Entity.Player;
+
 import Main.Game;
 
 public class PlayerTip{

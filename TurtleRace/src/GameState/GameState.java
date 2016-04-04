@@ -2,12 +2,8 @@ package GameState;
 
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
-import java.io.IOException;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
-
 import Entity.MonkeyEnemy;
 import Entity.Player;
 import Entity.Portal;
@@ -127,7 +123,9 @@ public abstract class GameState{
 		healthBar.draw(g, Game.p1);
 				
 		//draw progress
-		progress.draw(g, Game.p1, tileMap);
+		//progress.draw(g, Game.p1, tileMap);
+		progress.draw(g, monkeys);
+		
 		
 		if(pt != null){
 			pt.draw(g);

@@ -1,8 +1,7 @@
 package networking;
+
 import java.util.List;
 import java.util.ArrayList;
-
-import Entity.Animation;
 import Entity.MonkeyEnemy;
 import Entity.Player;
 

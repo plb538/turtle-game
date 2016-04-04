@@ -6,7 +6,6 @@ import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
 
-import Main.Game;
 import audioplayer.AudioManager;
 import networking.InformationPacket;
 import networking.ReadThread;

@@ -3,15 +3,14 @@ package GameState;
 import java.util.ArrayList;
 
 import Entity.MonkeyEnemy;
-import Entity.Player;
+
 import Entity.Portal;
 import Main.Game;
 import TileMap.Background;
 import TileMap.TileMap;
 import graphicalElements.DrawnHealth;
 import graphicalElements.DrawnProgress;
-import graphicalElements.PlayerTip;
-import networking.InformationPacket;
+
 
 public class EnemyLevel2 extends GameState{
 		
