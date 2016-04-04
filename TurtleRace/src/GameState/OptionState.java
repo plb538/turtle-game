@@ -13,7 +13,7 @@ public class OptionState extends GameState{
 	private Background bg;
 	
 	private String[] options = {"Apply Changes", "Return", 
-			"Jump to State4","Jump to State5","Jump to State6"};
+			"Warp 1","Warp 2","Warp 3"};
 	
 	private int curOption = 0;
 	private String title = "A Tale of Two Turtles";

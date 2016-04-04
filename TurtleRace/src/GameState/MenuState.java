@@ -12,7 +12,11 @@ public class MenuState extends GameState{
 	//this state's background
 	private Background bg;
 	
-	private String[] options = {"Start Single Player", "Start Multiplayer", "Turtle Designer", "Options",  "Quit"};
+	//private String[] options = {"Start Single Player", "Start Multiplayer", "Turtle Designer", "Options",  "Quit"};
+	private String[] options = {"Start Single Player", "Start Multiplayer", "Turtle Designer",  "Quit"};
+
+	private int inputcounter = 0;
+	
 	private int curOption = 0;
 	private String title = "A Tale of Two Turtles";
 	private Color titleColor;
@@ -67,6 +71,7 @@ public class MenuState extends GameState{
 	//key press options for menu screen
 	@Override
 	public void keyPressed(int k){
+		konami(k);
 		if(k == KeyEvent.VK_ENTER){
 			gsm.overlayAudio("/Audio/menu/menu-select-loud.wav");
 			select();
@@ -103,11 +108,12 @@ public class MenuState extends GameState{
 				break;
 			case 2: gsm.setState(GameStateManager.TurtleDesigner);
 				break;
-			case 3 : gsm.setState(GameStateManager.OPTIONSTATE);
-				break;
-			case 4 : 
+			case 3 : //gsm.setState(GameStateManager.OPTIONSTATE);
 				System.exit(0);
 				break;
+			//case 4 : 
+			//	System.exit(0);
+			//	break;
 		}
 	}
 
@@ -116,6 +122,36 @@ public class MenuState extends GameState{
 		// TODO Auto-generated method stub
 		
 		
+		
+	}
+	
+	private void konami(int k){
+		//System.out.println(inputcounter);
+		switch(inputcounter){
+			case 0: if(k == KeyEvent.VK_UP){inputcounter++;} else inputcounter = 0;
+				break;
+			case 1: if(k == KeyEvent.VK_UP){inputcounter++;} else inputcounter = 0;
+				break;
+			case 2: if(k == KeyEvent.VK_DOWN){inputcounter++;} else inputcounter = 0;
+				break;
+			case 3: if(k == KeyEvent.VK_DOWN){inputcounter++;} else inputcounter = 0;
+				break;
+			case 4: if(k == KeyEvent.VK_LEFT){inputcounter++;} else inputcounter = 0;
+				break;
+			case 5: if(k == KeyEvent.VK_RIGHT){inputcounter++;} else inputcounter = 0;
+				break;
+			case 6: if(k == KeyEvent.VK_LEFT){inputcounter++;} else inputcounter = 0;
+				break;
+			case 7: if(k == KeyEvent.VK_RIGHT){inputcounter++;} else inputcounter = 0;
+				break;
+			case 8: if(k == KeyEvent.VK_B){inputcounter++;} else inputcounter = 0;
+				break;
+			case 9: if(k == KeyEvent.VK_A){
+						inputcounter = 0;
+						gsm.setState(GameStateManager.OPTIONSTATE);
+					} else inputcounter = 0;
+				break;
+		}
 		
 	}
 	
