@@ -119,10 +119,7 @@ public class MenuState extends GameState{
 
 	@Override
 	public void init(){
-		// TODO Auto-generated method stub
-		
-		
-		
+	
 	}
 	
 	private void konami(int k){
