@@ -13,9 +13,6 @@ import graphicalElements.DrawnProgress;
 import graphicalElements.PlayerTip;
 
 public class LevelState extends GameState{
-		
-	//private MonkeyEnemy m1;
-	//private MonkeyEnemy m2;
 	
 	public LevelState(GameStateManager gsm){
 		this.gsm = gsm;
@@ -48,13 +45,6 @@ public class LevelState extends GameState{
 		Game.p1.setPosition(100, tileMap.getHeight() - 100);
 		
 		monkeys = new ArrayList<MonkeyEnemy>();
-		
-		//m1 = new MonkeyEnemy(tileMap);
-		//m2 = new MonkeyEnemy(tileMap);
-		//monkeys.add(m1);
-		//monkeys.add(m2);
-		//m1.setPosition(600, 450);
-		//m2.setPosition(1200, 150);
 		
         //creates portal 
 		portal = new Portal(tileMap);

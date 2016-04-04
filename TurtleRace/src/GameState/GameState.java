@@ -100,7 +100,6 @@ public abstract class GameState{
 		}
 	}
 	
-	
 	/*
 	 * updateMonkeyPosP2(InformationPacket test)
 	 * 	-Updates the non-host player's monkeys in multiplayer mode
@@ -128,6 +127,7 @@ public abstract class GameState{
 	 * 		-Player tip (If applicible)
 	 * 		-Player 2 (If applicible)
 	 */
+	
 	public void draw(Graphics2D g){
 		//draw background
 		bg.draw(g);

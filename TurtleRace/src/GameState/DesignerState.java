@@ -29,11 +29,11 @@ public class DesignerState extends GameState implements ActionListener{
 	
 	public DesignerState(GameStateManager gsm){
 		this.gsm = gsm;
-	
+		frame = new JFrame();
 	}
+	
 	@Override
 	public void init(){
-		frame = new JFrame();
 		frame.setLayout(new FlowLayout());
 		frame.setVisible(true);
 		frame.setResizable(false);
@@ -56,8 +56,6 @@ public class DesignerState extends GameState implements ActionListener{
 		JButton butt3 = new JButton("Strawberry Hat");
 		butt3.addActionListener(this);
 		frame.add(butt3);
-		
-	
 	}
 	@Override
 	public void update(){

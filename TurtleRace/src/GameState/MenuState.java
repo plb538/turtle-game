@@ -13,7 +13,7 @@ public class MenuState extends GameState{
 	private Background bg;
 	
 	//private String[] options = {"Start Single Player", "Start Multiplayer", "Turtle Designer", "Options",  "Quit"};
-	private String[] options = {"Start Single Player", "Start Multiplayer", "Turtle Designer",  "Quit"};
+	private String[] options = {"Start Single Player", "Start Multiplayer",  "Quit"};
 
 	private int inputcounter = 0;
 	
@@ -22,6 +22,8 @@ public class MenuState extends GameState{
 	private Color titleColor;
 	private Font titleFont;
 	private Font font;
+	
+	private boolean alreadyAsked;
 	
 	public MenuState(GameStateManager gsm){
 		this.gsm = gsm;
@@ -37,6 +39,7 @@ public class MenuState extends GameState{
 		catch(Exception e){
 			e.printStackTrace();
 		}
+		alreadyAsked = false;
 	}
 
 	@Override
@@ -99,21 +102,28 @@ public class MenuState extends GameState{
 	public void keyReleased(int k){}
 	
 	private void select(){
-
-		switch(curOption){
-			case 0 : 
-				gsm.setState(GameStateManager.LEVELSTATE);
+		if(!alreadyAsked){
+			switch(curOption){
+				case 0 : gsm.setState(GameStateManager.TURTLEDESIGNER);
+					break;
+				case 1 : gsm.setState(GameStateManager.TURTLEDESIGNER);	
+					break;
+				case 2 : //gsm.setState(GameStateManager.OPTIONSTATE);
+					System.exit(0);
+					break;
+			}
+			alreadyAsked = true;
+		}
+		else{
+			switch(curOption){
+			case 0 : gsm.setState(GameStateManager.LEVELSTATE);
 				break;
 			case 1 : gsm.setState(GameStateManager.SETUPSTATE);	
 				break;
-			case 2: gsm.setState(GameStateManager.TurtleDesigner);
-				break;
-			case 3 : //gsm.setState(GameStateManager.OPTIONSTATE);
+			case 2 : //gsm.setState(GameStateManager.OPTIONSTATE);
 				System.exit(0);
 				break;
-			//case 4 : 
-			//	System.exit(0);
-			//	break;
+			}
 		}
 	}
 
