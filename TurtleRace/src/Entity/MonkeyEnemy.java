@@ -8,7 +8,6 @@ import javax.imageio.ImageIO;
 
 import Main.Game;
 import TileMap.TileMap;
-import networking.InformationPacket;
 
 public class MonkeyEnemy extends MapObject{
 	
@@ -114,18 +113,16 @@ public class MonkeyEnemy extends MapObject{
 		}
 	}
 	
+	
+	@Override
+	public synchronized void setPosition(double x, double y){
+		this.x = x;
+		this.y = y;
+	}
+	
 	public void update(){
 		
-		if(bFlagMulti){
-			
-			if(damageTaken > maxHealth){
-
-				dead = true;
-				health = 0;
-			}
-		}else{
-			
-
+		if(!(bFlagMulti) || (Game.p1.getState() != Game.p2.getState())){
 			
 			getNextPosition(); 
 			checkTileMapCollision();//check for collision
@@ -213,8 +210,12 @@ public class MonkeyEnemy extends MapObject{
 	public void setMultiFlag(){
 		bFlagMulti = true;
 	}
+	
+	public synchronized void takeDamage(int damage){
+		health -= damage;
+	}
 
-	public void updateP2(int xpos, int ypos, int hp){
+	public synchronized void updateP2(int xpos, int ypos, int hp){
 		// TODO Auto-generated method stub
 		
 		//if(bFlagMulti){

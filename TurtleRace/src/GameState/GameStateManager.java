@@ -6,7 +6,6 @@ import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
 
-import Main.Game;
 import audioplayer.AudioManager;
 import networking.InformationPacket;
 import networking.ReadThread;
@@ -37,8 +36,14 @@ public class GameStateManager{
 	public static final int LEVELSTATE = 3;
 	public static final int LEVELSTATE2 = 4;
 	public static final int JUMPPUZZLE1 = 5;
-	public static final int ENDSTATE = 6;
-	public static final int TurtleDesigner = 7;
+	public static final int JUMPPUZZLE2 = 6;
+	public static final int JUMPPUZZLE3 = 7;
+	public static final int JUMPPUZZLE4 = 8;
+	public static final int ENEMYLEVEL1 = 9;
+	public static final int ENEMYLEVEL2 = 10;
+	public static final int ENEMYLEVEL3 = 11;	
+	public static final int ENEMYLEVEL4 = 12;
+	public static final int TurtleDesigner = 15;
 	
 	
 	public GameStateManager(){
@@ -51,6 +56,13 @@ public class GameStateManager{
 		gameStates.add(new LevelState(this));
 		gameStates.add(new LevelState2(this));
 		gameStates.add(new JumpPuzzle1(this));
+		gameStates.add(new JumpPuzzle2(this));
+		gameStates.add(new JumpPuzzle3(this));
+		gameStates.add(new JumpPuzzle4(this));
+		gameStates.add(new EnemyLevel1(this));
+		gameStates.add(new EnemyLevel2(this));
+		gameStates.add(new EnemyLevel3(this));
+		gameStates.add(new EnemyLevel4(this));
 		gameStates.add(new EndState(this));
 		gameStates.add(new DesignerState(this));
 		
@@ -63,7 +75,7 @@ public class GameStateManager{
 	}
 	
 	public void setState(int state){
-		if(state == 3){
+		if(state % 3 == 0){
 			audioManager.updateAudio("/Audio/music/track2-quiet.wav");
 		}
 		curState = state;

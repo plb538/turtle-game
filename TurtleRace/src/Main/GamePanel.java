@@ -1,7 +1,6 @@
 package Main;
 
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -13,6 +12,10 @@ import GameState.GameStateManager;
 
 public class GamePanel extends JPanel implements Runnable, KeyListener{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 181941967131523736L;
 	//panel size
 	public static final int SCALE = 2;
 	public static final int RENDERWIDTH = 640;

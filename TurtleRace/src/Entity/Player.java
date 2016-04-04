@@ -3,10 +3,7 @@ package Entity;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-
 import javax.imageio.ImageIO;
-
-import Main.Game;
 import TileMap.TileMap;
 import networking.InformationPacket;
 
@@ -47,6 +44,8 @@ public class Player extends MapObject implements java.io.Serializable{
 	
 	public Player(TileMap tm){
 		//super(tm);
+		
+		startTime = System.nanoTime();
 		
 		weapon = new Weapon(this);
 		
@@ -267,7 +266,7 @@ public class Player extends MapObject implements java.io.Serializable{
 			deathCounter++;
 		}
 		
-		int resetx = tileMap.getTileSize()+25;
+		int resetx = tileMap.getTileSize()+100;
 		int resety = tileMap.getHeight() - 200;
 		
 		if(checkDead()){

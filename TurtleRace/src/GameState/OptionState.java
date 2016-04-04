@@ -100,11 +100,11 @@ public class OptionState extends GameState{
 			case 1 : //Return
 				gsm.setState(GameStateManager.MENUSTATE);
 				break;
-			case 2 : gsm.setState(4);
+			case 2 : gsm.setState(GameStateManager.ENEMYLEVEL1);
 				break;
-			case 3 : gsm.setState(5);
+			case 3 : gsm.setState(GameStateManager.ENEMYLEVEL2);
 				break;
-			case 4 : gsm.setState(6);
+			case 4 : gsm.setState(GameStateManager.ENEMYLEVEL3);
 			break;
 			
 		}

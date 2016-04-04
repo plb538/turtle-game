@@ -1,7 +1,5 @@
 package Main;
 
-import java.awt.Canvas;
-
 import javax.swing.JFrame;
 
 import Entity.Player;

@@ -5,11 +5,11 @@ import java.util.ArrayList;
 import Entity.MonkeyEnemy;
 import Entity.Portal;
 import Main.Game;
-import Main.GamePanel;
 import TileMap.Background;
 import TileMap.TileMap;
 import graphicalElements.DrawnHealth;
 import graphicalElements.DrawnProgress;
+import graphicalElements.PlayerTip;
 
 //basically the same as LevelState but with different map
 public class JumpPuzzle1 extends GameState{
@@ -41,7 +41,7 @@ public class JumpPuzzle1 extends GameState{
 		bg = new Background("/Backgrounds/default-background.png", 1);	
 		
 		Game.p1.setObjectOnTileMap(tileMap);
-		Game.p1.setPosition(100, tileMap.getHeight() - 200);
+		Game.p1.setPosition(100, tileMap.getHeight() - 100);
 		
 		monkeys = new ArrayList<MonkeyEnemy>();
 		m1 = new MonkeyEnemy(tileMap);
@@ -62,5 +62,6 @@ public class JumpPuzzle1 extends GameState{
 		
 		healthBar = new DrawnHealth(Game.p1);
 		progress = new DrawnProgress(Game.p1, tileMap);
+		pt = new PlayerTip("You must defeat all monkeys before finding the portal", 180, 250);
 	}
 }

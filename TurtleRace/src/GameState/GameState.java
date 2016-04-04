@@ -2,12 +2,8 @@ package GameState;
 
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
-import java.io.IOException;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
-
 import Entity.MonkeyEnemy;
 import Entity.Player;
 import Entity.Portal;
@@ -127,7 +123,9 @@ public abstract class GameState{
 		healthBar.draw(g, Game.p1);
 				
 		//draw progress
-		progress.draw(g, Game.p1, tileMap);
+		//progress.draw(g, Game.p1, tileMap);
+		progress.draw(g, monkeys);
+		
 		
 		if(pt != null){
 			pt.draw(g);
@@ -143,9 +141,7 @@ public abstract class GameState{
 	}
 	
 	public void keyPressed(int k){
-		//remember to remove
-		if(k == KeyEvent.VK_ENTER) gsm.setState(gsm.JUMPPUZZLE1);
-		
+
 		if(k == KeyEvent.VK_LEFT) Game.p1.setLeft(true);
 		if(k == KeyEvent.VK_RIGHT) Game.p1.setRight(true);
 		if(k == KeyEvent.VK_UP){
@@ -172,14 +168,14 @@ public abstract class GameState{
 		for(MonkeyEnemy me : mes){
 			if(!(me.checkIfDead())){
 				if((p.getx() + 60 >= me.getx() && p.getx() <= me.getx() + me.getWidth()) && p.checkIfAttacking() && ((p.gety() + p.getCHeight() <= me.gety() + me.getCHeight()) && p.gety() + p.getCHeight() >= me.gety())){
-					me.health -= p.weapon.damage;
+					me.takeDamage(p.weapon.damage);
 					if(p.weapon.getAnimation().getFrame() == 2){
 						me.setVector(4, 0);
 						gsm.overlayAudio("/Audio/monkey/flinch.wav");
 					}
 				}
 				if((p.getx() - 30 <= me.getx() + me.getCWidth() && p.getx() >= me.getx()) && p.checkIfAttacking() && ((p.gety() + p.getCHeight() <= me.gety() + me.getCHeight()) && p.gety() + p.getCHeight() >= me.gety())){
-					me.health -= p.weapon.damage;
+					me.takeDamage(p.weapon.damage);
 					if(p.weapon.getAnimation().getFrame() == 2){
 						me.setVector(-4, 0);
 						gsm.overlayAudio("/Audio/monkey/flinch.wav");

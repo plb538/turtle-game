@@ -3,7 +3,7 @@ package GameState;
 import java.util.ArrayList;
 
 import Entity.MonkeyEnemy;
-import Entity.Player;
+
 import Entity.Portal;
 import Main.Game;
 import TileMap.Background;
@@ -11,12 +11,11 @@ import TileMap.TileMap;
 import graphicalElements.DrawnHealth;
 import graphicalElements.DrawnProgress;
 import graphicalElements.PlayerTip;
-import networking.InformationPacket;
 
 public class LevelState extends GameState{
 		
-	private MonkeyEnemy m1;
-	private MonkeyEnemy m2;
+	//private MonkeyEnemy m1;
+	//private MonkeyEnemy m2;
 	
 	public LevelState(GameStateManager gsm){
 		this.gsm = gsm;
@@ -50,12 +49,12 @@ public class LevelState extends GameState{
 		
 		monkeys = new ArrayList<MonkeyEnemy>();
 		
-		m1 = new MonkeyEnemy(tileMap);
-		m2 = new MonkeyEnemy(tileMap);
-		monkeys.add(m1);
-		monkeys.add(m2);
-		m1.setPosition(600, 450);
-		m2.setPosition(1200, 150);
+		//m1 = new MonkeyEnemy(tileMap);
+		//m2 = new MonkeyEnemy(tileMap);
+		//monkeys.add(m1);
+		//monkeys.add(m2);
+		//m1.setPosition(600, 450);
+		//m2.setPosition(1200, 150);
 		
         //creates portal 
 		portal = new Portal(tileMap);

@@ -22,6 +22,8 @@ public class ReadThread extends MultiplayerThread{
 					//System.out.println("UpdatingP2");
 					Game.p2.updateP2(test);
 					
+					//System.out.println("MyStart:" + Game.p1.getStartTime() + "|MyCurrent" + System.nanoTime()+ "|PacketStart:" + test.getStartTime() + "|PacketCurrent:" + test.getTimeStamp());
+					
 					if(gsm.getState() == test.getstate()){
 						gsm.gameStates.get(gsm.getState()).updateMonkeyPosP2(test); //.updateMonkeyPosP2(test);
 					}
@@ -33,4 +35,7 @@ public class ReadThread extends MultiplayerThread{
 			}
 		}
 	}
+	
+
+	
 }
