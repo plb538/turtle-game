@@ -62,8 +62,10 @@ public class DesignerState extends GameState implements ActionListener{
 	@Override
 	public void update(){
 		//bg.update();
-		if(!frame.isShowing()){
-			gsm.setState(gsm.MENUSTATE);
+		if(frame != null){
+			if(!frame.isShowing()){
+				gsm.setState(gsm.MENUSTATE);
+			}
 		}
 	}
 
