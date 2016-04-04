@@ -38,6 +38,7 @@ public class GameStateManager{
 	public static final int LEVELSTATE2 = 4;
 	public static final int JUMPPUZZLE1 = 5;
 	public static final int ENDSTATE = 6;
+	public static final int TurtleDesigner = 7;
 	
 	
 	public GameStateManager(){
@@ -51,6 +52,7 @@ public class GameStateManager{
 		gameStates.add(new LevelState2(this));
 		gameStates.add(new JumpPuzzle1(this));
 		gameStates.add(new EndState(this));
+		gameStates.add(new DesignerState(this));
 		
 		String filename = "/Audio/music/EarthyCrust.wav";
 		audioManager = new AudioManager();

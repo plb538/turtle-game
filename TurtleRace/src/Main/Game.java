@@ -17,11 +17,12 @@ public class Game{
 	public static Player p1;
 	public static Player p2;
 	public static Printer Printer = new Printer();
+	public static JFrame window;
 	
 	public static void main(String[] args){
 		p1 = new Player(null);
 		p2 = new Player(null);
-		JFrame window = new JFrame("A Tale of Two Turtles");
+		window = new JFrame("A Tale of Two Turtles");
 		window.setContentPane(new GamePanel());
 		window.setVisible(true);
 		window.setResizable(false);

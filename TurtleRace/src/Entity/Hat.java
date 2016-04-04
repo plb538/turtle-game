@@ -19,13 +19,9 @@ public class Hat extends MapObject{
 	
 	private String hatName;
 	
-	public String getHatName(){
-		return hatName;
-	}
-
-	public void setHatName(String hatName){
-		this.hatName = hatName;
-	}
+	public String getHat(){return hatName;}
+	
+	public void setHat(String name){hatName = name;}
 
 	public Hat(Player p){
 		
@@ -36,7 +32,7 @@ public class Hat extends MapObject{
 		
 		//load sprites
 		try{
-			BufferedImage spriteSheet = ImageIO.read(getClass().getResourceAsStream("/hats/heliHatNoTurtle.png"));
+			BufferedImage spriteSheet = ImageIO.read(getClass().getResourceAsStream("/hats/" + hatName));
 			sprites = new ArrayList<BufferedImage[]>();
 			        
 			//break up sprite sheet
