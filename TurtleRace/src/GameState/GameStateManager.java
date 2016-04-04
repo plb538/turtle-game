@@ -76,7 +76,7 @@ public class GameStateManager{
 	
 	public void setState(int state){
 		if(state % 3 == 0){
-			audioManager.updateAudio("/Audio/music/track2-quiet.wav");
+			audioManager.updateAudio("/Audio/music/track2.wav");
 		}
 		curState = state;
 		gameStates.get(curState).init();
