@@ -26,7 +26,7 @@ public class Player extends MapObject implements java.io.Serializable{
 	public Weapon weapon;
 	
 	//player hat
-	private Hat hat;
+	private Hat hat = null;
 	
 	//gliding
 	private boolean gliding;
@@ -255,8 +255,10 @@ public class Player extends MapObject implements java.io.Serializable{
 	public Weapon getWeapon(){return weapon;}
 	
 	public void setHat(Hat h){
-		hat = h;
-		wearingHat = true;
+		if(h!=null){
+			hat = h;
+			wearingHat = true;
+		}
 	}
 	
 	public Hat getHat(){return hat;}
@@ -284,6 +286,7 @@ public class Player extends MapObject implements java.io.Serializable{
 	public void updateP2(InformationPacket packet){
 		this.setPosition(packet.getx(), packet.gety());
 		this.health = packet.gethealth();
+		//this.setHat(packet.gethat());
 		this.state = packet.getstate();
 		if(packet.getstate() < 6){
 			this.finishTime = packet.getTime();

@@ -85,7 +85,7 @@ public class GameStateManager{
 	 * -Also starts the in game music if the state is a mutiple of 3
 	 */
 	public void setState(int state){
-		if(state % 3 == 0){
+		if((state % 3 == 0) && state != 0){
 			audioManager.updateAudio("/Audio/music/OrganDonorQuiet.wav");
 		}
 		curState = state;
